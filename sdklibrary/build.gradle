@@ -1,0 +1,63 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 26
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation files('libs/okhttp-3.10.0.jar')
+    implementation files('libs/gson-2.2.2.jar')
+    implementation files('libs/okio-1.14.1.jar')
+}
+
+task makeJar(type: Copy) {
+    //删除存在的（注意mylibrary是自己命名的，名字随便改）
+    delete 'build/libs/mylibrary.jar'
+    //设置拷贝的文件，需要根据AS的版本找到响应的文件夹
+    from('build/intermediates/compile_library_classes_jar/release')
+    //jar包最后的文件目录
+    into('build/libs/')
+    //include ,exclude参数来设置过滤（我们只关心classes.jar这个文件）
+    include('classes.jar')
+    //重命名（注意mylibrary是自己命名的，名字随便改）
+    rename('classes.jar', 'mylibrary.jar')
+}
+makeJar.dependsOn(build)
+
+////task to delete the old jar
+//task deleteOldJar(type: Delete) {
+//    delete 'release/AndroidPlugin.jar'
+//}
+//
+////task to export contents as jar
+//task exportJar(type: Copy) {
+//    from('build/intermediates/bundles/release/')
+//    into('release/')
+//    include('classes.jar')
+//    ///Rename the jar
+//    rename('classes.jar', 'AndroidPlugin.jar')
+//}
+//
+//exportJar.dependsOn(deleteOldJar, build)

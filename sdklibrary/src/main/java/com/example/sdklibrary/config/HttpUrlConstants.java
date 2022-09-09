@@ -37,5 +37,10 @@ public final class HttpUrlConstants {
         return "https://www.wanandroid.com/user/register";
     }
 
+    //支付url  POST
+    //username,password,repassword
+    public static String getPayUrl() {
+        return "https://xiyecode.free.svipss.top/api/paypal/pay";
+    }
 
 }

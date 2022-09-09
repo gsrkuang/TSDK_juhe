@@ -19,10 +19,22 @@ public class GameSdkApplication extends Application{
         super.onCreate();
         homeApplication=this;
         SPDataUtils.init(getApplicationContext());
+
+//        InitStripe();
+
     }
 
     public static GameSdkApplication getInstance(){
         return homeApplication;
     }
 
+    /**
+     * 初始化Stripe
+     */
+    public void InitStripe(){
+//        PaymentConfiguration.init(
+//                getApplicationContext(),
+//                "pk_test_TYooMQauvdEDq54NiTphI7jx"
+//        );
+    }
 }

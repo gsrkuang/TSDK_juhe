@@ -121,6 +121,7 @@ public class SdkLoginActivity extends SdkBaseActivity implements MVPLoginView{
         //这里可以添加游戏悬浮窗
         Delegate.listener.callback( SDKStatusCode.SUCCESS,"login success");
         LoggerUtils.i("登录成功");
+        finish();
     }
 
     @Override

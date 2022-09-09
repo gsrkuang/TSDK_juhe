@@ -40,7 +40,7 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
 
     private void configInit() {
         //配置横竖屏,等一些可配置信息
-        ConfigInfo.allowPORTRAIT = true;
+//        ConfigInfo.allowPORTRAIT = true;
 
     }
 
@@ -164,10 +164,10 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.myBlog:
 
-                jumpActivity(X5InfoActivity.class,bolgUrl);
+//                jumpActivity(X5InfoActivity.class,bolgUrl);
                 break;
             case R.id.aboutDes:
-                jumpActivity(X5InfoActivity.class,desUrl);
+//                jumpActivity(X5InfoActivity.class,desUrl);
                 break;
             case R.id.testLogin:
                 break;

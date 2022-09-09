@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.util.SparseArray;
 import android.util.TypedValue;
 import android.view.MenuItem;
@@ -40,12 +39,13 @@ public abstract class SdkBaseActivity extends Activity implements View.OnClickLi
     //  处理具体的点击事件
     public abstract void processClick(View v);
 
+    @Override
     public void onClick(View v) {
         processClick(v);
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mViews = new SparseArray<>();
 

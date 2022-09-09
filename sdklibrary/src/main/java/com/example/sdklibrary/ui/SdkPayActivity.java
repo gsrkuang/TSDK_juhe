@@ -1,6 +1,8 @@
 package com.example.sdklibrary.ui;
 
+import android.content.Intent;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -107,5 +109,17 @@ public class SdkPayActivity extends SdkBaseActivity {
 
     private void alipayMethod() {
         Toast.makeText(this, "点击支付宝支付", Toast.LENGTH_LONG).show();
+
+        startActivity(new Intent(this,WebPayActivity.class));
+        //测试接入Stripe
+//        startActivity(new Intent(this,StripPaymentActivity.class));
+
+        //弹出WebView支持
+//        WebView mWebView = new WebView(this);
+
+
     }
+
+
+
 }

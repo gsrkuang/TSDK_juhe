@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.sdklibrary.R;
+import com.example.sdklibrary.aboutgoogle.GoogleSDK;
 import com.example.sdklibrary.base.SdkBaseActivity;
 import com.example.sdklibrary.call.Delegate;
+import com.example.sdklibrary.call.GameSdkLogic;
 import com.example.sdklibrary.config.SDKStatusCode;
 import com.example.sdklibrary.mvp.Imp.LoginPresenterImp;
 import com.example.sdklibrary.mvp.model.MVPLoginBean;
@@ -26,6 +29,7 @@ public class SdkLoginActivity extends SdkBaseActivity implements MVPLoginView{
     private LoginPresenterImp loginPresenterImp;
     private String mUserName,mPassWord;
     protected boolean accountTag,passwordTag;
+    private ImageView loginGoogle,loginFacebook;
 
     private final int ACCOUNT_MAX_LENGTH = 20;
     private final int ACCOUNT_MIN_LENGTH = 4;
@@ -34,6 +38,7 @@ public class SdkLoginActivity extends SdkBaseActivity implements MVPLoginView{
     private final String LOGIN_FORMERROR = "帐号/密码长度格式错误";
     private final String LENGTH_EMPTY = "请检查帐号/密码输入";
 
+    private String googleRequestIdToken;
     @Override
     public int getLayoutId() {
 
@@ -54,6 +59,8 @@ public class SdkLoginActivity extends SdkBaseActivity implements MVPLoginView{
         login = $(R.id.mvplogin);
         speedRegister = $(R.id.mvpregister);
         forgetpassword = $(R.id.mvpforgetpassword);
+        loginGoogle = $(R.id.loginButtonGoogle);
+        loginFacebook = $(R.id.loginButtonFacebook);
     }
 
     @Override
@@ -61,12 +68,18 @@ public class SdkLoginActivity extends SdkBaseActivity implements MVPLoginView{
         setOnClick(login);
         setOnClick(speedRegister);
         setOnClick(forgetpassword);
+        setOnClick(loginGoogle);
+        setOnClick(loginFacebook);
     }
 
     @Override
     public void initData() {
         loginPresenterImp = new LoginPresenterImp();
         loginPresenterImp.attachView(this);
+
+        googleRequestIdToken = getIntent().getStringExtra("googleRequestIdToken");
+        //初始化Google登陆
+        GoogleSDK.getInstance().signInClient(this,googleRequestIdToken);
     }
 
     @Override
@@ -77,6 +90,10 @@ public class SdkLoginActivity extends SdkBaseActivity implements MVPLoginView{
         }else if (id == R.id.mvpregister){
             regist();
         }else if (id == R.id.mvpforgetpassword){
+
+        }else if (id == R.id.loginButtonGoogle){
+            startActivityForResult(GoogleSDK.getInstance().getGoogleIntent(this,googleRequestIdToken), GoogleSDK.SIGN_LOGIN);
+        }else if (id == R.id.loginButtonFacebook){
 
         }else {
 
@@ -117,7 +134,6 @@ public class SdkLoginActivity extends SdkBaseActivity implements MVPLoginView{
 
     @Override
     public void loginSuccess(String msg, String data) {
-        finish();
         //这里可以添加游戏悬浮窗
         Delegate.listener.callback( SDKStatusCode.SUCCESS,"login success");
         LoggerUtils.i("登录成功");
@@ -134,5 +150,11 @@ public class SdkLoginActivity extends SdkBaseActivity implements MVPLoginView{
     protected void onDestroy() {
         super.onDestroy();
         loginPresenterImp.detachView();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        GoogleSDK.getInstance().onActivityResult(requestCode,resultCode,data,this);
     }
 }

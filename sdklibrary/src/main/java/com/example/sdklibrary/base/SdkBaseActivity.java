@@ -159,7 +159,7 @@ public abstract class SdkBaseActivity extends Activity implements View.OnClickLi
     private ProgressDialog dialog;
 
     public void showLoading() {
-        if (dialog != null && dialog.isShowing()) return;
+        if (dialog != null && dialog.isShowing()) {return;}
         dialog = new ProgressDialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCanceledOnTouchOutside(false);

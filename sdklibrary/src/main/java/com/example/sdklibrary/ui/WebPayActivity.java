@@ -1,11 +1,11 @@
 package com.example.sdklibrary.ui;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -173,7 +173,8 @@ public class WebPayActivity extends Activity {
                 .addHeader("Accept-Language", Locale.getDefault().getLanguage())
 //                .addHeader("Content-Type", "application/json")
 //                .addHeader("Cookie", CookieManager.getInstance().getCookie(url))
-                .addHeader("X-Requested-With", BuildConfig.APPLICATION_ID)
+
+//                .addHeader("X-Requested-With", BuildConfig.APPLICATION_ID)
                 .post(RequestBody.create(MediaType.parse("application/json"), postData))
                 .build();
 

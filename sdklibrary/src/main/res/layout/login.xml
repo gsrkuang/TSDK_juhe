@@ -156,14 +156,33 @@
         android:layout_marginTop="4dp"
         android:layout_width="match_parent"
         android:gravity="center"
-        android:layout_marginBottom="10dp"
-        android:layout_height="30dp">
+        android:layout_height="60dp">
 
-        <TextView
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Google登陆" />-->
+
+        <ImageView
+            android:id="@+id/loginButtonGoogle"
+            android:src="@drawable/googlelogin"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="" />
+            android:layout_height="wrap_content">
+
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/loginButtonFacebook"
+            android:src="@drawable/facebooklogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </ImageView>
+
+
+
+
     </LinearLayout>
 
 

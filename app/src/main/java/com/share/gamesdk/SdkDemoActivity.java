@@ -2,11 +2,12 @@ package com.share.gamesdk;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sdklibrary.call.GameSdkLogic;
 import com.example.sdklibrary.callback.SdkCallbackListener;
@@ -15,6 +16,7 @@ import com.example.sdklibrary.config.ConstData;
 import com.example.sdklibrary.config.SDKStatusCode;
 import com.example.sdklibrary.mvp.model.MVPPayBean;
 import com.example.sdklibrary.mvp.model.MVPPlayerBean;
+import com.example.sdklibrary.thirdpartymodel.ThreePartyLoginResultBean;
 import com.example.sdklibrary.tools.LoggerUtils;
 import com.share.gamesdk.other.X5InfoActivity;
 
@@ -25,6 +27,7 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
     public final String bolgUrl = "https://www.jianshu.com/u/0111a7da544b";
     public final String desUrl = "https://www.jianshu.com/p/8b9d82560a67";
 
+    private String googleRequestIdToken ="431344480217-h57ic0pucch447opi29tkidp4bug09b9.apps.googleusercontent.com";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
     private void init() {
         //这里的Object 可以扩展定义一切对象 ,你懂的
         Object object = new Object();
+
         GameSdkLogic.getInstance().sdkInit(this, object, new SdkCallbackListener<String>() {
             @Override
             public void callback(int code, String response) {
@@ -69,14 +73,15 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
 
     //登录:
     private void loginMethod() {
-        GameSdkLogic.getInstance().sdkLogin(this, new SdkCallbackListener<String>() {
+        GameSdkLogic.getInstance().sdkLogin(this,googleRequestIdToken, new SdkCallbackListener<String>() {
             @Override
             public void callback(int code, String response) {
                 switch (code) {
                     case SDKStatusCode.SUCCESS:
-                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGIN_SUCCESS,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGIN_SUCCESS + response,Toast.LENGTH_SHORT).show();
                         //这里就可以获取登录成功以后的信息:
                         LoggerUtils.i( "login callBack data : "+response);
+                        Toast.makeText(SdkDemoActivity.this,"登陆成功"+response,Toast.LENGTH_SHORT).show();
                         break;
                     case SDKStatusCode.FAILURE:
                         Toast.makeText(SdkDemoActivity.this, ConstData.LOGIN_FAILURE,Toast.LENGTH_SHORT).show();

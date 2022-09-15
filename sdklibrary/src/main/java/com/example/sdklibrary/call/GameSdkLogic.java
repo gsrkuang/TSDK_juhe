@@ -8,6 +8,7 @@ import com.example.sdklibrary.config.ConstData;
 import com.example.sdklibrary.config.SDKStatusCode;
 import com.example.sdklibrary.mvp.model.MVPPayBean;
 import com.example.sdklibrary.mvp.model.MVPPlayerBean;
+import com.example.sdklibrary.thirdpartymodel.ThreePartyLoginResultBean;
 import com.example.sdklibrary.tools.LoggerUtils;
 import com.example.sdklibrary.ui.SdkLoginActivity;
 import com.example.sdklibrary.ui.SdkPayActivity;
@@ -38,21 +39,23 @@ public class GameSdkLogic {
     //游戏初始化:
     //这里没有商业接口,固定是初始化成功,实际开发需要根据后台去判断成功/失败
     //只有当初始化的时候才可以进行后续操作
-    public void sdkInit(Context context,final Object o, final SdkCallbackListener<String> callback){
+    public void sdkInit(Context context,final Object o,final SdkCallbackListener<String> callback){
         callback.callback(SDKStatusCode.SUCCESS, "初始化成功");
         checkInit = true;
     }
 
     //登录:
     //理论上初始化成功才可以登录 这里的接口使用的是 玩Android 开放接口
-    public void sdkLogin(Context context, final SdkCallbackListener<String> callback){
+    public void sdkLogin(Context context,String googleRequestIdToken ,final SdkCallbackListener<String> loginCallback){
         LoggerUtils.i("SdkLogic Login");
         if (checkInit){
             Intent intent = new Intent(context, SdkLoginActivity.class);
+            intent.putExtra("googleRequestIdToken",googleRequestIdToken);
             context.startActivity(intent);
-            Delegate.listener = callback;
+            Delegate.listener = loginCallback;
         }else {
-            callback.callback(SDKStatusCode.FAILURE, ConstData.INIT_FAILURE);
+            loginCallback.callback(SDKStatusCode.FAILURE, ConstData.INIT_FAILURE);
+
             return;
         }
 

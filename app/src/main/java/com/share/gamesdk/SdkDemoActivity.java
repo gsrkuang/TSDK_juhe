@@ -16,7 +16,6 @@ import com.example.sdklibrary.config.ConstData;
 import com.example.sdklibrary.config.SDKStatusCode;
 import com.example.sdklibrary.mvp.model.MVPPayBean;
 import com.example.sdklibrary.mvp.model.MVPPlayerBean;
-import com.example.sdklibrary.thirdpartymodel.ThreePartyLoginResultBean;
 import com.example.sdklibrary.tools.LoggerUtils;
 import com.share.gamesdk.other.X5InfoActivity;
 
@@ -33,6 +32,7 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         findView();
         //配置信息初始化:
         configInit();
@@ -85,6 +85,9 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
                         break;
                     case SDKStatusCode.FAILURE:
                         Toast.makeText(SdkDemoActivity.this, ConstData.LOGIN_FAILURE,Toast.LENGTH_SHORT).show();
+                        break;
+                    case SDKStatusCode.CANCEL:
+                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGIN_CANCEL,Toast.LENGTH_SHORT).show();
                         break;
                     case SDKStatusCode.OTHER:
                         Toast.makeText(SdkDemoActivity.this, ConstData.LOGIN_FAILURE,Toast.LENGTH_SHORT).show();

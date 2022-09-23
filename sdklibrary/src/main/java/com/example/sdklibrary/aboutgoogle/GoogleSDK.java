@@ -86,10 +86,9 @@ public class GoogleSDK {
         LoggerUtils.i("+++谷歌登录成功");
         activity.finish();
     }
-    //游戏google登陆成功
+    //游戏google登陆失败
     public void GameLoginFail(Activity activity,String msg){
         Delegate.listener.callback( SDKStatusCode.FAILURE,msg);
         LoggerUtils.i("+++谷歌登录失败"+msg);
-        activity.finish();
     }
 }

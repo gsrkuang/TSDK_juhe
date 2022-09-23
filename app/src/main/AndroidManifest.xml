@@ -22,6 +22,7 @@
         android:name=".other.SDKUseApp"
         android:theme="@style/AppNewTheme">
 
+
         <activity android:name=".SdkDemoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|navigation|screenLayout"
             android:theme="@style/AppTheme.NoBar"
@@ -32,32 +33,9 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="com.example.sdklibrary.ui.SdkLoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@android:style/Theme.Dialog"
-            android:screenOrientation="landscape"
-            />
 
-        <activity
-            android:name="com.example.sdklibrary.ui.SdkRegistActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@android:style/Theme.Dialog"
-            android:screenOrientation="landscape"
-            />
 
-        <activity
-            android:name="com.example.sdklibrary.ui.SdkPayActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@android:style/Theme.Dialog"
-            android:screenOrientation="landscape"
-            />
-        <activity
-            android:name="com.example.sdklibrary.ui.WebPayActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="landscape"
-            />
-
+<!--   strip     -->
 <!--        <activity-->
 <!--            android:name="com.example.sdklibrary.ui.StripPaymentActivity"-->
 <!--            android:configChanges="orientation|keyboardHidden|screenSize"-->

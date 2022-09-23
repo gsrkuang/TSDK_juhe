@@ -8,7 +8,6 @@ import com.example.sdklibrary.config.ConstData;
 import com.example.sdklibrary.config.SDKStatusCode;
 import com.example.sdklibrary.mvp.model.MVPPayBean;
 import com.example.sdklibrary.mvp.model.MVPPlayerBean;
-import com.example.sdklibrary.thirdpartymodel.ThreePartyLoginResultBean;
 import com.example.sdklibrary.tools.LoggerUtils;
 import com.example.sdklibrary.ui.SdkLoginActivity;
 import com.example.sdklibrary.ui.SdkPayActivity;

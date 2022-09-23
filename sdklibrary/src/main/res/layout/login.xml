@@ -165,18 +165,29 @@
 <!--            android:text="Google登陆" />-->
 
         <ImageView
+            android:layout_margin="5dp"
             android:id="@+id/loginButtonGoogle"
-            android:src="@drawable/googlelogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:src="@drawable/login_google"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
 
         </ImageView>
 
         <ImageView
+            android:layout_margin="5dp"
             android:id="@+id/loginButtonFacebook"
-            android:src="@drawable/facebooklogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:src="@drawable/login_facebook"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+
+        </ImageView>
+
+        <ImageView
+            android:layout_margin="5dp"
+            android:id="@+id/loginButtonTaptap"
+            android:src="@drawable/login_taptap"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
 
         </ImageView>
 

@@ -7,6 +7,7 @@ package com.example.sdklibrary.config;
 
 public final class ConstData {
     public static final String LOGIN_SUCCESS = "登录成功";
+    public static final String LOGIN_CANCEL = "登录取消";
     public static final String LOGIN_FAILURE = "登录失败";
 
     public static final String INIT_SUCCESS = "初始化成功";
@@ -17,5 +18,7 @@ public final class ConstData {
 
     public static final String PAY_SUCCESS = "支付成功";
     public static final String PAY_FAILURE = "支付失败";
+
+
 
 }

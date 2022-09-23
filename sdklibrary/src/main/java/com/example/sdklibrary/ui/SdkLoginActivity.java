@@ -6,8 +6,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.sdklibrary.R;
+import com.example.sdklibrary.aboutfacebook.FacebookSDK;
 import com.example.sdklibrary.aboutgoogle.GoogleSDK;
+import com.example.sdklibrary.abouttaptap.TapTapSDK;
 import com.example.sdklibrary.base.SdkBaseActivity;
 import com.example.sdklibrary.call.Delegate;
 import com.example.sdklibrary.call.GameSdkLogic;
@@ -16,20 +19,23 @@ import com.example.sdklibrary.mvp.Imp.LoginPresenterImp;
 import com.example.sdklibrary.mvp.model.MVPLoginBean;
 import com.example.sdklibrary.mvp.view.MVPLoginView;
 import com.example.sdklibrary.tools.LoggerUtils;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.taptap.sdk.TapLoginHelper;
 
 /**
  * Created by tzw on 2018/6/4.
  * 登录
  */
 
-public class SdkLoginActivity extends SdkBaseActivity implements MVPLoginView{
+public class SdkLoginActivity extends SdkBaseActivity implements MVPLoginView {
 
-    private EditText username,passWord;
-    private TextView login,speedRegister,forgetpassword;
+    private EditText username, passWord;
+    private TextView login, speedRegister, forgetpassword;
     private LoginPresenterImp loginPresenterImp;
-    private String mUserName,mPassWord;
-    protected boolean accountTag,passwordTag;
-    private ImageView loginGoogle,loginFacebook;
+    private String mUserName, mPassWord;
+    protected boolean accountTag, passwordTag;
+    private ImageView loginGoogle, loginFacebook,loginTaptap;
 
     private final int ACCOUNT_MAX_LENGTH = 20;
     private final int ACCOUNT_MIN_LENGTH = 4;
@@ -39,6 +45,7 @@ public class SdkLoginActivity extends SdkBaseActivity implements MVPLoginView{
     private final String LENGTH_EMPTY = "请检查帐号/密码输入";
 
     private String googleRequestIdToken;
+
     @Override
     public int getLayoutId() {
 
@@ -54,13 +61,14 @@ public class SdkLoginActivity extends SdkBaseActivity implements MVPLoginView{
 
     @Override
     public void initViews() {
-        username =  $(R.id.loginusername);
-        passWord =  $(R.id.loginpassword);
+        username = $(R.id.loginusername);
+        passWord = $(R.id.loginpassword);
         login = $(R.id.mvplogin);
         speedRegister = $(R.id.mvpregister);
         forgetpassword = $(R.id.mvpforgetpassword);
         loginGoogle = $(R.id.loginButtonGoogle);
         loginFacebook = $(R.id.loginButtonFacebook);
+        loginTaptap = $(R.id.loginButtonTaptap);
     }
 
     @Override
@@ -70,6 +78,7 @@ public class SdkLoginActivity extends SdkBaseActivity implements MVPLoginView{
         setOnClick(forgetpassword);
         setOnClick(loginGoogle);
         setOnClick(loginFacebook);
+        setOnClick(loginTaptap);
     }
 
     @Override
@@ -79,33 +88,40 @@ public class SdkLoginActivity extends SdkBaseActivity implements MVPLoginView{
 
         googleRequestIdToken = getIntent().getStringExtra("googleRequestIdToken");
         //初始化Google登陆
-        GoogleSDK.getInstance().signInClient(this,googleRequestIdToken);
+        GoogleSDK.getInstance().signInClient(this, googleRequestIdToken);
+        TapTapSDK.getInstance().init(SdkLoginActivity.this, "b8jxty2rhkryzv6xl6");
+        //注册登录监听
+        TapTapSDK.getInstance().registerLoginCallback(this);
+
     }
 
     @Override
     public void processClick(View v) {
         int id = v.getId();
-        if (id == R.id.mvplogin){
+        if (id == R.id.mvplogin) {
             loginMethod();
-        }else if (id == R.id.mvpregister){
+        } else if (id == R.id.mvpregister) {
             regist();
-        }else if (id == R.id.mvpforgetpassword){
+        } else if (id == R.id.mvpforgetpassword) {
 
-        }else if (id == R.id.loginButtonGoogle){
-            startActivityForResult(GoogleSDK.getInstance().getGoogleIntent(this,googleRequestIdToken), GoogleSDK.SIGN_LOGIN);
-        }else if (id == R.id.loginButtonFacebook){
-
-        }else {
+        } else if (id == R.id.loginButtonGoogle) {
+            startActivityForResult(GoogleSDK.getInstance().getGoogleIntent(this, googleRequestIdToken), GoogleSDK.SIGN_LOGIN);
+        } else if (id == R.id.loginButtonFacebook) {
+            FacebookSDK.getInstance().logInWithReadPermissions(this);
+        } else if (id == R.id.loginButtonTaptap) {
+            // 登录
+            TapLoginHelper.startTapLogin(SdkLoginActivity.this, TapLoginHelper.SCOPE_PUBLIC_PROFILE);
+        } else {
 
         }
     }
 
     private void regist() {
-        startActivity(new Intent(this,SdkRegistActivity.class));
+        startActivity(new Intent(this, SdkRegistActivity.class));
         finish();
     }
 
-    private void loginMethod(){
+    private void loginMethod() {
 
         mUserName = username.getText().toString().trim();
         mPassWord = passWord.getText().toString().trim();
@@ -135,14 +151,14 @@ public class SdkLoginActivity extends SdkBaseActivity implements MVPLoginView{
     @Override
     public void loginSuccess(String msg, String data) {
         //这里可以添加游戏悬浮窗
-        Delegate.listener.callback( SDKStatusCode.SUCCESS,"login success");
+        Delegate.listener.callback(SDKStatusCode.SUCCESS, "login success");
         LoggerUtils.i("登录成功");
         finish();
     }
 
     @Override
     public void loginFailed(String msg, String data) {
-        Delegate.listener.callback(SDKStatusCode.FAILURE,"login failure");
+        Delegate.listener.callback(SDKStatusCode.FAILURE, "login failure");
         LoggerUtils.i("登录失败");
     }
 
@@ -155,6 +171,10 @@ public class SdkLoginActivity extends SdkBaseActivity implements MVPLoginView{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        GoogleSDK.getInstance().onActivityResult(requestCode,resultCode,data,this);
+        GoogleSDK.getInstance().onActivityResult(requestCode, resultCode, data, this);
+        FacebookSDK.getInstance().onActivityResult(requestCode, resultCode, data, this);
+
     }
+
+
 }

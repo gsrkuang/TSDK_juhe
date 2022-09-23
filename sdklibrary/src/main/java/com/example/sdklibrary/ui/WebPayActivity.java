@@ -14,7 +14,6 @@ import android.webkit.WebViewClient;
 import com.example.sdklibrary.BuildConfig;
 import com.example.sdklibrary.R;
 
-import org.apache.http.util.EncodingUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 

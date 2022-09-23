@@ -1,10 +1,11 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.kezong.fat-aar'
 
 android {
     compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -26,23 +27,33 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+//    implementation fileTree(dir: 'libs', include: '*.jar')
+
+//    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
 //    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
 //    testImplementation 'junit:junit:4.12'
 //    androidTestImplementation 'com.android.support.test:runner:1.0.2'
 //    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-
-    implementation 'org.apache.httpcomponents:httpcore:4.4.4'
     implementation files('libs/okhttp-3.10.0.jar')
     implementation files('libs/gson-2.2.2.jar')
     implementation files('libs/okio-1.14.1.jar')
+    //使用fat-aar来加载aar
+    embed (name:'TapLogin_3.15.0', ext:'aar')
+    embed (name:'TapCommon_3.15.0', ext:'aar')
 
-//    implementation 'com.stripe:stripe-android:16.4.0'
+//    compileOnly files('libs/TapLogin_3.15.0.aar')
+//    compileOnly files('libs/TapCommon_3.15.0.aar')
+//    implementation files('libs/TapLogin_3.15.0.aar')
+//    implementation files('libs/TapCommon_3.15.0.aar')
 
     //google sdk
     implementation 'com.google.android.gms:play-services-auth:19.2.0'
+    //facebook sdk
+    implementation 'com.facebook.android:facebook-android-sdk:12.0.1'
+    implementation 'com.facebook.android:facebook-login:12.0.1'
+
 
 }
 

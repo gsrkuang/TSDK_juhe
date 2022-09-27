@@ -5,8 +5,10 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.sdklibrary.call.Delegate;
+import com.example.sdklibrary.config.LogTAG;
 import com.example.sdklibrary.config.SDKStatusCode;
 import com.example.sdklibrary.tools.LoggerUtils;
+import com.example.sdklibrary.ui.SdkLoginActivity;
 import com.taptap.sdk.AccessToken;
 import com.taptap.sdk.AccountGlobalError;
 import com.taptap.sdk.Profile;
@@ -29,6 +31,11 @@ public class TapTapSDK {
         return tapTapSDK;
     }
 
+    public void LoginClick(Activity activity){
+        // 登录
+        TapLoginHelper.startTapLogin(activity, TapLoginHelper.SCOPE_PUBLIC_PROFILE);
+    }
+
     public void init(Context context, String clientID){
         // 适用于中国大陆
         TapLoginHelper.init(context, clientID);
@@ -38,7 +45,8 @@ public class TapTapSDK {
         TapLoginHelper.TapLoginResultCallback loginCallback = new TapLoginHelper.TapLoginResultCallback() {
             @Override
             public void onLoginSuccess(AccessToken token) {
-                Log.d("TapTapSDK", "TapTap authorization succeed");
+                LoggerUtils.i(LogTAG.taptapLogin,"TapTap authorization succeed");
+
                 // 开发者调用 TapLoginHelper.getCurrentProfile() 可以获得当前用户的一些基本信息，例如名称、头像。
                 Profile profile = TapLoginHelper.getCurrentProfile();
 
@@ -47,13 +55,15 @@ public class TapTapSDK {
 
             @Override
             public void onLoginCancel() {
-                Log.d("TapTapSDK", "TapTap authorization cancelled");
+                LoggerUtils.i(LogTAG.taptapLogin,"TapTap authorization cancelled");
+
                 GameLoginCancel(activity,"TapTap authorization cancelled");
             }
 
             @Override
             public void onLoginError(AccountGlobalError globalError) {
-                Log.d("TapTapSDK", "TapTap authorization failed. cause: " + globalError.getMessage());
+                LoggerUtils.i(LogTAG.taptapLogin,"TapTap authorization failed. cause: " + globalError.getMessage());
+
                 GameLoginFail(activity,globalError.getMessage());
             }
         };

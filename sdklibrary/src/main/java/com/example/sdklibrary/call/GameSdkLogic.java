@@ -45,11 +45,11 @@ public class GameSdkLogic {
 
     //登录:
     //理论上初始化成功才可以登录 这里的接口使用的是 玩Android 开放接口
-    public void sdkLogin(Context context,String googleRequestIdToken ,final SdkCallbackListener<String> loginCallback){
+    public void sdkLogin(Context context,String appkey ,final SdkCallbackListener<String> loginCallback){
         LoggerUtils.i("SdkLogic Login");
         if (checkInit){
             Intent intent = new Intent(context, SdkLoginActivity.class);
-            intent.putExtra("googleRequestIdToken",googleRequestIdToken);
+            intent.putExtra("appkey",appkey);
             context.startActivity(intent);
             Delegate.listener = loginCallback;
         }else {

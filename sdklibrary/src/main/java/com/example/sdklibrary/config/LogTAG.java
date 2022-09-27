@@ -24,4 +24,10 @@ public final class LogTAG {
     public static final String x5webview = "x5webview";
     public static final String qqLogin = "qqLogin";
     public static final String weChatLogin = "wechat";
+
+    public static final String facebookLogin = "facebookLogin";
+    public static final String googleLogin = "googleLogin";
+    public static final String taptapLogin = "taptapLogin";
+
+
 }

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.sdklibrary.call.Delegate;
+import com.example.sdklibrary.config.LogTAG;
 import com.example.sdklibrary.config.SDKStatusCode;
 import com.example.sdklibrary.tools.LoggerUtils;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -37,6 +38,10 @@ public class GoogleSDK {
         return instance;
     }
 
+    public void LoginClick(Activity activity,String googleRequestIdToken){
+        activity.startActivityForResult(GoogleSDK.getInstance().getGoogleIntent(activity, googleRequestIdToken), GoogleSDK.SIGN_LOGIN);
+    }
+
     public void signInClient(Activity activity,String requestIdToken){
         if (mGoogleSignInClient == null) {
             GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions
@@ -61,19 +66,23 @@ public class GoogleSDK {
     public void onActivityResult(int requestCode, int resultCode, Intent data,Activity activity){
         switch (requestCode) {
             case SIGN_LOGIN:
-                Log.e("+++googleLogin","setActivityResultGoogle");
                 Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
                 if (task == null) {
-                    Log.e("+++googleLogin","task：null");
+                    LoggerUtils.i(LogTAG.googleLogin,"task：null");
                 }
                 try {
                     GoogleSignInAccount account = task.getResult(ApiException.class);
-                    Log.e("+++googleLogin","Id:" + account.getId() + "/n|Email:" + account.getEmail() + "/n|IdToken:" + account.getIdToken());
+
+                    LoggerUtils.i(LogTAG.googleLogin,"Id:" + account.getId() + "/n|Email:" + account.getEmail() + "/n|IdToken:" + account.getIdToken());
                     GameLoginSuccess(activity,account.getId());
                 } catch (ApiException e) {
                     e.printStackTrace();
-                    GameLoginFail(activity,e.getMessage());
-                    Log.e("+++googleLogin","ApiException:" + e.getMessage());
+                    if ("12501: ".equals(e.getMessage())){
+                        GameLoginCancel(activity,"登陆取消");
+                    }else {
+                        GameLoginFail(activity,e.getMessage());
+                    }
+                    LoggerUtils.e(LogTAG.googleLogin,"ApiException:" + e.getMessage());
 
                 }
                 break;
@@ -91,4 +100,10 @@ public class GoogleSDK {
         Delegate.listener.callback( SDKStatusCode.FAILURE,msg);
         LoggerUtils.i("+++谷歌登录失败"+msg);
     }
+    //游戏google登陆取消
+    public void GameLoginCancel(Activity activity,String msg){
+        Delegate.listener.callback( SDKStatusCode.CANCEL,msg);
+        LoggerUtils.i("+++谷歌登录取消"+msg);
+    }
+
 }

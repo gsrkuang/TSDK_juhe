@@ -61,7 +61,6 @@ public class WebPayActivity extends Activity {
 
         int money = 1;
 
-
         String postData = "{\n" +
                 "\"currency\": \"HKD\",\n" +
                 "\"items\": [\n" +

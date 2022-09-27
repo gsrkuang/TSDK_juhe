@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sdklibrary.call.GameSdkLogic;
 import com.example.sdklibrary.callback.SdkCallbackListener;
-import com.example.sdklibrary.config.ConfigInfo;
 import com.example.sdklibrary.config.ConstData;
 import com.example.sdklibrary.config.SDKStatusCode;
 import com.example.sdklibrary.mvp.model.MVPPayBean;
@@ -25,8 +24,6 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
     private Button testLogin;
     public final String bolgUrl = "https://www.jianshu.com/u/0111a7da544b";
     public final String desUrl = "https://www.jianshu.com/p/8b9d82560a67";
-
-    private String googleRequestIdToken ="431344480217-h57ic0pucch447opi29tkidp4bug09b9.apps.googleusercontent.com";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +70,7 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
 
     //登录:
     private void loginMethod() {
-        GameSdkLogic.getInstance().sdkLogin(this,googleRequestIdToken, new SdkCallbackListener<String>() {
+        GameSdkLogic.getInstance().sdkLogin(this,"", new SdkCallbackListener<String>() {
             @Override
             public void callback(int code, String response) {
                 switch (code) {

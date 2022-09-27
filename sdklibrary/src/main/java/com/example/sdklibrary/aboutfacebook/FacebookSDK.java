@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.sdklibrary.aboutgoogle.GoogleSDK;
 import com.example.sdklibrary.call.Delegate;
+import com.example.sdklibrary.config.LogTAG;
 import com.example.sdklibrary.config.SDKStatusCode;
 import com.example.sdklibrary.tools.LoggerUtils;
 import com.facebook.AccessToken;
@@ -50,10 +51,8 @@ public class FacebookSDK {
         return instance;
     }
 
-
     // Initialize Facebook Login button
     private CallbackManager mFacebookCallbackManager = CallbackManager.Factory.create();;
-
 
     /**
      * 初始化Facebook
@@ -63,13 +62,14 @@ public class FacebookSDK {
         AppEventsLogger.activateApp(context);
     }
 
-    public void logInWithReadPermissions(Activity activity){
+    public void LoginClick(Activity activity){
         LoginManager.getInstance().logInWithReadPermissions(activity, Arrays.asList("public_profile"));
         //Login Callback registration
         LoginManager.getInstance().registerCallback(mFacebookCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Toast.makeText(getApplicationContext(), "in LoginResult on success", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "in LoginResult on success", Toast.LENGTH_LONG).show();
+                LoggerUtils.i(LogTAG.facebookLogin,"in LoginResult on success");
 
                 //facebook授权成功，去firebase验证
                 if (loginResult != null) {
@@ -85,13 +85,16 @@ public class FacebookSDK {
             @Override
             public void onCancel() {
                 Log.d("FacebookLogin", "in FaceBookLoginResult on cancel");
+                LoggerUtils.i(LogTAG.facebookLogin,"in FaceBookLoginResult on cancel");
+
                 GameLoginCancel(activity,"");
             }
 
             @Override
             public void onError(FacebookException exception) {
                 Toast.makeText(getApplicationContext(), "in FaceBookLoginResult on error"+exception, Toast.LENGTH_LONG).show();
-                Log.d("FacebookLogin", "in FaceBookLoginResult on error" +exception);
+
+                LoggerUtils.i(LogTAG.facebookLogin,"in FaceBookLoginResult on error" +exception);
                 GameLoginFail(activity,exception.toString());
 //                updateUIForLoginFailure();
             }

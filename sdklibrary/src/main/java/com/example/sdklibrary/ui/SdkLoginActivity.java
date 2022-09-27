@@ -44,7 +44,13 @@ public class SdkLoginActivity extends SdkBaseActivity implements MVPLoginView {
     private final String LOGIN_FORMERROR = "帐号/密码长度格式错误";
     private final String LENGTH_EMPTY = "请检查帐号/密码输入";
 
-    private String googleRequestIdToken;
+    private String appkey;
+
+    //从服务器获取idtoken google 、facebook的初始化参数写在了androidmanifest的meta标签中
+    private String googleRequestIdToken ="431344480217-h57ic0pucch447opi29tkidp4bug09b9.apps.googleusercontent.com";
+    //从服务器获取ClientID taptap
+    private String taptapClientID = "b8jxty2rhkryzv6xl6";
+
 
     @Override
     public int getLayoutId() {
@@ -86,10 +92,13 @@ public class SdkLoginActivity extends SdkBaseActivity implements MVPLoginView {
         loginPresenterImp = new LoginPresenterImp();
         loginPresenterImp.attachView(this);
 
-        googleRequestIdToken = getIntent().getStringExtra("googleRequestIdToken");
+        appkey = getIntent().getStringExtra("appkey");
+        //得到appkey后，从服务器返回得到各种配置好的idtoken，然后再进行google taptap facebook的初始化
+        //此处写网络请求
+
         //初始化Google登陆
         GoogleSDK.getInstance().signInClient(this, googleRequestIdToken);
-        TapTapSDK.getInstance().init(SdkLoginActivity.this, "b8jxty2rhkryzv6xl6");
+        TapTapSDK.getInstance().init(SdkLoginActivity.this, taptapClientID);
         //注册登录监听
         TapTapSDK.getInstance().registerLoginCallback(this);
 
@@ -105,13 +114,12 @@ public class SdkLoginActivity extends SdkBaseActivity implements MVPLoginView {
         } else if (id == R.id.mvpforgetpassword) {
 
         } else if (id == R.id.loginButtonGoogle) {
-            startActivityForResult(GoogleSDK.getInstance().getGoogleIntent(this, googleRequestIdToken), GoogleSDK.SIGN_LOGIN);
+            GoogleSDK.getInstance().LoginClick(this,googleRequestIdToken);
         } else if (id == R.id.loginButtonFacebook) {
-            FacebookSDK.getInstance().logInWithReadPermissions(this);
+            FacebookSDK.getInstance().LoginClick(this);
         } else if (id == R.id.loginButtonTaptap) {
-            // 登录
-            TapLoginHelper.startTapLogin(SdkLoginActivity.this, TapLoginHelper.SCOPE_PUBLIC_PROFILE);
-        } else {
+            TapTapSDK.getInstance().LoginClick(this);
+           } else {
 
         }
     }

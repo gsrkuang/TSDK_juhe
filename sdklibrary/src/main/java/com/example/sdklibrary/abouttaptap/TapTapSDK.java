@@ -35,6 +35,9 @@ public class TapTapSDK {
         // 登录
         TapLoginHelper.startTapLogin(activity, TapLoginHelper.SCOPE_PUBLIC_PROFILE);
     }
+    public void Logout(){
+        TapLoginHelper.logout();
+    }
 
     public void init(Context context, String clientID){
         // 适用于中国大陆

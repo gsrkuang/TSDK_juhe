@@ -3,6 +3,9 @@ package com.example.sdklibrary.call;
 import android.content.Context;
 import android.content.Intent;
 
+import com.example.sdklibrary.aboutfacebook.FacebookSDK;
+import com.example.sdklibrary.aboutgoogle.GoogleSDK;
+import com.example.sdklibrary.abouttaptap.TapTapSDK;
 import com.example.sdklibrary.callback.SdkCallbackListener;
 import com.example.sdklibrary.config.ConstData;
 import com.example.sdklibrary.config.SDKStatusCode;
@@ -11,6 +14,8 @@ import com.example.sdklibrary.mvp.model.MVPPlayerBean;
 import com.example.sdklibrary.tools.LoggerUtils;
 import com.example.sdklibrary.ui.SdkLoginActivity;
 import com.example.sdklibrary.ui.SdkPayActivity;
+import com.example.sdklibrary.ui.view.DialogTips;
+import com.facebook.FacebookSdk;
 
 /**
  * Created by tzw on 2018/6/5.
@@ -60,6 +65,18 @@ public class GameSdkLogic {
 
     }
 
+    public void sdkLogout(Context context,final SdkCallbackListener<String> loginCallback){
+        LoggerUtils.i("SdkLogic Logout");
+        if (checkInit){
+            showLogoutDialog(context,loginCallback);
+        }else {
+            loginCallback.callback(SDKStatusCode.FAILURE, ConstData.INIT_FAILURE);
+
+            return;
+        }
+
+    }
+
     //支付:
     //需要将SDK支付信息传递给具体的方式中
     public void sdkPay(Context context, MVPPayBean bean,final SdkCallbackListener<String> callback){
@@ -83,6 +100,35 @@ public class GameSdkLogic {
         //Build HttpRequest   ----> server get Request ------->server return ResponseBody
 
         //This function is mainly used to record and count player information
+    }
+
+    //弹出登出提示
+    public void showLogoutDialog(Context context,final SdkCallbackListener<String> loginCallback){
+        Delegate.listener = loginCallback;
+        //这里应该弹出退出窗口的确认框，确认框确认后再退出登录
+        DialogTips dialogTips = new DialogTips(context);
+        dialogTips.setTitle("退出登录");
+        dialogTips.setMessage("确认要退出当前账号吗？");
+        dialogTips.setCancelOnClickListener(new DialogTips.onCancelOnClickListener() {
+            @Override
+            public void onCancelClick() {
+                dialogTips.dismiss();
+                Delegate.listener.callback(SDKStatusCode.CANCEL, "logout cancel");
+            }
+        });
+        dialogTips.setLoginOnClickListener(new DialogTips.onLoginOnClickListener() {
+            @Override
+            public void onLoginClick() {
+
+                FacebookSDK.getInstance().Logout();
+                GoogleSDK.getInstance().Logout();
+                TapTapSDK.getInstance().Logout();
+                dialogTips.dismiss();
+                Delegate.listener.callback(SDKStatusCode.SUCCESS, "logout success");
+            }
+        });
+        dialogTips.show();
+
     }
 
 

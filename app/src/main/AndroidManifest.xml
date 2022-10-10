@@ -25,8 +25,7 @@
 
         <activity android:name=".SdkDemoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|navigation|screenLayout"
-            android:theme="@style/AppTheme.NoBar"
-            android:screenOrientation="landscape">
+            android:theme="@style/AppTheme.NoBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

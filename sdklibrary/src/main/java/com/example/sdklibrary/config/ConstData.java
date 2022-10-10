@@ -10,6 +10,10 @@ public final class ConstData {
     public static final String LOGIN_CANCEL = "登录取消";
     public static final String LOGIN_FAILURE = "登录失败";
 
+    public static final String LOGOUT_SUCCESS = "登出成功";
+    public static final String LOGOUT_CANCEL = "登出取消";
+    public static final String LOGOUT_FAILURE = "登出失败";
+
     public static final String INIT_SUCCESS = "初始化成功";
     public static final String INIT_FAILURE = "初始化失败";
 

@@ -9,6 +9,7 @@ import com.example.sdklibrary.call.Delegate;
 import com.example.sdklibrary.config.LogTAG;
 import com.example.sdklibrary.config.SDKStatusCode;
 import com.example.sdklibrary.tools.LoggerUtils;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -27,6 +28,7 @@ public class GoogleSDK {
     private GoogleSignInClient mGoogleSignInClient;
 
     private GoogleSDK(){
+
     }
 
     public static GoogleSDK instance ;
@@ -42,6 +44,11 @@ public class GoogleSDK {
         activity.startActivityForResult(GoogleSDK.getInstance().getGoogleIntent(activity, googleRequestIdToken), GoogleSDK.SIGN_LOGIN);
     }
 
+    public void Logout(){
+        if (mGoogleSignInClient != null){
+            mGoogleSignInClient.signOut();
+        }
+    }
     public void signInClient(Activity activity,String requestIdToken){
         if (mGoogleSignInClient == null) {
             GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions
@@ -62,6 +69,8 @@ public class GoogleSDK {
         signInInten = mGoogleSignInClient.getSignInIntent();
         return signInInten;
     }
+
+
 
     public void onActivityResult(int requestCode, int resultCode, Intent data,Activity activity){
         switch (requestCode) {

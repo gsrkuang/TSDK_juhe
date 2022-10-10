@@ -5,22 +5,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import androidx.annotation.ContentView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sdklibrary.call.GameSdkLogic;
 import com.example.sdklibrary.callback.SdkCallbackListener;
+import com.example.sdklibrary.config.ConfigInfo;
 import com.example.sdklibrary.config.ConstData;
 import com.example.sdklibrary.config.SDKStatusCode;
 import com.example.sdklibrary.mvp.model.MVPPayBean;
 import com.example.sdklibrary.mvp.model.MVPPlayerBean;
 import com.example.sdklibrary.tools.LoggerUtils;
+import com.example.sdklibrary.ui.view.FloatView;
 import com.share.gamesdk.other.X5InfoActivity;
 
 public class SdkDemoActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button loginButton, payButton, myBlogButton, subInfoButton, aboutDesButton;
+    private Button loginButton, payButton, logoutButton, subInfoButton, aboutDesButton;
     private Button testLogin;
     public final String bolgUrl = "https://www.jianshu.com/u/0111a7da544b";
     public final String desUrl = "https://www.jianshu.com/p/8b9d82560a67";
@@ -40,7 +44,7 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
 
     private void configInit() {
         //配置横竖屏,等一些可配置信息
-//        ConfigInfo.allowPORTRAIT = true;
+        ConfigInfo.allowPORTRAIT = true;
 
     }
 
@@ -94,6 +98,33 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
         });
     }
 
+    //登出:
+    private void logoutMethod() {
+        GameSdkLogic.getInstance().sdkLogout(this, new SdkCallbackListener<String>() {
+            @Override
+            public void callback(int code, String response) {
+                switch (code) {
+                    case SDKStatusCode.SUCCESS:
+                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGOUT_SUCCESS + response,Toast.LENGTH_SHORT).show();
+                        //这里就可以获取登出成功以后的信息:
+                        LoggerUtils.i( "login callBack data : "+response);
+                        Toast.makeText(SdkDemoActivity.this,"登陆成功"+response,Toast.LENGTH_SHORT).show();
+                        break;
+                    case SDKStatusCode.FAILURE:
+                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGOUT_FAILURE,Toast.LENGTH_SHORT).show();
+                        break;
+                    case SDKStatusCode.CANCEL:
+                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGOUT_CANCEL,Toast.LENGTH_SHORT).show();
+                        break;
+                    case SDKStatusCode.OTHER:
+                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGOUT_FAILURE,Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        });
+    }
+
+
     //提交 Player 信息 上传玩家信息
     private void subGameInfoMethod() {
         MVPPlayerBean player = new MVPPlayerBean();
@@ -141,14 +172,14 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
     private void findView() {
         loginButton = findViewById(R.id.gameLoginBtn);
         payButton = findViewById(R.id.gamePayBtn);
-        myBlogButton = findViewById(R.id.subInfo);
-        subInfoButton = findViewById(R.id.myBlog);
+        logoutButton = findViewById(R.id.gameLogoutBtn);
+        subInfoButton = findViewById(R.id.subInfo);
         aboutDesButton = findViewById(R.id.aboutDes);
         testLogin = findViewById(R.id.testLogin);
 
         loginButton.setOnClickListener(this);
         payButton.setOnClickListener(this);
-        myBlogButton.setOnClickListener(this);
+        logoutButton.setOnClickListener(this);
         subInfoButton.setOnClickListener(this);
         aboutDesButton.setOnClickListener(this);
         testLogin.setOnClickListener(this);
@@ -167,14 +198,15 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.subInfo:
                 subGameInfoMethod();
                 break;
-            case R.id.myBlog:
-
+            case R.id.gameLogoutBtn:
+                logoutMethod();
 //                jumpActivity(X5InfoActivity.class,bolgUrl);
                 break;
             case R.id.aboutDes:
 //                jumpActivity(X5InfoActivity.class,desUrl);
                 break;
             case R.id.testLogin:
+                TestFloat();
                 break;
         }
     }
@@ -185,6 +217,14 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
         Intent intent = new Intent(this, mClass);
         intent.putExtra("key",data);
         startActivity(intent);
+    }
+
+    public void TestFloat(){
+
+//        val contentView = this.window.decorView as FrameLayout
+//        contentView.addView(FloatView(this))
+            FrameLayout contentView = (FrameLayout) getWindow().getDecorView();
+        contentView.addView(new FloatView(this));
     }
 
 }

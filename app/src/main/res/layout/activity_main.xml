@@ -30,8 +30,8 @@
 
 
     <Button
-        android:id="@+id/myBlog"
-        android:text="个人技术博客"
+        android:id="@+id/gameLogoutBtn"
+        android:text="登出"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

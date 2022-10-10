@@ -52,7 +52,7 @@ public class FacebookSDK {
     }
 
     // Initialize Facebook Login button
-    private CallbackManager mFacebookCallbackManager = CallbackManager.Factory.create();;
+    private CallbackManager mFacebookCallbackManager = CallbackManager.Factory.create();
 
     /**
      * 初始化Facebook
@@ -71,7 +71,7 @@ public class FacebookSDK {
 //                Toast.makeText(getApplicationContext(), "in LoginResult on success", Toast.LENGTH_LONG).show();
                 LoggerUtils.i(LogTAG.facebookLogin,"in LoginResult on success");
 
-                //facebook授权成功，去firebase验证
+                //facebook授权成功
                 if (loginResult != null) {
                     AccessToken accessToken = loginResult.getAccessToken();
                     if (accessToken != null) {
@@ -99,6 +99,10 @@ public class FacebookSDK {
 //                updateUIForLoginFailure();
             }
         });
+    }
+
+    public void Logout(){
+        LoginManager.getInstance().logOut();
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data, Activity activity){

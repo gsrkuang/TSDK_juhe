@@ -119,7 +119,7 @@ public class SdkLoginActivity extends SdkBaseActivity implements MVPLoginView {
             FacebookSDK.getInstance().LoginClick(this);
         } else if (id == R.id.loginButtonTaptap) {
             TapTapSDK.getInstance().LoginClick(this);
-           } else {
+        } else {
 
         }
     }

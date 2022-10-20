@@ -92,5 +92,8 @@ dependencies {
     implementation 'com.facebook.android:facebook-login:12.0.1'
 }
 ```
+6、悬浮窗按钮开发，游戏初始化成功后，在游戏Activity中添加悬浮窗view。
+[悬浮窗FloatIconView的开发过程](https://github.com/gsrkuang/FloatIconView)
+
 
 

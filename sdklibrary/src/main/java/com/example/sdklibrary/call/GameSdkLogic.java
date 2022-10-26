@@ -1,8 +1,17 @@
 package com.example.sdklibrary.call;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PixelFormat;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.Toast;
 
+import com.example.sdklibrary.R;
 import com.example.sdklibrary.aboutfacebook.FacebookSDK;
 import com.example.sdklibrary.aboutgoogle.GoogleSDK;
 import com.example.sdklibrary.abouttaptap.TapTapSDK;
@@ -14,7 +23,9 @@ import com.example.sdklibrary.mvp.model.MVPPlayerBean;
 import com.example.sdklibrary.tools.LoggerUtils;
 import com.example.sdklibrary.ui.SdkLoginActivity;
 import com.example.sdklibrary.ui.SdkPayActivity;
+import com.example.sdklibrary.ui.SdkUserCenterActivity;
 import com.example.sdklibrary.ui.view.DialogTips;
+import com.example.sdklibrary.ui.view.FloatIconView;
 import com.facebook.FacebookSdk;
 
 /**
@@ -43,9 +54,14 @@ public class GameSdkLogic {
     //游戏初始化:
     //这里没有商业接口,固定是初始化成功,实际开发需要根据后台去判断成功/失败
     //只有当初始化的时候才可以进行后续操作
-    public void sdkInit(Context context,final Object o,final SdkCallbackListener<String> callback){
+    public void sdkInit(Activity context,final Object o,final SdkCallbackListener<String> callback){
+
         callback.callback(SDKStatusCode.SUCCESS, "初始化成功");
         checkInit = true;
+        if (checkInit){
+            //弹出悬浮窗
+            sdkShowFloatView(context);
+        }
     }
 
     //登录:
@@ -55,6 +71,7 @@ public class GameSdkLogic {
         if (checkInit){
             Intent intent = new Intent(context, SdkLoginActivity.class);
             intent.putExtra("appkey",appkey);
+
             context.startActivity(intent);
             Delegate.listener = loginCallback;
         }else {
@@ -98,7 +115,6 @@ public class GameSdkLogic {
         LoggerUtils.i("submit Player Information");
         //step:
         //Build HttpRequest   ----> server get Request ------->server return ResponseBody
-
         //This function is mainly used to record and count player information
     }
 
@@ -119,7 +135,6 @@ public class GameSdkLogic {
         dialogTips.setLoginOnClickListener(new DialogTips.onLoginOnClickListener() {
             @Override
             public void onLoginClick() {
-
                 FacebookSDK.getInstance().Logout();
                 GoogleSDK.getInstance().Logout();
                 TapTapSDK.getInstance().Logout();
@@ -131,5 +146,16 @@ public class GameSdkLogic {
 
     }
 
+    public void sdkShowFloatView(Activity context){
+        FloatIconView floatIconView = new FloatIconView(context);
+        floatIconView.setOnFloatIconViewClickListener(new FloatIconView.OnFloatIconViewClickListener() {
+            @Override
+            public void onItemClick() {
+                //弹出用户界面activity
+                Intent intent = new Intent(context, SdkUserCenterActivity.class);
+                context.startActivity(intent);
+            }
+        });
+    }
 
 }

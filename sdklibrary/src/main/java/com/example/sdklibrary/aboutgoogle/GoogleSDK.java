@@ -31,7 +31,7 @@ public class GoogleSDK {
 
     }
 
-    public static GoogleSDK instance ;
+    public static GoogleSDK instance;
 
     public static GoogleSDK getInstance(){
         if (instance == null){
@@ -69,8 +69,6 @@ public class GoogleSDK {
         signInInten = mGoogleSignInClient.getSignInIntent();
         return signInInten;
     }
-
-
 
     public void onActivityResult(int requestCode, int resultCode, Intent data,Activity activity){
         switch (requestCode) {

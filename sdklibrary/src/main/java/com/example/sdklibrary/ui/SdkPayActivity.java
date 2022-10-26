@@ -95,6 +95,7 @@ public class SdkPayActivity extends SdkBaseActivity {
         } else if (payTAG.equals("3")) {
             coinpayMethod();
         } else {
+
         }
     }
 

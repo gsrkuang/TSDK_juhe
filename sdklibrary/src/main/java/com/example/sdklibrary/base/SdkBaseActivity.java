@@ -15,6 +15,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.sdklibrary.R;
 import com.example.sdklibrary.config.ConfigInfo;
 import com.example.sdklibrary.tools.ActivityUtils;
@@ -24,7 +27,7 @@ import com.example.sdklibrary.tools.ActivityUtils;
  * Activity基类
  */
 
-public abstract class SdkBaseActivity extends Activity implements View.OnClickListener{
+public abstract class SdkBaseActivity extends AppCompatActivity implements View.OnClickListener{
 
     private SparseArray<View> mViews;
 
@@ -136,8 +139,7 @@ public abstract class SdkBaseActivity extends Activity implements View.OnClickLi
         }
     }
 
-// 获取主题色
-
+    // 获取主题色
     public int getColorPrimary() {
         TypedValue typedValue = new TypedValue();
         getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);

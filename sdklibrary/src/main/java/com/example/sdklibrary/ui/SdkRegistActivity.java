@@ -82,7 +82,6 @@ public class SdkRegistActivity extends SdkBaseActivity implements MVPRegistView{
     }
 
     private void goBackMainUI() {
-
         startActivity(new Intent(this,SdkLoginActivity.class));
     }
 

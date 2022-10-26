@@ -21,24 +21,31 @@
         <activity
             android:name="com.example.sdklibrary.ui.SdkLoginActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:theme="@android:style/Theme.Dialog"
+            android:theme="@style/Theme.AppCompat.Dialog"
             />
 
         <activity
             android:name="com.example.sdklibrary.ui.SdkRegistActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:theme="@android:style/Theme.Dialog"
+            android:theme="@style/Theme.AppCompat.Dialog"
             />
 
         <activity
             android:name="com.example.sdklibrary.ui.SdkPayActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:theme="@android:style/Theme.Dialog"
+            android:theme="@style/Theme.AppCompat.Dialog"
             />
         <activity
             android:name="com.example.sdklibrary.ui.WebPayActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             />
+
+        <activity
+            android:name="com.example.sdklibrary.ui.SdkUserCenterActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:theme="@style/bottom_activity_bg_style"
+            />
+
 
         <!--  facebook      -->
         <activity android:name="com.facebook.FacebookActivity"

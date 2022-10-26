@@ -1,8 +1,14 @@
 package com.example.sdklibrary.ui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.PixelFormat;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,15 +19,11 @@ import com.example.sdklibrary.aboutgoogle.GoogleSDK;
 import com.example.sdklibrary.abouttaptap.TapTapSDK;
 import com.example.sdklibrary.base.SdkBaseActivity;
 import com.example.sdklibrary.call.Delegate;
-import com.example.sdklibrary.call.GameSdkLogic;
 import com.example.sdklibrary.config.SDKStatusCode;
 import com.example.sdklibrary.mvp.Imp.LoginPresenterImp;
 import com.example.sdklibrary.mvp.model.MVPLoginBean;
 import com.example.sdklibrary.mvp.view.MVPLoginView;
 import com.example.sdklibrary.tools.LoggerUtils;
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
-import com.taptap.sdk.TapLoginHelper;
 
 /**
  * Created by tzw on 2018/6/4.
@@ -158,10 +160,10 @@ public class SdkLoginActivity extends SdkBaseActivity implements MVPLoginView {
 
     @Override
     public void loginSuccess(String msg, String data) {
-        //这里可以添加游戏悬浮窗
+
         Delegate.listener.callback(SDKStatusCode.SUCCESS, "login success");
         LoggerUtils.i("登录成功");
-        finish();
+
     }
 
     @Override

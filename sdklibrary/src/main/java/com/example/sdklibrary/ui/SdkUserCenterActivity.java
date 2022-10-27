@@ -21,6 +21,7 @@ public class SdkUserCenterActivity extends SdkBaseActivity {
     private RadioGroup mRadioGroup;
     private Fragment[] mFragments;
     private RadioButton mRadioButtonHome;
+    private View home_space;
     @Override
     public int getLayoutId() {
         /*    //因为横竖屏的UI需要适配,大家可以先写两套UI 通过适配文件进行配置，写法如下：
@@ -35,6 +36,8 @@ public class SdkUserCenterActivity extends SdkBaseActivity {
 
     @Override
     public void initViews() {
+
+        home_space  =  $(R.id.home_space);
         mRadioGroup  =  $(R.id.radio_group_button);
         mRadioButtonHome  =  $(R.id.radio_button_home);
         mFragments = DataGenerator.getFragments("RadioGroup Tab");
@@ -64,8 +67,17 @@ public class SdkUserCenterActivity extends SdkBaseActivity {
                 }
             }
         });
+
         // 保证第一次会回调OnCheckedChangeListener
         mRadioButtonHome.setChecked(true);
+
+        //点击外部空间，自动隐藏Activity
+        home_space.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
     }
 

@@ -44,10 +44,10 @@ public class HomeFragment extends SdkBaseFragment {
 
     @Override
     public void initViews(View view) {
-        TextView textView = (TextView) view.findViewById(R.id.title_from);
-        TextView content = (TextView) view.findViewById(R.id.fragment_content);
-        textView.setText(mFrom);
-        content.setText("Homefragment");
+//        TextView textView = (TextView) view.findViewById(R.id.title_from);
+//        TextView content = (TextView) view.findViewById(R.id.fragment_content);
+//        textView.setText(mFrom);
+//        content.setText("Homefragment");
     }
 
     @Override
@@ -57,6 +57,11 @@ public class HomeFragment extends SdkBaseFragment {
 
     @Override
     public void initData() {
+
+    }
+
+    @Override
+    public void processClick(View v) {
 
     }
 

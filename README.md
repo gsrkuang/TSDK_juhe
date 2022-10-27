@@ -75,6 +75,7 @@ Ps：
 好了，以上是集成登录的详细文档资料，接下来是解决关于Taptap是aar包，在library工程中依赖aar不能嵌套aar生产sdk的问题。
 
 5、[使用fat-aar-android解决library工程中依赖aar嵌套问题](https://github.com/kezong/fat-aar-android)
+主要是解决了集成Taptap的aar包问题
 按照上面5来集成fat-aar-android后，具体使用fat-aar-android来加载aar的写法，在library中的gradle
 ```bash
 dependencies {
@@ -93,7 +94,12 @@ dependencies {
 }
 ```
 6、悬浮窗按钮开发，游戏初始化成功后，在游戏Activity中添加悬浮窗view。
+悬浮按钮有拖拽，自动隐藏，左右吸附的功能
 [悬浮窗FloatIconView的开发过程](https://github.com/gsrkuang/FloatIconView)
+
+7、悬浮按钮点击后，展示个人中心，底部导航的开发
+目前底部导航栏有三个，首页，发现，个人中心。横屏和竖屏会分别展示不同的UI界面。
+[超简单，几行代码搞定Android底部导航栏](http://www.jianshu.com/p/ade8485a16be)
 
 
 

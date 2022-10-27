@@ -25,6 +25,7 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+<!--    暂时没用-->
     <style name="TipsDialog" parent="@android:style/Theme.Dialog">
         <!--背景颜色及和透明程度-->
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -52,8 +53,8 @@
         <item name="android:windowIsTranslucent">true</item>
         <!-- 模糊 -->
         <item name="android:backgroundDimEnabled">true</item>
-        <!-- 遮罩层 -->
-        <item name="android:backgroundDimAmount">0.5</item>
+        <!-- 遮罩层 调节背景的遮罩程度，0是无遮罩，1是全遮罩-->
+        <item name="android:backgroundDimAmount">0</item>
 
     </style>
 

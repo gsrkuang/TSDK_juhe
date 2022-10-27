@@ -21,19 +21,19 @@
         <activity
             android:name="com.example.sdklibrary.ui.SdkLoginActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:theme="@style/Theme.AppCompat.Dialog"
+            android:theme="@style/Theme.AppCompat.Light.Dialog.Alert"
             />
 
         <activity
             android:name="com.example.sdklibrary.ui.SdkRegistActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:theme="@style/Theme.AppCompat.Dialog"
+            android:theme="@style/Theme.AppCompat.Light.Dialog.Alert"
             />
 
         <activity
             android:name="com.example.sdklibrary.ui.SdkPayActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:theme="@style/Theme.AppCompat.Dialog"
+            android:theme="@style/Theme.AppCompat.Light.Dialog.Alert"
             />
         <activity
             android:name="com.example.sdklibrary.ui.WebPayActivity"

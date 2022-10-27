@@ -17,7 +17,7 @@ import com.example.sdklibrary.R;
  * Time:16:52
  * author:colin
  */
-public abstract class SdkBaseFragment extends Fragment {
+public abstract class SdkBaseFragment extends Fragment implements View.OnClickListener {
 
 
     //  获取布局id(setContentView)
@@ -28,6 +28,14 @@ public abstract class SdkBaseFragment extends Fragment {
     public abstract void initListener();
     //  初始化数据
     public abstract void initData();
+
+    //  处理具体的点击事件
+    public abstract void processClick(View v);
+
+    @Override
+    public void onClick(View v) {
+        processClick(v);
+    }
 
     @Nullable
     @Override
@@ -45,5 +53,8 @@ public abstract class SdkBaseFragment extends Fragment {
         return view;
     }
 
+    public  <E extends View> void setOnClick(E view){
+        view.setOnClickListener(this);
+    }
 
 }

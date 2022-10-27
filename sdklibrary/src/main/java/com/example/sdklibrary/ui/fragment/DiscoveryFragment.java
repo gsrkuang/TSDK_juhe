@@ -1,13 +1,9 @@
 package com.example.sdklibrary.ui.fragment;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.example.sdklibrary.R;
 import com.example.sdklibrary.base.SdkBaseFragment;
@@ -39,15 +35,15 @@ public class DiscoveryFragment extends SdkBaseFragment {
 
     @Override
     public int getLayoutId() {
-        return R.layout.home_fragment_layout;
+        return R.layout.discovery_fragment_layout;
     }
 
     @Override
     public void initViews(View view) {
-        TextView textView = (TextView) view.findViewById(R.id.title_from);
-        TextView content = (TextView) view.findViewById(R.id.fragment_content);
-        textView.setText(mFrom);
-        content.setText("DiscoveryFragment");
+//        TextView textView = (TextView) view.findViewById(R.id.title_from);
+//        TextView content = (TextView) view.findViewById(R.id.fragment_content);
+//        textView.setText(mFrom);
+//        content.setText("DiscoveryFragment");
     }
 
     @Override
@@ -57,6 +53,11 @@ public class DiscoveryFragment extends SdkBaseFragment {
 
     @Override
     public void initData() {
+
+    }
+
+    @Override
+    public void processClick(View v) {
 
     }
 }

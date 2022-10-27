@@ -212,8 +212,6 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-
-
     protected void jumpActivity(Class<?> mClass,String data){
         Intent intent = new Intent(this, mClass);
         intent.putExtra("key",data);
@@ -222,73 +220,6 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
 
     public void TestFloat(){
 
-//        val contentView = this.window.decorView as FrameLayout
-//        contentView.addView(FloatView(this))
-//            FrameLayout contentView = (FrameLayout) getWindow().getDecorView();
-//        contentView.addView(new FloatView(this));
-
-       /*  WindowManager wm = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
-        WindowManager.LayoutParams wmParams = new WindowManager.LayoutParams();
-
-        DisplayMetrics dm = getResources().getDisplayMetrics();
-        int widthPixels = dm.widthPixels;
-        int heightPixels = dm.heightPixels;
-
-//        wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
-        wmParams.type = WindowManager.LayoutParams.TYPE_APPLICATION;
-        wmParams.format= PixelFormat.RGBA_8888;//设置背景图片
-        wmParams.flags= WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE ;//
-        wmParams.gravity = Gravity.LEFT|Gravity.TOP;//
-        wmParams.x = widthPixels-150; //设置位置像素
-        wmParams.y = heightPixels-110;
-        wmParams.width=200; //设置图片大小
-        wmParams.height=200;
-
-        FloatButton fb = new FloatButton(this);
-        fb.setImageDrawable(getDrawable(R.drawable.logo_tsdk));
-
-        wm.addView(fb,wmParams);*/
-
-
-        // 6.0及以上系统，先跳至系统权限页开启"在其它应用上层显示"权限
-//        if (Build.VERSION.SDK_INT >= 23) {
-//            if(!Settings.canDrawOverlays(this)) {
-//                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                startActivityForResult(intent, 1);
-//
-//                return;
-//            }
-//
-//        }
-
-
-
-        Context context = this;
-        View view = LayoutInflater.from(context).inflate(R.layout.activity_float_item, null);
-
-
-        DisplayMetrics dm = getResources().getDisplayMetrics();
-        int widthPixels = dm.widthPixels;
-        int heightPixels = dm.heightPixels;
-
-        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        WindowManager.LayoutParams wmParams = new WindowManager.LayoutParams();
-        wmParams.type = WindowManager.LayoutParams.TYPE_APPLICATION;
-        wmParams.format= PixelFormat.RGBA_8888;//设置背景图片
-        wmParams.flags= WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE ;//
-        wmParams.gravity = Gravity.LEFT|Gravity.TOP;//
-        wmParams.x = widthPixels; //设置位置像素
-        wmParams.y = heightPixels;
-        wmParams.width=200; //设置图片大小
-        wmParams.height=200;
-
-
-//        FloatButton fb = new FloatButton(this);
-//        fb.setImageDrawable(getDrawable(R.drawable.logo_tsdk));
-
-        wm.addView(view,wmParams);
-//        wm.addView(fb,wmParams);
 
 
     }

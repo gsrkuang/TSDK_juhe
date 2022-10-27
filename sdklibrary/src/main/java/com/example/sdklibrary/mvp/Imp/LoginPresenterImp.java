@@ -14,6 +14,8 @@ import com.example.sdklibrary.mvp.view.MVPLoginView;
 import com.example.sdklibrary.tools.GsonUtils;
 import com.example.sdklibrary.tools.HttpRequestUtil;
 import com.example.sdklibrary.tools.LoggerUtils;
+import com.example.sdklibrary.tools.SPDataUtils;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -64,10 +66,14 @@ public class LoginPresenterImp  implements LoginPresenter {
                 int dataCode =  mvpLoginResultBean.getErrorCode();
                 String msg = mvpLoginResultBean.getErrorMsg();
 
+                //保存用户名和密码，还有用户昵称
+                String nickname = mvpLoginResultBean.getData().getUsername();
+                int id = mvpLoginResultBean.getData().getId();
+
                 if (dataCode == 0){
                     mvpLoginView.loginSuccess(ConstData.LOGIN_SUCCESS,result);
                     LoggerUtils.i(LogTAG.login,"responseBody: login Success");
-
+                    SaveUserData(userName,passWord,nickname,id);
                 }else {
                     mvpLoginView.loginFailed(ConstData.LOGIN_FAILURE,msg);
                     LoggerUtils.i(LogTAG.login,"responseBody: login Failure");
@@ -90,6 +96,13 @@ public class LoginPresenterImp  implements LoginPresenter {
     public void detachView() {
         this.mvpLoginView = null;
     }
+
+    //使用SharedPreference来存储登陆状态
+    public void SaveUserData(String username ,String password ,String nickname ,int id){
+        LoggerUtils.i(LogTAG.login,"SaveUserData to SharedPreference");
+        SPDataUtils.getInstance().saveLoginData(username,password,nickname,id);
+    }
+
 
 
 }

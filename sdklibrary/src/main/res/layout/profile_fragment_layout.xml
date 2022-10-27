@@ -24,7 +24,7 @@
                 android:id="@+id/profile_icon"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/logo_tsdk" />
+                android:src="@drawable/default_touxiang_icon" />
 
         </FrameLayout>
 
@@ -64,11 +64,12 @@
         </LinearLayout>
 
         <Button
-
             android:id="@+id/profile_logout"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="注销"></Button>
+            android:text="注销">
+        </Button>
+
     </LinearLayout>
 
 

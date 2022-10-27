@@ -20,6 +20,7 @@ import com.taptap.sdk.TapLoginHelper;
  * author:colin
  */
 public class TapTapSDK {
+    private boolean initTag = false;
     public static TapTapSDK tapTapSDK ;
     public TapTapSDK(){
 
@@ -42,6 +43,7 @@ public class TapTapSDK {
     public void init(Context context, String clientID){
         // 适用于中国大陆
         TapLoginHelper.init(context, clientID);
+        initTag = true;
     }
     public void registerLoginCallback(Activity activity){
         // 实例化监听

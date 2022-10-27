@@ -5,6 +5,15 @@
     android:background="#802E312E"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/title_from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:textColor="#FF0000"
+        android:text="首页"
+        android:textSize="20sp" />
 
     <ImageView
         android:id="@+id/fragment_content"
@@ -12,5 +21,4 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:src="@drawable/logo_tsdk" />
-
 </RelativeLayout>

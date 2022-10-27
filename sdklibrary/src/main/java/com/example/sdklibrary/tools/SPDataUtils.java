@@ -37,15 +37,18 @@ public class SPDataUtils {
         return sp;
     }
 
-    public void savaString(String key, String value) {
+    public void saveString(String key, String value) {
         editor.putString(key, value).commit();
     }
 
     public String getString(String key, String value) {
         return shared.getString(key, value);
     }
+    public int getInt(String key, int value) {
+        return shared.getInt(key, value);
+    }
 
-    public void savaBoolean(String key, boolean value) {
+    public void saveBoolean(String key, boolean value) {
         editor.putBoolean(key, value).commit();
     }
 
@@ -57,7 +60,7 @@ public class SPDataUtils {
         return shared.getBoolean(key, value);
     }
 
-    public void savaLong(String key, long value) {
+    public void saveLong(String key, long value) {
 
         editor.putLong(key, value).commit();
     }
@@ -66,5 +69,20 @@ public class SPDataUtils {
         editor.putInt(key, value).commit();
     }
 
+    //使用SharedPreference来存储登陆后的数据
+    public void saveLoginData(String username ,String password ,String nickname ,int id){
+        SPDataUtils.getInstance().saveString("user_account",username);
+        SPDataUtils.getInstance().saveString("user_password",password);
+        SPDataUtils.getInstance().saveString("user_nickname",nickname);
+        SPDataUtils.getInstance().saveInt("user_id",id);
+    }
+
+    public String getNickName(){
+        return SPDataUtils.getInstance().getString("user_nickname","");
+    }
+
+    public int getUserId(){
+        return SPDataUtils.getInstance().getInt("user_id",0);
+    }
 
 }

@@ -47,7 +47,7 @@ public class AddCookiesInterceptor implements Interceptor {
         Log.i(LogTAG.cookie, "interceptor getCookie: "+cookie);
 
 //      存储cookie
-        SPDataUtils.getInstance().savaString(HttpUrlConstants.COOKIE_DATA,cookie);
+        SPDataUtils.getInstance().saveString(HttpUrlConstants.COOKIE_DATA,cookie);
 
         if (!TextUtils.isEmpty(domain) && sp.contains(domain) && !
                 TextUtils.isEmpty(sp.getString(domain, ""))) {

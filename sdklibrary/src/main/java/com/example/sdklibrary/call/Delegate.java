@@ -10,5 +10,6 @@ import com.example.sdklibrary.callback.SdkCallbackListener;
 public final class Delegate {
 
     public static  SdkCallbackListener listener;
+    public static  SdkCallbackListener loginlistener;
 
 }

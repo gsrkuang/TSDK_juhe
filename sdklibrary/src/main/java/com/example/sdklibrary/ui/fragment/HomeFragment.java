@@ -1,14 +1,10 @@
 package com.example.sdklibrary.ui.fragment;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.example.sdklibrary.R;
 import com.example.sdklibrary.base.SdkBaseFragment;
@@ -21,7 +17,7 @@ import com.example.sdklibrary.base.SdkBaseFragment;
 public class HomeFragment extends SdkBaseFragment {
     private String mFrom;
 
-    static HomeFragment newInstance(String from){
+    public static HomeFragment newInstance(String from){
         HomeFragment fragment = new HomeFragment();
         Bundle bundle = new Bundle();
         bundle.putString("from",from);

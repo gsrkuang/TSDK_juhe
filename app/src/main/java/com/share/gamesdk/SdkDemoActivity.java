@@ -1,5 +1,6 @@
 package com.share.gamesdk;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
@@ -23,7 +24,7 @@ import com.example.sdklibrary.mvp.model.MVPPayBean;
 import com.example.sdklibrary.mvp.model.MVPPlayerBean;
 import com.example.sdklibrary.tools.LoggerUtils;
 
-public class SdkDemoActivity extends AppCompatActivity implements View.OnClickListener {
+public class SdkDemoActivity extends Activity implements View.OnClickListener {
 
     private Button loginButton, payButton, logoutButton, subInfoButton, aboutDesButton;
     private Button testLogin;
@@ -45,7 +46,7 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
 
     private void configInit() {
         //配置横竖屏,等一些可配置信息
-        ConfigInfo.allowPORTRAIT = true;
+        ConfigInfo.allowPORTRAIT = false;
 
     }
 
@@ -94,36 +95,40 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
                     case SDKStatusCode.OTHER:
                         Toast.makeText(SdkDemoActivity.this, ConstData.LOGIN_FAILURE,Toast.LENGTH_SHORT).show();
                         break;
+                    case SDKStatusCode.LOGOUT_SUCCESS:
+                        //前提是已经登录成功
+                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGOUT_SUCCESS,Toast.LENGTH_SHORT).show();
+                        break;
                 }
             }
         });
     }
 
-    //登出:
-    private void logoutMethod() {
-        GameSdkLogic.getInstance().sdkLogout(this, new SdkCallbackListener<String>() {
-            @Override
-            public void callback(int code, String response) {
-                switch (code) {
-                    case SDKStatusCode.SUCCESS:
-                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGOUT_SUCCESS + response,Toast.LENGTH_SHORT).show();
-                        //这里就可以获取登出成功以后的信息:
-                        LoggerUtils.i( "login callBack data : "+response);
-                        Toast.makeText(SdkDemoActivity.this,"登陆成功"+response,Toast.LENGTH_SHORT).show();
-                        break;
-                    case SDKStatusCode.FAILURE:
-                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGOUT_FAILURE,Toast.LENGTH_SHORT).show();
-                        break;
-                    case SDKStatusCode.CANCEL:
-                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGOUT_CANCEL,Toast.LENGTH_SHORT).show();
-                        break;
-                    case SDKStatusCode.OTHER:
-                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGOUT_FAILURE,Toast.LENGTH_SHORT).show();
-                        break;
-                }
-            }
-        });
-    }
+//    //登出:
+//    private void logoutMethod() {
+//        GameSdkLogic.getInstance().sdkLogout(this, new SdkCallbackListener<String>() {
+//            @Override
+//            public void callback(int code, String response) {
+//                switch (code) {
+//                    case SDKStatusCode.LOGOUT_SUCCESS:
+//                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGOUT_SUCCESS + response,Toast.LENGTH_SHORT).show();
+//                        //这里就可以获取登出成功以后的信息:
+//                        LoggerUtils.i( "login callBack data : "+response);
+//                        Toast.makeText(SdkDemoActivity.this,"登陆成功"+response,Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case SDKStatusCode.LOGOUT_FAILURE:
+//                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGOUT_FAILURE,Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case SDKStatusCode.LOGOUT_CANCEL:
+//                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGOUT_CANCEL,Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case SDKStatusCode.LOGOUT_OTHER:
+//                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGOUT_FAILURE,Toast.LENGTH_SHORT).show();
+//                        break;
+//                }
+//            }
+//        });
+//    }
 
 
     //提交 Player 信息 上传玩家信息
@@ -200,7 +205,7 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
                 subGameInfoMethod();
                 break;
             case R.id.gameLogoutBtn:
-                logoutMethod();
+//                logoutMethod();
 //                jumpActivity(X5InfoActivity.class,bolgUrl);
                 break;
             case R.id.aboutDes:
@@ -224,4 +229,13 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 }

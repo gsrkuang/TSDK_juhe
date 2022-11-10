@@ -18,10 +18,17 @@
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
 
+<!--        <activity-->
+<!--            android:name="com.example.sdklibrary.ui.SdkLoginActivity"-->
+<!--            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"-->
+<!--            android:theme="@style/Theme.AppCompat.Light.Dialog.Alert"-->
+<!--            />-->
         <activity
             android:name="com.example.sdklibrary.ui.SdkLoginActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:theme="@style/Theme.AppCompat.Light.Dialog.Alert"
+            android:theme="@style/X7BaseActivityStyle"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
             />
 
         <activity
@@ -40,11 +47,20 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             />
 
-        <activity
-            android:name="com.example.sdklibrary.ui.SdkUserCenterActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:theme="@style/bottom_activity_bg_style"
-            />
+<!--        <activity-->
+<!--            android:name="com.example.sdklibrary.ui.SdkUserCenterActivity"-->
+<!--            android:screenOrientation="landscape"-->
+<!--            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"-->
+<!--            android:theme="@style/bottom_activity_bg_style"-->
+<!--            />-->
+
+
+<!--        <activity-->
+<!--            android:name="com.example.sdklibrary.ui.SdkUserCenterActivity"-->
+<!--            android:screenOrientation="landscape"-->
+<!--            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"-->
+<!--            android:theme="@style/Theme.AppCompat.Light.Dialog.Alert"-->
+<!--            />-->
 
 
         <!--  facebook      -->

@@ -25,7 +25,7 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
-<!--    暂时没用-->
+<!--  用于弹出提示，比如登出-->
     <style name="TipsDialog" parent="@android:style/Theme.Dialog">
         <!--背景颜色及和透明程度-->
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -69,6 +69,43 @@
         <item name="android:layout_weight">1</item>
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@drawable/color_selector</item>
+    </style>
+
+    <style name="X7BaseActivityStyle">
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+<!--        <item name="android:windowBackground">@color/transparent</item>-->
+        <!--是否允许背景变暗-->
+        <item name="android:backgroundDimEnabled">false</item>
+        <!--将导致android 8.0 手机白屏问题-->
+        <item name="android:windowIsTranslucent">true</item>
+
+    </style>
+
+    <style name="X7WhiteDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+<!--        <item name="android:windowBackground">@drawable/x7_smallhao_alertdialog_top_bg</item>-->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+<!--    用于登录、注册等框的Dialog-->
+    <style name="SdkBaseDialog" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
+        <!--背景颜色及和透明程度-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--是否去除标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否去除边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">true</item>
     </style>
 
 </resources>

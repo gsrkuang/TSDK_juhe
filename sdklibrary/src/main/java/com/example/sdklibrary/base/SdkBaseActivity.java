@@ -27,7 +27,7 @@ import com.example.sdklibrary.tools.ActivityUtils;
  * Activity基类
  */
 
-public abstract class SdkBaseActivity extends AppCompatActivity implements View.OnClickListener{
+public abstract class SdkBaseActivity extends Activity implements View.OnClickListener{
 
     private SparseArray<View> mViews;
 

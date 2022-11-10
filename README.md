@@ -59,5 +59,12 @@ dependencies {
 目前底部导航栏有三个，首页，发现，个人中心。横屏和竖屏会分别展示不同的UI界面。
 [超简单，几行代码搞定Android底部导航栏](http://www.jianshu.com/p/ade8485a16be)
 
+8、发现问题，原因是登陆窗口（LoginActivity）被打开时候，游戏的activity会触发onPause，导致游戏画面被暂停
+原因是intent一个LoginActivity，原本的activity就会处于onPause状态，所以LoginActivity需要使用自定义的Dialog展示.
+
+9、采用Dialog展示解决了游戏画面被暂停的问题后，再次发现问题，Dialog不能加载Fragment，所以需要结合DialogFragment来加载Fragment，把LoginDialog和RegisterDialog都更换成了Fragment，
+所有的getSupportFragmentManager都换成了getFragmentManager，解决了Dialog不能加载Fragment的问题
+[Android Dialog加载Fragment（DialogFragment）带横竖屏动画](https://blog.csdn.net/u012246458/article/details/123060823)
+
 
 

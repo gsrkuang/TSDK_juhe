@@ -75,14 +75,30 @@ public class SPDataUtils {
         SPDataUtils.getInstance().saveString("user_password",password);
         SPDataUtils.getInstance().saveString("user_nickname",nickname);
         SPDataUtils.getInstance().saveInt("user_id",id);
+        SPDataUtils.getInstance().saveBoolean("loginStatus",true);
     }
 
+    //点击注销，清除登陆数据
+    public void clearLogin(){
+        SPDataUtils.getInstance().saveBoolean("loginStatus",false);
+    }
+    //获取登陆状态
+    public boolean getLoginStatus(){
+        return SPDataUtils.getInstance().getBoolean("loginStatus",false);
+    }
     public String getNickName(){
         return SPDataUtils.getInstance().getString("user_nickname","");
     }
 
     public int getUserId(){
         return SPDataUtils.getInstance().getInt("user_id",0);
+    }
+
+    public String getUserAccount(){
+        return SPDataUtils.getInstance().getString("user_account","");
+    }
+    public String getUserPassword(){
+        return SPDataUtils.getInstance().getString("user_password","");
     }
 
 }

@@ -1,14 +1,13 @@
 package com.example.sdklibrary.base;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.example.sdklibrary.R;
 
@@ -18,7 +17,6 @@ import com.example.sdklibrary.R;
  * author:colin
  */
 public abstract class SdkBaseFragment extends Fragment implements View.OnClickListener {
-
 
     //  获取布局id(setContentView)
     public abstract int getLayoutId();
@@ -55,6 +53,10 @@ public abstract class SdkBaseFragment extends Fragment implements View.OnClickLi
 
     public  <E extends View> void setOnClick(E view){
         view.setOnClickListener(this);
+    }
+
+    public void showToast(String msg) {
+        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
     }
 
 }

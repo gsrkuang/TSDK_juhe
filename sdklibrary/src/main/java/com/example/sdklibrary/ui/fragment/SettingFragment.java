@@ -2,7 +2,6 @@ package com.example.sdklibrary.ui.fragment;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,7 +25,7 @@ public class SettingFragment extends SdkBaseFragment {
     private TextView tv_title;
     private String mFrom;
 
-    static SettingFragment newInstance(String from) {
+   public static SettingFragment newInstance(String from) {
         SettingFragment fragment = new SettingFragment();
         Bundle bundle = new Bundle();
         bundle.putString("from", from);
@@ -84,22 +83,22 @@ public class SettingFragment extends SdkBaseFragment {
         int id = v.getId();
         if (id == R.id.title_bar_back) {
 
-            getActivity().getSupportFragmentManager().popBackStack();
-//            Toast.makeText(getContext(), "popo", Toast.LENGTH_SHORT).show();
+           getFragmentManager().popBackStack();
+
         } else if (id == R.id.setting_btn1) {
-            Toast.makeText(getContext(), "111", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "111", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.setting_btn2) {
-            Toast.makeText(getContext(), "222", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "222", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.setting_btn3) {
-            Toast.makeText(getContext(), "333", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "333", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.setting_btn4) {
-            Toast.makeText(getContext(), "4444", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "4444", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.setting_btn5) {
-            Toast.makeText(getContext(), "555", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "555", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.setting_btn6) {
-            Toast.makeText(getContext(), "666", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "666", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.setting_btn7) {
-            Toast.makeText(getContext(), "777", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "777", Toast.LENGTH_SHORT).show();
         } else {
 
         }

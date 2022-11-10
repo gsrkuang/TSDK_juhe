@@ -3,6 +3,7 @@ package com.example.sdklibrary.ui.fragment;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,9 +32,10 @@ public class ProfileFragment extends SdkBaseFragment {
     private LinearLayout profile_btn1,profile_btn2,profile_btn3,profile_btn4;
     private SettingFragment settingFragment;
     private TextView profile_nickname,profile_userid;
-
+    private ImageView profile_icon;
     private String mFrom;
-    static ProfileFragment newInstance(String from){
+
+    public static ProfileFragment newInstance(String from){
         ProfileFragment fragment = new ProfileFragment();
         Bundle bundle = new Bundle();
         bundle.putString("from",from);
@@ -61,6 +63,7 @@ public class ProfileFragment extends SdkBaseFragment {
 //        textView.setText(mFrom);
 //        content.setText("ProfileFragment");
         logout = (Button) view.findViewById(R.id.profile_logout);
+        profile_icon = (ImageView) view.findViewById(R.id.profile_icon);
         profile_btn1 =(LinearLayout) view.findViewById(R.id.profile_btn1);
         profile_btn2 =(LinearLayout) view.findViewById(R.id.profile_btn2);
         profile_btn3 =(LinearLayout) view.findViewById(R.id.profile_btn3);
@@ -86,6 +89,9 @@ public class ProfileFragment extends SdkBaseFragment {
         int userid = SPDataUtils.getInstance().getUserId();
         profile_nickname.setText(nickname);
         profile_userid.setText(userid+"");
+
+//        profile_icon.setImageURI("");
+
     }
 
     @Override
@@ -96,19 +102,24 @@ public class ProfileFragment extends SdkBaseFragment {
 //            Toast.makeText(getContext(),"注销",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.profile_btn1) {
 
-            Toast.makeText(getContext(),"打开App",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"打开App",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.profile_btn2) {
 
-            Toast.makeText(getContext(),"钱包",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"钱包",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.profile_btn3) {
 
-            Toast.makeText(getContext(),"打开钱包",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"打开钱包",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.profile_btn4) {
 
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.home_container,settingFragment)
-//                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN) //打开和返回的动画
+            getFragmentManager().beginTransaction().replace(R.id.home_container,settingFragment)
                     .addToBackStack(null)
                     .commit();
+
+//            getChildFragmentManager().beginTransaction().replace(R.id.home_container,settingFragment)
+////                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN) //打开和返回的动画
+//                    .addToBackStack(null)
+//                    .commit();
+
         } else {
 
         }
@@ -117,27 +128,7 @@ public class ProfileFragment extends SdkBaseFragment {
 
     //登出:
     private void logoutMethod() {
-        GameSdkLogic.getInstance().sdkLogout(getActivity(), new SdkCallbackListener<String>() {
-            @Override
-            public void callback(int code, String response) {
-                switch (code) {
-                    case SDKStatusCode.SUCCESS:
-                        Toast.makeText(getActivity(), ConstData.LOGOUT_SUCCESS + response,Toast.LENGTH_SHORT).show();
-                        //这里就可以获取登出成功以后的信息:
-                        LoggerUtils.i( "login callBack data : "+response);
-                        break;
-                    case SDKStatusCode.FAILURE:
-                        Toast.makeText(getActivity(), ConstData.LOGOUT_FAILURE,Toast.LENGTH_SHORT).show();
-                        break;
-                    case SDKStatusCode.CANCEL:
-                        Toast.makeText(getActivity(), ConstData.LOGOUT_CANCEL,Toast.LENGTH_SHORT).show();
-                        break;
-                    case SDKStatusCode.OTHER:
-                        Toast.makeText(getActivity(), ConstData.LOGOUT_FAILURE,Toast.LENGTH_SHORT).show();
-                        break;
-                }
-            }
-        });
+        GameSdkLogic.getInstance().showLogoutDialog(getActivity());
     }
 
 }

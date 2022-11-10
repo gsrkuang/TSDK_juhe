@@ -1,5 +1,6 @@
 package com.example.sdklibrary.ui.fragment;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,9 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-import androidx.fragment.app.Fragment;
 
 import com.example.sdklibrary.R;
+import com.example.sdklibrary.ui.fragment.login.LoginFragment;
+import com.example.sdklibrary.ui.fragment.login.RegisterFragment;
 
 
 /**
@@ -29,6 +31,14 @@ public class DataGenerator {
         fragments[2] = ProfileFragment.newInstance(from);
         return fragments;
     }
+
+    public static Fragment[] getLoginFragments(String from){
+        Fragment fragments[] = new Fragment[3];
+        fragments[0] = LoginFragment.newInstance(from);
+        fragments[1] = RegisterFragment.newInstance(from);
+        return fragments;
+    }
+
 
     /**
      * 获取Tab 显示的内容

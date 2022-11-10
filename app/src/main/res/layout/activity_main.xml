@@ -13,7 +13,6 @@
         android:layout_marginTop="30dp"
         android:text="登录" />
 
-
     <Button
         android:id="@+id/gamePayBtn"
         android:layout_marginTop="10dp"

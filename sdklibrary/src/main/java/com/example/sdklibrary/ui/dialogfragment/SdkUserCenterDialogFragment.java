@@ -2,23 +2,12 @@ package com.example.sdklibrary.ui.dialogfragment;
 
 import android.app.DialogFragment;
 import android.app.Fragment;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sdklibrary.R;
-import com.example.sdklibrary.base.SdkBaseDialog;
 import com.example.sdklibrary.base.SdkBaseDialogFragment;
 import com.example.sdklibrary.config.ConfigInfo;
 import com.example.sdklibrary.ui.fragment.DataGenerator;
@@ -34,6 +23,19 @@ public class SdkUserCenterDialogFragment extends SdkBaseDialogFragment {
     private Fragment[] mFragments;
     private RadioButton mRadioButtonHome;
     private View home_space;
+
+    private static volatile SdkUserCenterDialogFragment singleton;
+
+    public static SdkUserCenterDialogFragment getInstance() {
+        if (singleton == null) {
+            synchronized (SdkUserCenterDialogFragment.class) {
+                if (singleton == null) {
+                    singleton = new SdkUserCenterDialogFragment();
+                }
+            }
+        }
+        return singleton;
+    }
 
     @Override
     public int getLayoutId() {

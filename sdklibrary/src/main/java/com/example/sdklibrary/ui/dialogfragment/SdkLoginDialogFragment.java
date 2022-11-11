@@ -17,20 +17,35 @@ import com.example.sdklibrary.ui.fragment.DataGenerator;
  * 用户中心
  */
 public class SdkLoginDialogFragment extends SdkBaseDialogFragment {
-    private RadioGroup mRadioGroup;
     private Fragment[] mFragments;
-    private RadioButton mRadioButtonHome;
     private View home_space;
+
+    private static volatile SdkLoginDialogFragment singleton;
+
+    public static SdkLoginDialogFragment getInstance() {
+        if (singleton == null) {
+            synchronized (SdkLoginDialogFragment.class) {
+                if (singleton == null) {
+                    singleton = new SdkLoginDialogFragment();
+                }
+            }
+        }
+        return singleton;
+    }
+
+
+    private SdkLoginDialogFragment sdkLoginDialogFragment;
+
 
     @Override
     public int getLayoutId() {
         //因为横竖屏的UI需要适配,大家可以先写两套UI 通过适配文件进行配置，写法如下：
 
         //目前登陆界面不区分横竖屏
-        if (ConfigInfo.allowPORTRAIT){
+        if (ConfigInfo.allowPORTRAIT) {
 //            return "竖屏布局";
             return R.layout.login_dialogfragment;
-        }else {
+        } else {
 //            return "横屏布局";
             return R.layout.login_dialogfragment;
         }
@@ -54,7 +69,7 @@ public class SdkLoginDialogFragment extends SdkBaseDialogFragment {
         Fragment mFragment = mFragments[0];
 
         getChildFragmentManager().beginTransaction()
-                .replace(R.id.login_container,mFragment).commit();
+                .replace(R.id.login_container, mFragment).commit();
 
 
     }
@@ -63,9 +78,6 @@ public class SdkLoginDialogFragment extends SdkBaseDialogFragment {
     public void processClick(View v) {
 
     }
-
-
-
 
 
 }

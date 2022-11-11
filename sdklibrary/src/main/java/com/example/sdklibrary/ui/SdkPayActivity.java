@@ -79,7 +79,7 @@ public class SdkPayActivity extends SdkBaseActivity {
         if (id == R.id.pay) {
             payMethod();
         } else if (id == R.id.goback) {
-            jumpActivity(SdkLoginActivity.class);
+//            jumpActivity(SdkLoginActivity.class); 集成时候需要打开
             finish();
         } else {
 

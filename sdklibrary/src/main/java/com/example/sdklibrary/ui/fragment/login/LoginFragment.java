@@ -24,6 +24,7 @@ import com.example.sdklibrary.mvp.model.MVPLoginBean;
 import com.example.sdklibrary.mvp.view.MVPLoginView;
 import com.example.sdklibrary.tools.LoggerUtils;
 import com.example.sdklibrary.tools.SPDataUtils;
+import com.example.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
 import com.example.sdklibrary.ui.fragment.SettingFragment;
 
 /**
@@ -191,10 +192,10 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
 
     @Override
     public void loginSuccess(String msg, String data) {
-//        finish();
         GameSdkLogic.getInstance().sdkFloatViewShow();
         Delegate.loginlistener.callback(SDKStatusCode.SUCCESS, "login success");
         LoggerUtils.i("登录成功");
+        SdkLoginDialogFragment.getInstance().dismiss();//登陆成功销毁登陆窗
     }
 
     @Override
@@ -216,4 +217,5 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
         FacebookSDK.getInstance().onActivityResult(requestCode, resultCode, data, getActivity());
 
     }
+
 }

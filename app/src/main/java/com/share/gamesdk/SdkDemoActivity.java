@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sdklibrary.aboutfacebook.FacebookSDK;
+import com.example.sdklibrary.aboutgoogle.GoogleSDK;
 import com.example.sdklibrary.call.GameSdkLogic;
 import com.example.sdklibrary.callback.SdkCallbackListener;
 import com.example.sdklibrary.config.ConfigInfo;
@@ -237,5 +239,13 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        GameSdkLogic.getInstance().onActivityResult(requestCode, resultCode, data, this);
+
     }
 }

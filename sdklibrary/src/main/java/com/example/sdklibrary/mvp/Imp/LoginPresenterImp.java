@@ -67,8 +67,12 @@ public class LoginPresenterImp  implements LoginPresenter {
                 String msg = mvpLoginResultBean.getErrorMsg();
 
                 //保存用户名和密码，还有用户昵称
-                String nickname = mvpLoginResultBean.getData().getUsername();
-                int id = mvpLoginResultBean.getData().getId();
+                String nickname = null;
+                int id = -1;
+                if (mvpLoginResultBean.getData() != null) {
+                    nickname = mvpLoginResultBean.getData().getUsername();
+                    id = mvpLoginResultBean.getData().getId();
+                }
 
                 if (dataCode == 0){
                     mvpLoginView.loginSuccess(ConstData.LOGIN_SUCCESS,result);

@@ -16,7 +16,7 @@ import com.example.sdklibrary.R;
  * Time:15:49
  * author:colin
  *
- * 用于弹窗，Sdk弹出登陆 注册 用户中心等界面的弹窗
+ * 用于弹窗，Sdk弹出登陆 注册 用户中心等界面的弹窗(暂时不用)
  */
 public abstract class SdkBaseDialog extends Dialog implements View.OnClickListener {
 

@@ -14,7 +14,6 @@ import com.example.sdklibrary.mvp.model.MVPPayBean;
 import com.example.sdklibrary.mvp.model.MVPPlayerBean;
 import com.example.sdklibrary.tools.LoggerUtils;
 import com.example.sdklibrary.tools.SPDataUtils;
-import com.example.sdklibrary.ui.SdkLoginDialog;
 import com.example.sdklibrary.ui.SdkPayActivity;
 import com.example.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
 import com.example.sdklibrary.ui.dialogfragment.SdkUserCenterDialogFragment;
@@ -65,17 +64,9 @@ public class GameSdkLogic {
     public void sdkLogin(Activity context, String appkey, final SdkCallbackListener<String> loginCallback) {
         LoggerUtils.i("SdkLogic Login");
         if (checkInit) {
-//            Intent intent = new Intent(context, SdkLoginActivity.class);
-//            intent.putExtra("appkey",appkey);
-//            context.startActivity(intent);
 
-//            SdkLoginDialog sdkLoginDialog = new SdkLoginDialog(context);
-//            sdkLoginDialog.show();
-
-
-            SdkLoginDialogFragment dialog = new SdkLoginDialogFragment();
-            dialog.show(context.getFragmentManager(),"123");
-
+            SdkLoginDialogFragment dialog = SdkLoginDialogFragment.getInstance();
+            dialog.show(context.getFragmentManager(),"SdkLoginDialogFragment");
 
             Delegate.loginlistener = loginCallback;
         } else {
@@ -89,12 +80,10 @@ public class GameSdkLogic {
     public void sdkLogin(Activity context) {
         LoggerUtils.i("SdkLogic Login");
         if (checkInit) {
-//            Intent intent = new Intent(context, SdkLoginActivity.class);
-//            intent.putExtra("appkey", "aweralkewrjlkjasdf");
-//            context.startActivity(intent);
 
-            SdkLoginDialog sdkLoginDialog = new SdkLoginDialog(context);
-            sdkLoginDialog.show();
+
+            SdkLoginDialogFragment dialog = SdkLoginDialogFragment.getInstance();
+            dialog.show(context.getFragmentManager(),"SdkLoginDialogFragment");
 
         } else {
             if (Delegate.loginlistener != null) {
@@ -219,8 +208,9 @@ public class GameSdkLogic {
 //                    HomeFragment hm = new HomeFragment();
 //                    ft.replace(R.id.fragment_container,hm).commit();
 
-                    SdkUserCenterDialogFragment dialog = new SdkUserCenterDialogFragment();
-                    dialog.show(context.getFragmentManager(),"123");
+
+                    SdkUserCenterDialogFragment dialog = SdkUserCenterDialogFragment.getInstance();
+                    dialog.show(context.getFragmentManager(),"SdkLoginDialogFragment");
 
 
                 } else {
@@ -232,7 +222,8 @@ public class GameSdkLogic {
 
             }
         });
-        floatIconView.hide();
+        //初始化成功后先隐藏
+        sdkFloatViewHide();
     }
 
     public void sdkFloatViewShow() {
@@ -241,6 +232,11 @@ public class GameSdkLogic {
 
     public void sdkFloatViewHide() {
         floatIconView.hide();
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data,Activity activity) {
+        GoogleSDK.getInstance().onActivityResult(requestCode, resultCode, data, activity);
+        FacebookSDK.getInstance().onActivityResult(requestCode, resultCode, data, activity);
     }
 
 

@@ -1,6 +1,5 @@
 package com.example.sdklibrary.ui.fragment.login;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -18,7 +17,6 @@ import com.example.sdklibrary.mvp.Imp.RegistPresenterImp;
 import com.example.sdklibrary.mvp.model.MVPRegisterBean;
 import com.example.sdklibrary.mvp.view.MVPRegistView;
 import com.example.sdklibrary.tools.LoggerUtils;
-import com.example.sdklibrary.ui.SdkLoginActivity;
 
 /**
  * Created by tzw on 2018/6/4.
@@ -135,13 +133,13 @@ public class RegisterFragment extends SdkBaseFragment implements MVPRegistView{
 
     @Override
     public void registSuccess(String msg, String data) {
-        Delegate.listener.callback(SDKStatusCode.SUCCESS,"regist success");
+        Delegate.loginlistener.callback(SDKStatusCode.SUCCESS,"regist success");
         LoggerUtils.i("注册成功");
     }
 
     @Override
     public void registFailed(String msg, String data) {
-        Delegate.listener.callback(SDKStatusCode.FAILURE,"regist failure");
+        Delegate.loginlistener.callback(SDKStatusCode.FAILURE,"regist failure");
         LoggerUtils.i("注册失败");
     }
 

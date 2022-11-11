@@ -33,7 +33,7 @@ public class DataGenerator {
     }
 
     public static Fragment[] getLoginFragments(String from){
-        Fragment fragments[] = new Fragment[3];
+        Fragment fragments[] = new Fragment[2];
         fragments[0] = LoginFragment.newInstance(from);
         fragments[1] = RegisterFragment.newInstance(from);
         return fragments;

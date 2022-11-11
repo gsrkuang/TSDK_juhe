@@ -13,7 +13,8 @@ https://github.com/gsrkuang/TSDK
 # 记录下来SDK的开发步骤以及参考文章
 
 ##### 游戏SDK效果图，后续的界面UI均会修改
-![在这里插入图片描述](https://img-blog.csdnimg.cn/92a7b538415b42a69b27c259fa101df8.png)
+![image](https://user-images.githubusercontent.com/13102787/201046561-c169b29c-62dd-4042-80af-f04d61bb30f7.png)
+
 
 1、游戏SDK开源项目：[一套开源Android游戏SDK（An Open AndroidGame Channel SDK）](https://github.com/zuowutan/ShareGameSdk)
 项目是根据上面的开源项目继续二次开发而来。

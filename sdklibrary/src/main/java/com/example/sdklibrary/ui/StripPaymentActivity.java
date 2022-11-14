@@ -38,6 +38,8 @@ package com.example.sdklibrary.ui;
 //import okhttp3.Response;
 //import okhttp3.ResponseBody;
 
+//暂时不用，此处是SDK本地的Strip支付
+
 //public class StripPaymentActivity extends AppCompatActivity {
 //    private static final String TAG = "CheckoutActivity";
 //    private static final String BACKEND_URL = "http://10.0.2.2:4242";

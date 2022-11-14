@@ -39,18 +39,11 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
 
         findView();
-        //配置信息初始化:
-        configInit();
         //游戏初始化:
         init();
 
     }
 
-    private void configInit() {
-        //配置横竖屏,等一些可配置信息
-        ConfigInfo.allowPORTRAIT = false;
-
-    }
 
     //游戏前必须首先进行初始化：
     //初始化主要进行匹配参数是否符合后台规定，一些赋值操作

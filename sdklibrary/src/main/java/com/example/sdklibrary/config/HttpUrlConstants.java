@@ -9,7 +9,6 @@ public final class HttpUrlConstants {
 
     public static final String COOKIE_DATA = "cookieData";
 
-
     //  请求成功，响应成功(!--接口成功--!)
     public static final String NET_OK = "netOK";
     //cookieData

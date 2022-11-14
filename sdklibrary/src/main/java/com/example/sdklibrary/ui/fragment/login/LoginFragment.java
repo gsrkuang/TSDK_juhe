@@ -61,11 +61,6 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
 
     private String mFrom;
 
-//    public SdkLoginFragment(@NonNull Activity act) {
-//        super(act);
-//        this.act = act;
-//    }
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

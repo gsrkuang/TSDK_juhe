@@ -8,6 +8,7 @@ import com.example.sdklibrary.aboutfacebook.FacebookSDK;
 import com.example.sdklibrary.aboutgoogle.GoogleSDK;
 import com.example.sdklibrary.abouttaptap.TapTapSDK;
 import com.example.sdklibrary.callback.SdkCallbackListener;
+import com.example.sdklibrary.config.ConfigInfo;
 import com.example.sdklibrary.config.ConstData;
 import com.example.sdklibrary.config.SDKStatusCode;
 import com.example.sdklibrary.mvp.model.MVPPayBean;
@@ -50,12 +51,12 @@ public class GameSdkLogic {
     //这里没有商业接口,固定是初始化成功,实际开发需要根据后台去判断成功/失败
     //只有当初始化的时候才可以进行后续操作
     public void sdkInit(Activity context, final Object o, final SdkCallbackListener<String> callback) {
-
-        callback.callback(SDKStatusCode.SUCCESS, "初始化成功");
+        ConfigInfo.setScreenIsPORTRAIT(context);
         checkInit = true;
         if (checkInit) {
             //弹出悬浮窗
             sdkInitFloatView(context);
+            callback.callback(SDKStatusCode.SUCCESS, "初始化成功");
         }
     }
 
@@ -80,7 +81,6 @@ public class GameSdkLogic {
     public void sdkLogin(Activity context) {
         LoggerUtils.i("SdkLogic Login");
         if (checkInit) {
-
 
             SdkLoginDialogFragment dialog = SdkLoginDialogFragment.getInstance();
             dialog.show(context.getFragmentManager(),"SdkLoginDialogFragment");

@@ -4,21 +4,14 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 import android.app.Activity;
 import android.app.Application;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.util.Log;
 import android.widget.Toast;
-
-import com.example.sdklibrary.aboutgoogle.GoogleSDK;
 import com.example.sdklibrary.base.SdkBaseThreeSDK;
 import com.example.sdklibrary.call.Delegate;
-import com.example.sdklibrary.call.GameSdkLogic;
 import com.example.sdklibrary.config.LogTAG;
 import com.example.sdklibrary.config.SDKStatusCode;
 import com.example.sdklibrary.tools.LoggerUtils;
-import com.example.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -35,6 +28,7 @@ import java.util.Arrays;
  * Time:19:31
  * author:colin
  */
+
 public class FacebookSDK extends SdkBaseThreeSDK{
 
     private FacebookSDK(){
@@ -99,10 +93,6 @@ public class FacebookSDK extends SdkBaseThreeSDK{
         });
     }
 
-
-
-
-
     public void Logout(){
         LoginManager.getInstance().logOut();
     }
@@ -110,7 +100,6 @@ public class FacebookSDK extends SdkBaseThreeSDK{
     public void onActivityResult(int requestCode, int resultCode, Intent data, Activity activity){
         mFacebookCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
-
 
     //游戏Facebook登陆成功
     public void GameLoginSuccess(Activity activity,String accountId){

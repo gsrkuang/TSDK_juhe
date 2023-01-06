@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 
 import com.example.sdklibrary.R;
 
@@ -35,15 +34,10 @@ public abstract class SdkBaseFragment extends Fragment implements View.OnClickLi
         processClick(v);
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(getLayoutId(),null);
-//        TextView textView = (TextView) view.findViewById(R.id.title_from);
-//        TextView content = (TextView) view.findViewById(R.id.fragment_content);
-//        textView.setText(mFrom);
-//        content.setText("Homefragment");
         initViews(view);
         initListener();
         initData();

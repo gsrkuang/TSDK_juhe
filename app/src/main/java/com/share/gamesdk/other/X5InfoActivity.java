@@ -9,6 +9,7 @@ import com.share.gamesdk.R;
 
 /**
  * Created by tzw on 2018/6/8.
+ * 选用
  */
 
 public class X5InfoActivity extends SdkBaseActivity{

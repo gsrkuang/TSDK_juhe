@@ -3,7 +3,7 @@ package com.example.sdklibrary.tools;
 import android.util.Log;
 
 /**
- * Created by tzw on 2018/6/4.
+ * Created by bolin
  * 日志工具类
  * 支持debug/release(打开/关闭 调试日志)
  * 支持自定义日志TAG

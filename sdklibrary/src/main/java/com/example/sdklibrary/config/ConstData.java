@@ -1,7 +1,7 @@
 package com.example.sdklibrary.config;
 
 /**
- * Created by tzw on 2018/6/4.
+ * Created by cbl
  * 常量文件
  */
 
@@ -22,6 +22,11 @@ public final class ConstData {
 
     public static final String PAY_SUCCESS = "支付成功";
     public static final String PAY_FAILURE = "支付失败";
+    public static final String PAY_CANCEL = "支付取消";
+
+    public static final String PAYCODE_SUCCESS = "获取PayCode成功";
+    public static final String PAYCODE_FAILURE = "获取PayCode失败";
+    public static final String PAYCODE_CANCEL = "获取PayCode取消";
 
 
 

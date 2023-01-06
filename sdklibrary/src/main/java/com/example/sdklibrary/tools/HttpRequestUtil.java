@@ -25,7 +25,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
- * Created by tzw on  2018/6/4.
+ * Created by bolin
  * 网络工具类
  */
 
@@ -153,7 +153,12 @@ public class HttpRequestUtil {
         }
 
         requestBody = builder.build();
-        final Request request = new Request.Builder().url(url).post(requestBody).build();
+        final Request request = new Request.Builder()
+                .url(url)
+                .addHeader("appId",GameSdkApplication.getInstance().getAppkey())
+                .addHeader("ticket",GameSdkApplication.getInstance().getTicket())
+                .post(requestBody)
+                .build();
 
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override

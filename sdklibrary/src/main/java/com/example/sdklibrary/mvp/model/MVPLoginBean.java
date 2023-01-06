@@ -1,7 +1,7 @@
 package com.example.sdklibrary.mvp.model;
 
 /**
- * Created by tzw on 2018/6/5.
+ * Created by bolin
  * 登录
  */
 

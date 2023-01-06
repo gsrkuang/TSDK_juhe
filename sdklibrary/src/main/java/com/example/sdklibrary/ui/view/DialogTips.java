@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import com.example.sdklibrary.R;
 
 
@@ -33,7 +31,7 @@ public class DialogTips extends Dialog
     private onLoginOnClickListener loginOnClickListener;
     private onCancelOnClickListener cancelOnClickListener;
 
-    public DialogTips(@NonNull Context context) {
+    public DialogTips(Context context) {
         super(context, R.style.TipsDialog);
     }
 

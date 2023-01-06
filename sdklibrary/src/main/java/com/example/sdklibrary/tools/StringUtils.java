@@ -1,7 +1,7 @@
 package com.example.sdklibrary.tools;
 import java.util.regex.Pattern;
 /**
- * Created by tzw on 2018/6/5.
+ * Created by bolin
  */
 
 public class StringUtils {

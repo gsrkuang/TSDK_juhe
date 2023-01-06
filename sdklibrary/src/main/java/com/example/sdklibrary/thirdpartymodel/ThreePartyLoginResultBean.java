@@ -3,7 +3,7 @@ package com.example.sdklibrary.thirdpartymodel;
 import java.util.List;
 
 /**
- * Created by colin 2022.9.14
+ * Created by bolin
  * 第三方支付回调使用
  */
 

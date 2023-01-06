@@ -3,120 +3,78 @@ package com.example.sdklibrary.mvp.model;
 import java.util.List;
 
 /**
- * Created by tzw on 2018/6/5.
+ * Created by bolin
  */
 
 public class MVPLoginResultBean {
 
+    //成功
+    /*
+        {
+        "ts": 1672888642,
+        "code": 20000,
+        "msg": "success",
+        "data": {
+            "appId": "111111",
+            "username": "colin1",
+            "ticket": "1842e4e23d1bcd79c659f0b99b6402c7",
+            "uid": "675944100554240"
+            }
+        }
+    */
 
-    /**
-     * data : {"collectIds":[],"email":"","icon":"","id":6334,"password":"123456","type":0,"username":"xiaowu\n"}
-     * errorCode : 0
-     * errorMsg :
-     */
+    //失败
+   /* {
+        "ts": 1672888385,
+            "code": 12000,
+            "msg": "Invalid appId: 111112",
+            "data": null
+    }*/
 
-    private DataBean data;
-    private int errorCode;
-    private String errorMsg;
+    private String appId;
+    private String username;
+    private String ticket;
+    private String uid;
 
-    public DataBean getData() {
-        return data;
+    @Override
+    public String toString() {
+        return "MVPLoginResultBean{" +
+                "appId='" + appId + '\'' +
+                ", username='" + username + '\'' +
+                ", ticket='" + ticket + '\'' +
+                ", uid='" + uid + '\'' +
+                '}';
     }
 
-    public void setData(DataBean data) {
-        this.data = data;
+    public String getAppId() {
+        return appId;
     }
 
-    public int getErrorCode() {
-        return errorCode;
+    public void setAppId(String appId) {
+        this.appId = appId;
     }
 
-    public void setErrorCode(int errorCode) {
-        this.errorCode = errorCode;
+    public String getUsername() {
+        return username;
     }
 
-    public String getErrorMsg() {
-        return errorMsg;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
+    public String getTicket() {
+        return ticket;
     }
 
-    public static class DataBean {
-        /**
-         * collectIds : []
-         * email :
-         * icon :
-         * id : 6334
-         * password : 123456
-         * type : 0
-         * username : xiaowu
+    public void setTicket(String ticket) {
+        this.ticket = ticket;
+    }
 
-         */
+    public String getUid() {
+        return uid;
+    }
 
-        private String email;
-        private String icon;
-        private int id;
-        private String password;
-        private int type;
-        private String username;
-        private List<?> collectIds;
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public String getIcon() {
-            return icon;
-        }
-
-        public void setIcon(String icon) {
-            this.icon = icon;
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-
-        public int getType() {
-            return type;
-        }
-
-        public void setType(int type) {
-            this.type = type;
-        }
-
-        public String getUsername() {
-            return username;
-        }
-
-        public void setUsername(String username) {
-            this.username = username;
-        }
-
-        public List<?> getCollectIds() {
-            return collectIds;
-        }
-
-        public void setCollectIds(List<?> collectIds) {
-            this.collectIds = collectIds;
-        }
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

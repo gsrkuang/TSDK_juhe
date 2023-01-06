@@ -7,14 +7,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 
 import com.example.sdklibrary.R;
 import com.example.sdklibrary.base.SdkBaseFragment;
 
 
 /**
- * Created by zhouwei on 17/4/23.
+ * Created by bolin
  */
 
 public class SettingFragment extends SdkBaseFragment {
@@ -34,7 +33,7 @@ public class SettingFragment extends SdkBaseFragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mFrom = getArguments().getString("from");

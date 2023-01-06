@@ -5,7 +5,7 @@ import android.app.Activity;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * Created by tzw on 2018/6/4.
+ * Created by bolin
  * 管理Activity工具类
  */
 

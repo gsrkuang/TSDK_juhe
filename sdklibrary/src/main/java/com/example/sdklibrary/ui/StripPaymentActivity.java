@@ -40,6 +40,12 @@ package com.example.sdklibrary.ui;
 
 //暂时不用，此处是SDK本地的Strip支付
 
+
+/**
+ * Created by bolin
+ * StripPaymentActivity支付Activtiy
+ */
+
 //public class StripPaymentActivity extends AppCompatActivity {
 //    private static final String TAG = "CheckoutActivity";
 //    private static final String BACKEND_URL = "http://10.0.2.2:4242";

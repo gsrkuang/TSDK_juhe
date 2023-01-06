@@ -11,11 +11,12 @@ import android.widget.TextView;
 
 import com.example.sdklibrary.R;
 import com.example.sdklibrary.ui.fragment.login.LoginFragment;
+import com.example.sdklibrary.ui.fragment.login.PhoneRegisterFragment;
 import com.example.sdklibrary.ui.fragment.login.RegisterFragment;
 
 
 /**
- * Created by zhouwei on 17/4/23.
+ * Created by bolin
  */
 
 public class DataGenerator {
@@ -33,9 +34,10 @@ public class DataGenerator {
     }
 
     public static Fragment[] getLoginFragments(String from){
-        Fragment fragments[] = new Fragment[2];
+        Fragment fragments[] = new Fragment[3];
         fragments[0] = LoginFragment.newInstance(from);
         fragments[1] = RegisterFragment.newInstance(from);
+        fragments[2] = PhoneRegisterFragment.newInstance(from);
         return fragments;
     }
 

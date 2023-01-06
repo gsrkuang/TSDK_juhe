@@ -3,7 +3,7 @@ package com.example.sdklibrary.base;
 
 /**
  * <p>Description:
- * @author tzw
+ * @author cbl
  * 
  * 绑定BaseView
  * 解绑BaseView

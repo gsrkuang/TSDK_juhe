@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import java.io.Serializable;
 
 /**
- * Created by tzw on 2018/6/4.
+ * Created by bolin
  */
 
 public class SPDataUtils {
@@ -70,11 +70,11 @@ public class SPDataUtils {
     }
 
     //使用SharedPreference来存储登陆后的数据
-    public void saveLoginData(String username ,String password ,String nickname ,int id){
+    public void saveLoginData(String username ,String password ,String nickname ,String id){
         SPDataUtils.getInstance().saveString("user_account",username);
         SPDataUtils.getInstance().saveString("user_password",password);
         SPDataUtils.getInstance().saveString("user_nickname",nickname);
-        SPDataUtils.getInstance().saveInt("user_id",id);
+        SPDataUtils.getInstance().saveString("user_id",id);
         SPDataUtils.getInstance().saveBoolean("loginStatus",true);
     }
 
@@ -90,8 +90,8 @@ public class SPDataUtils {
         return SPDataUtils.getInstance().getString("user_nickname","");
     }
 
-    public int getUserId(){
-        return SPDataUtils.getInstance().getInt("user_id",0);
+    public String getUserId(){
+        return SPDataUtils.getInstance().getString("user_id","");
     }
 
     public String getUserAccount(){

@@ -2,9 +2,12 @@
     <string name="app_name">SdkLibrary</string>
 
 
-    <string name="facebook_app_id">657478146100440</string>
-    <string name="fb_login_protocol_scheme">fb657478146100440</string>
-    <string name="facebook_client_token">2bf619bd625639cf4280821301838e06</string>
+
+    <string name="pay_success">支付成功:</string>
+    <string name="pay_failed">支付失败:</string>
+    <string name="confirm">确定</string>
+
+<!--    网络请求-->
 
 
 </resources>

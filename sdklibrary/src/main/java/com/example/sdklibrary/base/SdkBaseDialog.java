@@ -8,7 +8,6 @@ import android.util.SparseArray;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import com.example.sdklibrary.R;
 
 /**
@@ -35,7 +34,7 @@ public abstract class SdkBaseDialog extends Dialog implements View.OnClickListen
 
     public Activity act;
 
-    public SdkBaseDialog(@NonNull Activity act) {
+    public SdkBaseDialog(Activity act) {
         super(act, R.style.SdkBaseDialog);
         this.act =act;
     }

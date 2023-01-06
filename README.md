@@ -67,5 +67,7 @@ dependencies {
 所有的getSupportFragmentManager都换成了getFragmentManager，解决了Dialog不能加载Fragment的问题
 [Android Dialog加载Fragment（DialogFragment）带横竖屏动画](https://blog.csdn.net/u012246458/article/details/123060823)
 
-
+10、国际版和国内版区分。
+sdklibrary_international是国际版
+sdklibrary是国内版本，国内版本目前新增了alipay支付方式
 

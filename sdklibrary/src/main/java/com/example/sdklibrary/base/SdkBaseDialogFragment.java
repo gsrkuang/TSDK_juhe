@@ -14,8 +14,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.example.sdklibrary.R;
 
@@ -59,9 +57,8 @@ public abstract class SdkBaseDialogFragment extends DialogFragment implements Vi
         setStyle(STYLE_NO_TITLE, R.style.SdkBaseDialog);
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //设置布局相关
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE); //不显示弹框title
 

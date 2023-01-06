@@ -3,14 +3,12 @@ package com.example.sdklibrary.ui.fragment;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.Nullable;
-
 import com.example.sdklibrary.R;
 import com.example.sdklibrary.base.SdkBaseFragment;
 
 
 /**
- * Created by zhouwei on 17/4/23.
+ * Created by bolin
  */
 
 public class DiscoveryFragment extends SdkBaseFragment {
@@ -25,7 +23,7 @@ public class DiscoveryFragment extends SdkBaseFragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(getArguments()!=null){
             mFrom = getArguments().getString("from");

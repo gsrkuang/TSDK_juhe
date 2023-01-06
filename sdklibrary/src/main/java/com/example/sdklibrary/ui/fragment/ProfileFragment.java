@@ -8,8 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.sdklibrary.R;
 import com.example.sdklibrary.base.SdkBaseFragment;
@@ -22,7 +20,7 @@ import com.example.sdklibrary.tools.SPDataUtils;
 
 
 /**
- * Created by zhouwei on 17/4/23.
+ * Created by bolin
  */
 
 public class ProfileFragment extends SdkBaseFragment {
@@ -44,7 +42,7 @@ public class ProfileFragment extends SdkBaseFragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(getArguments()!=null){
             mFrom = getArguments().getString("from");
@@ -86,9 +84,9 @@ public class ProfileFragment extends SdkBaseFragment {
     public void initData() {
         settingFragment = SettingFragment.newInstance("setting");
         String nickname = SPDataUtils.getInstance().getNickName();
-        int userid = SPDataUtils.getInstance().getUserId();
+        String userid = SPDataUtils.getInstance().getUserId();
         profile_nickname.setText(nickname);
-        profile_userid.setText(userid+"");
+        profile_userid.setText(userid);
 
 //        profile_icon.setImageURI("");
 

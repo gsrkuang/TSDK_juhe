@@ -7,7 +7,7 @@ import com.example.sdklibrary.mvp.model.MVPLoginBean;
 import com.example.sdklibrary.mvp.view.MVPLoginView;
 
 /**
- * Created by tzw on 2018/6/5.
+ * Created by bolin
  * 登录Presenter
  */
 

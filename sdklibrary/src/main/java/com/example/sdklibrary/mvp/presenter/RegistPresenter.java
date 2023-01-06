@@ -8,7 +8,7 @@ import com.example.sdklibrary.mvp.model.MVPRegisterBean;
 import com.example.sdklibrary.mvp.view.MVPRegistView;
 
 /**
- * Created by tzw on 2018/6/5.
+ * Created by bolin
  * 注册Presenter
  */
 

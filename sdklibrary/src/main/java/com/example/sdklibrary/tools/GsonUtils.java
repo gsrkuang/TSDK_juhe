@@ -1,5 +1,8 @@
 package com.example.sdklibrary.tools;
 
+import com.example.sdklibrary.call.GameSdkLogic;
+import com.example.sdklibrary.mvp.model.ApiResponse;
+import com.example.sdklibrary.mvp.model.MVPLoginResultBean;
 import com.google.gson.Gson;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonSyntaxException;
@@ -16,7 +19,7 @@ import java.util.Map;
 
 public class GsonUtils {
 
-    private static Gson gson = null;
+    public static Gson gson = null;
     static {
         if (gson == null) {
             gson = new Gson();
@@ -25,6 +28,10 @@ public class GsonUtils {
 
     private GsonUtils() {
     }
+
+
+
+
 
     public static <T> T parserGsonToObject(String json, Class<T> classOft) {
         return (new Gson()).fromJson(json, classOft);
@@ -61,6 +68,22 @@ public class GsonUtils {
         }
         return t;
     }
+
+    /**
+     * 将json转成bean
+     * @param gsonString
+     *
+     * @return
+     */
+    public static <T> T ApiResponseGsonToBean(String gsonString, ApiResponse<T> T) {
+        T t = null;
+        if (gson != null) {
+            t = gson.fromJson(gsonString, new TypeToken<ApiResponse<T>>(){}.getType());
+
+        }
+        return t;
+    }
+
 
     /**
      * @param gsonString 需要转换的字符串，

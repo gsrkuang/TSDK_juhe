@@ -3,7 +3,7 @@ package com.example.sdklibrary.mvp.model;
 import java.util.List;
 
 /**
- * Created by tzw on 2018/6/7.
+ * Created by bolin
  */
 
 public class MVPRegistResultBean {
@@ -14,6 +14,23 @@ public class MVPRegistResultBean {
      * errorMsg :
      */
 
+    /**
+     * 成功
+     * {
+     *     "ts": 1672903161,
+     *     "code": 20000,
+     *     "msg": "success",
+     *     "data": "blbl2"
+     * }
+     *
+     * 失败
+     * {
+     *     "ts": 1672903266,
+     *     "code": 20001,
+     *     "msg": "failed",
+     *     "data": "blbl2"
+     * }
+     */
     private DataBean data;
     private int errorCode;
     private String errorMsg;

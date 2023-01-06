@@ -1,7 +1,7 @@
 package com.example.sdklibrary.mvp.model;
 
 /**
- * Created by tzw on 2018/6/7.
+ * Created by bolin
  */
 
 public class MVPPlayerBean {

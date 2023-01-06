@@ -3,7 +3,7 @@ package com.example.sdklibrary.mvp.view;
 import com.example.sdklibrary.base.BaseView;
 
 /**
- * Created by tzw on 2018/6/5.
+ * Created by bolin
  * 注册
  */
 

@@ -1,7 +1,7 @@
 package com.example.sdklibrary.mvp.model;
 
 /**
- * Created by tzw on 2018/6/5.
+ * Created by bolin
  * APP配置参数的信息:
  * 比如 高德地图对应的key 等等
  * 这里可以根据后台随意拓展

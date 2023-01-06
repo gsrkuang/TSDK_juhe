@@ -2,28 +2,24 @@ package com.example.sdklibrary.base;
 
 import android.app.Application;
 
-import com.example.sdklibrary.aboutfacebook.FacebookSDK;
 import com.example.sdklibrary.tools.SPDataUtils;
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 
 /**
- * Created by tzw on 2018/6/4.
+ * Created by cbl
  * 自定义Application
  */
 
 public class GameSdkApplication extends Application {
 
     //doing you want do
-
     private static GameSdkApplication homeApplication;
-
+    private String appkey = "";
+    private String ticket = "";
     @Override
     public void onCreate() {
         super.onCreate();
         homeApplication = this;
         SPDataUtils.init(getApplicationContext());
-        FacebookSDK.getInstance().sdkInitialize(this);
 //        InitStripe();
 
     }
@@ -33,6 +29,21 @@ public class GameSdkApplication extends Application {
     }
 
 
+    public String getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(String ticket) {
+        this.ticket = ticket;
+    }
+
+    public String getAppkey() {
+        return appkey;
+    }
+
+    public void setAppkey(String appkey) {
+        this.appkey = appkey;
+    }
 
     /**
      * 初始化Stripe

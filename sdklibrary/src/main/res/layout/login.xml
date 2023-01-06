@@ -37,8 +37,8 @@
             android:background="@drawable/shape_login"
             android:orientation="horizontal">
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/gamesdk_username"
                  />
@@ -48,29 +48,28 @@
                 android:layout_width="0dp"
                 android:layout_weight="6"
                 android:layout_height="match_parent"
-                android:hint="请输入账号/手机号:"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_"
-                android:maxLines="1"
+                android:hint="请输入账号:"
+
+               android:maxLines="1"
                 android:singleLine="true"
                 android:background="@null"
-                android:maxLength="15"
+                android:maxLength="20"
                 android:layout_marginLeft="5dp"
 
+                android:textSize="15sp"
 
                 />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent" />
+
             <ImageView
-                android:layout_width="0dp"
+                android:id="@+id/iv_clear_account"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:layout_width="15dp"
                 android:gravity="center"
-                android:src="@drawable/gamesdk_btn_dropdown"
-                android:layout_height="match_parent"
-                android:scaleX="0.5"
-                android:scaleY="0.5"
+                android:src="@drawable/edittext_close"
+                android:layout_height="15dp"
                 android:layout_marginRight="2dp"
-                android:layout_weight="1"/>
+                />
 
         </LinearLayout>
 
@@ -84,8 +83,8 @@
             >
 
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/gamesdk_pwd_icon"
                  />
@@ -94,7 +93,6 @@
                 android:id="@+id/loginpassword"
                 android:layout_width="0dp"
                 android:layout_weight="6"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_"
                 android:layout_height="match_parent"
 
                 android:singleLine="true"
@@ -105,14 +103,28 @@
                 android:maxLines="1"
 
                 android:layout_marginLeft="5dp"
+
+                android:textSize="15sp"
                 />
+
+            <ImageView
+                android:id="@+id/iv_clear_password"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:layout_width="15dp"
+                android:gravity="center"
+                android:src="@drawable/edittext_close"
+                android:layout_height="15dp"
+                android:layout_marginRight="2dp"
+               />
+
             <TextView
                 android:id="@+id/mvpforgetpassword"
-                android:layout_width="0dp"
+                android:layout_width="80dp"
                 android:text="忘记密码"
                 android:gravity="center"
                 android:layout_height="match_parent"
-                android:layout_weight="2"/>
+                android:textSize="15sp"/>
 
         </LinearLayout>
     </LinearLayout>
@@ -153,11 +165,13 @@
             android:layout_height="match_parent" />
 
     </LinearLayout>
+
     <LinearLayout
+        android:orientation="vertical"
         android:layout_marginTop="4dp"
         android:layout_width="match_parent"
         android:gravity="center"
-        android:layout_height="60dp">
+        android:layout_height="40dp">
 
 <!--        <TextView-->
 <!--            android:layout_width="wrap_content"-->
@@ -166,37 +180,72 @@
 <!--            android:text="Google登陆" />-->
 
         <ImageView
+
             android:layout_margin="5dp"
-            android:id="@+id/loginButtonGoogle"
-            android:src="@drawable/login_google"
-            android:layout_width="50dp"
-            android:layout_height="50dp">
+            android:id="@+id/mvpPhoneRegister"
+            android:src="@drawable/login_phone"
+            android:layout_width="30dp"
+            android:layout_height="30dp">
 
         </ImageView>
 
-        <ImageView
+
+    </LinearLayout>
+
+
+    <LinearLayout
+
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="40dp">
+
+
+        <CheckBox
+            android:id="@+id/check_privacy"
             android:layout_margin="5dp"
-            android:id="@+id/loginButtonFacebook"
-            android:src="@drawable/login_facebook"
-            android:layout_width="50dp"
-            android:layout_height="50dp">
+            android:background="@drawable/sure_check_privacy"
+            android:button="@null"
+            android:layout_gravity="center"
+            android:checked="false"
+            android:shadowColor="#FD784F"
+            android:textColor="#FD784F"
+            android:layout_width="15dp"
+            android:layout_height="15dp"></CheckBox>
 
-        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            android:text="我已阅读并同意"></TextView>
 
-        <ImageView
-            android:layout_margin="5dp"
-            android:id="@+id/loginButtonTaptap"
-            android:src="@drawable/login_taptap"
-            android:layout_width="50dp"
-            android:layout_height="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            android:textColor="#FD784F"
+            android:text="《用户协议》"></TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            android:text="和"></TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            android:textColor="#FD784F"
+            android:text="《隐私协议》"></TextView>
 
-        </ImageView>
+
+
+
+
 
 
 
 
     </LinearLayout>
-
 
 
 </LinearLayout>

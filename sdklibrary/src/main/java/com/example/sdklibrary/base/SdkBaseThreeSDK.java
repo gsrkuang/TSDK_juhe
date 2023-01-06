@@ -20,6 +20,8 @@ import com.example.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
  * author:colin
  * <p>
  * 第三方SDK的基类
+ *
+ * 暂时不用，不排除后面加入微信等第三方登陆
  */
 public class SdkBaseThreeSDK implements MVPLoginView, MVPRegistView {
     private LoginPresenterImp loginPresenterImp;
@@ -44,9 +46,8 @@ public class SdkBaseThreeSDK implements MVPLoginView, MVPRegistView {
         registPresenterImp.attachView(this);
 
         String mPassWord = accountId;
-        String mSecPassWord = accountId;
 
-        MVPRegisterBean bean = new MVPRegisterBean(accountId, mPassWord, mSecPassWord);
+        MVPRegisterBean bean = new MVPRegisterBean(accountId, mPassWord);
         registPresenterImp.regist(bean, activity);
 
     }

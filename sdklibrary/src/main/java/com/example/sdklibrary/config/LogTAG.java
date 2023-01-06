@@ -1,12 +1,13 @@
 package com.example.sdklibrary.config;
 
 /**
- * Created by tzw on 2018/6/4.
+ * Created by bolin
  * 日志TAG
  */
 
 public final class LogTAG {
     public static final String login = "login";
+    public static final String pay = "pay";
     public static final String classify = "classify";
     public static final String search = "search";
     public static final String giftInfo = "giftInfo";
@@ -24,10 +25,5 @@ public final class LogTAG {
     public static final String x5webview = "x5webview";
     public static final String qqLogin = "qqLogin";
     public static final String weChatLogin = "wechat";
-
-    public static final String facebookLogin = "facebookLogin";
-    public static final String googleLogin = "googleLogin";
-    public static final String taptapLogin = "taptapLogin";
-
 
 }

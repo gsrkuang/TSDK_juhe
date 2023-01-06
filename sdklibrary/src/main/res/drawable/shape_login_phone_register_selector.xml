@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@drawable/shape_login_phone_register"
+        android:clickable="true"/>
+
+
+    <item
+        android:drawable="@drawable/shape_login_phone_register_unclickable"
+        android:clickable="false"/>
+
+</selector>
+  

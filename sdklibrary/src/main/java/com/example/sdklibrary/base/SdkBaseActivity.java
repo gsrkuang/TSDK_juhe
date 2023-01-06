@@ -16,14 +16,13 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sdklibrary.R;
 import com.example.sdklibrary.config.ConfigInfo;
 import com.example.sdklibrary.tools.ActivityUtils;
 
 /**
- * Created by tzw on 2018/6/4.
+ * Created by cbl
  * Activity基类
  */
 
@@ -142,7 +141,7 @@ public abstract class SdkBaseActivity extends Activity implements View.OnClickLi
     // 获取主题色
     public int getColorPrimary() {
         TypedValue typedValue = new TypedValue();
-        getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+//        getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
         return typedValue.data;
     }
 
@@ -150,7 +149,7 @@ public abstract class SdkBaseActivity extends Activity implements View.OnClickLi
 
     public int getDarkColorPrimary() {
         TypedValue typedValue = new TypedValue();
-        getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValue, true);
+//        getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValue, true);
         return typedValue.data;
     }
 

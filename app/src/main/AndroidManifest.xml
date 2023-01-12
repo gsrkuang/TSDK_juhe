@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.share.gamesdk">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
 <!--    国内版本，目前不需要其他权限 -->
 <!--    <uses-permission android:name="android.permission.GET_TASKS"></uses-permission>-->
@@ -28,11 +30,27 @@
         <activity android:name=".SdkDemoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|navigation|screenLayout"
             android:theme="@style/AppTheme.NoBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
+        <activity android:name=".WebViewActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|navigation|screenLayout"
+            android:theme="@style/AppTheme.NoBar">
+
+
+
+        </activity>
+
+        <!--<activity android:name=".other.X5InfoActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|navigation|screenLayout"
+            android:theme="@style/AppTheme.NoBar">
+
+        </activity>-->
 
 
 
@@ -43,12 +61,12 @@
 <!--            android:theme="@android:style/Theme.Dialog"-->
 <!--            />-->
 
-        <activity
+        <!--<activity
             android:name=".other.X5InfoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@android:style/Theme.Dialog"
-            />
-        <service android:name=".other.X5NetService"/>
+            />-->
+      <!--  <service android:name=".other.X5NetService"/>-->
 
     </application>
 

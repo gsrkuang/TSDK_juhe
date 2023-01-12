@@ -37,8 +37,6 @@
         android:background="#e7e7e7"
         />
 
-
-
     <LinearLayout
         android:id="@+id/shopMessage"
         android:layout_width="match_parent"

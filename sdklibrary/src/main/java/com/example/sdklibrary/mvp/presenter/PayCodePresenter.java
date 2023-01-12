@@ -14,5 +14,6 @@ import com.example.sdklibrary.mvp.view.MVPPayCodeView;
 public interface PayCodePresenter extends BasePresenter<MVPPayCodeView> {
     void pay(MVPPayCodeBean payBean , Context context) ;
     void alipay(MVPPayCodeBean payBean , Context context) ;
+    void wxpay(MVPPayCodeBean payBean , Context context) ;
 
 }

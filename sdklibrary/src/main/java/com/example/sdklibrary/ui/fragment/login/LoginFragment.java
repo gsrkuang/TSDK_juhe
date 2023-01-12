@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
@@ -46,30 +47,24 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
     private ImageView clearPassword, clearAccount;
 
     protected boolean accountTag, passwordTag;
+    protected boolean editUserNameTag, editPasswordTag;
 
     private final int ACCOUNT_MAX_LENGTH = 20;
     private final int ACCOUNT_MIN_LENGTH = 4;
     private final int PASSWORD_MAX_LENGTH = 20;
     private final int PASSWORD_MIN_LENGTH = 4;
+    private final int PASSWORD_MD5 = 32;
     private final String LOGIN_FORMERROR = "帐号/密码长度格式错误";
     private final String LENGTH_EMPTY = "请检查帐号/密码输入";
     private final String AGREE_PRIVACY = "请先阅读并同意用户协议和隐私协议";
 
-    private String appkey;
+    private final String HINTPASSWROD_TEXT = "********";//默认展示为88888888,用来隐藏密码的长度，但实际登陆并不是这个密码
 
+    private String appkey;
 
     private Activity act;
 
     private String mFrom;
-
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mFrom = getArguments().getString("from");
-        }
-    }
 
     public static LoginFragment newInstance(String from) {
         LoginFragment fragment = new LoginFragment();
@@ -97,7 +92,6 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
         clearAccount = view.findViewById(R.id.iv_clear_account);
         clearPassword = view.findViewById(R.id.iv_clear_password);
 
-
     }
 
 
@@ -110,11 +104,14 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
         setOnClick(checkPrivacyBox);
         setOnClick(clearAccount);
         setOnClick(clearPassword);
+
+
         setEditTextListener();
 
     }
 
     public void setEditTextListener() {
+
         username.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -126,8 +123,14 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
                 String str = s.toString();
                 if (str.length() > 0) {
                     clearAccount.setVisibility(View.VISIBLE);
+                    editUserNameTag = true;
+                    if (editPasswordTag && editUserNameTag) {
+                        login.setEnabled(true);
+                    }
                 } else {
                     clearAccount.setVisibility(View.INVISIBLE);
+                    editUserNameTag = false;
+                    login.setEnabled(false);
                 }
             }
 
@@ -136,6 +139,8 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
 
             }
         });
+
+
         passWord.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -144,12 +149,22 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+
                 String str = s.toString();
                 if (str.length() > 0) {
                     clearPassword.setVisibility(View.VISIBLE);
+                    editPasswordTag = true;
+                    if (editPasswordTag && editUserNameTag) {
+                        login.setEnabled(true);
+                    }
+
+
                 } else {
                     clearPassword.setVisibility(View.INVISIBLE);
+                    editPasswordTag = false;
+                    login.setEnabled(false);
                 }
+
             }
 
             @Override
@@ -159,7 +174,6 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
         });
 
     }
-
 
 
     @Override
@@ -179,9 +193,11 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
 
         act = getActivity();
 
-
+        //隐藏密码的长度
         username.setText(SPDataUtils.getInstance().getUserAccount());
-        passWord.setText(SPDataUtils.getInstance().getUserPassword());
+        if ("" != SPDataUtils.getInstance().getUserPassword()) {
+            passWord.setText(HINTPASSWROD_TEXT);
+        }
 
     }
 
@@ -191,7 +207,6 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
         if (id == R.id.mvplogin) {
             loginMethod();
         } else if (id == R.id.mvpregister) {
-//            regist();
             getFragmentManager().beginTransaction().replace(R.id.login_container, registerFragment)
                     .addToBackStack(null)
                     .commit();
@@ -210,10 +225,11 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
         }
     }
 
-    public void clearAccountText(){
+    public void clearAccountText() {
         username.setText("");
     }
-    public void clearPasswordText(){
+
+    public void clearPasswordText() {
         passWord.setText("");
     }
 
@@ -225,8 +241,15 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
         mUserName = username.getText().toString().trim();
         mPassWord = passWord.getText().toString().trim();
 
+        if (mPassWord.equals(HINTPASSWROD_TEXT)){
+            //用户已经登录保存了账号密码
+            mPassWord = SPDataUtils.getInstance().getUserPassword();
+        }else {
+            mPassWord = passWord.getText().toString().trim();
+        }
+
         accountTag = (mUserName.length() > ACCOUNT_MIN_LENGTH) && (mUserName.length() < ACCOUNT_MAX_LENGTH);
-        passwordTag = (mPassWord.length() > PASSWORD_MIN_LENGTH) && (mPassWord.length() < PASSWORD_MAX_LENGTH);
+        passwordTag = (mPassWord.length() > PASSWORD_MIN_LENGTH) && (mPassWord.length() < PASSWORD_MAX_LENGTH) || (mPassWord.length() == PASSWORD_MD5);
 
         if ((TextUtils.isEmpty(mUserName)) && (TextUtils.isEmpty(mPassWord))) {
             showToast(LENGTH_EMPTY);
@@ -283,6 +306,7 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
             return true;
         }
     }
+
 
 
 }

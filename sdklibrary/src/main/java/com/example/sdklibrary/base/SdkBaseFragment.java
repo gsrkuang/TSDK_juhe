@@ -53,4 +53,5 @@ public abstract class SdkBaseFragment extends Fragment implements View.OnClickLi
         Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
     }
 
+
 }

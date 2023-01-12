@@ -13,5 +13,6 @@ import com.example.sdklibrary.mvp.view.MVPPhoneRegistView;
  */
 
 public interface PhoneRegistPresenter extends BasePresenter<MVPPhoneRegistView> {
-    void regist(MVPPhoneRegisterBean user, Context context) ;
+    void phoneLogin(MVPPhoneRegisterBean user, Context context) ;
+    void phoneLoginGetCode(String phoneNumber, Context context) ;
 }

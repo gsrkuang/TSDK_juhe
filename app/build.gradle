@@ -44,7 +44,7 @@ dependencies {
 
 //    implementation project(':sdklibrary_international')
 
-    implementation files('libs/x5web.jar')
+//    implementation files('libs/x5web.jar')
 
 
     //google sdk

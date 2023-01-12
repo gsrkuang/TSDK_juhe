@@ -38,10 +38,9 @@ public class PayCodePresenterImp implements PayCodePresenter {
         this.mvpPayCodeView = mvpPayCodeView;
     }
 
-    private void payCodeMethod(String url, MVPPayCodeBean payBean) {
+    private void payCodeMethod(String url, MVPPayCodeBean payBean,String payType) {
 
         Map<String, String> map = new HashMap<>();
-        map.put("appId", GameSdkApplication.getInstance().getAppkey());
         map.put("uId", payBean.getuId());
         map.put("oId", payBean.getoId());
         map.put("pId", payBean.getpId());
@@ -62,7 +61,7 @@ public class PayCodePresenterImp implements PayCodePresenter {
                 String data = payResultBean.getData();
 
                 if (20000 == code){
-                    mvpPayCodeView.onPayCodeSuccess(ConstData.PAYCODE_SUCCESS, data);
+                    mvpPayCodeView.onPayCodeSuccess(ConstData.PAYCODE_SUCCESS, data,payType);
                     LoggerUtils.i(LogTAG.login, "responseBody: paycode Success");
                 }else {
 
@@ -107,12 +106,21 @@ public class PayCodePresenterImp implements PayCodePresenter {
     public void alipay(MVPPayCodeBean payBean, Context context) {
         bean = payBean;
         if (null != bean) {
-            payCodeMethod(HttpUrlConstants.getPayUrl_alipay(), payBean);
+            payCodeMethod(HttpUrlConstants.getPayUrl_alipay(), payBean,"alipay");
         } else {
             mvpPayCodeView.showAppInfo("", "支付参数输入不完整");
         }
     }
 
+    @Override
+    public void wxpay(MVPPayCodeBean payBean, Context context) {
+        bean = payBean;
+        if (null != bean) {
+            payCodeMethod(HttpUrlConstants.getPayUrl_wxpay(), payBean,"wxpay");
+        } else {
+            mvpPayCodeView.showAppInfo("", "支付参数输入不完整");
+        }
+    }
 
 
 }

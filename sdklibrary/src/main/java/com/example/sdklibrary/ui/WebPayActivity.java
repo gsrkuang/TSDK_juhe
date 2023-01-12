@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -13,6 +14,9 @@ import android.webkit.WebViewClient;
 
 import com.example.sdklibrary.BuildConfig;
 import com.example.sdklibrary.R;
+import com.example.sdklibrary.base.SdkBaseActivity;
+import com.example.sdklibrary.call.Delegate;
+import com.example.sdklibrary.config.SDKStatusCode;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,7 +24,9 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -30,17 +36,55 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class WebPayActivity extends Activity {
+public class WebPayActivity extends SdkBaseActivity {
 
     WebView mWebView;
+
+    @Override
+    public int getLayoutId() {
+       return R.layout.activity_web_pay;
+    }
+
+    @Override
+    public void initViews() {
+        mWebView = findViewById(R.id.pay_webview);
+    }
+
+    @Override
+    public void initListener() {
+
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+
+
+    }
+
+    @Override
+    public void initData() {
+        String webUrl = getIntent().getStringExtra("webUrl");
+        webViewSetting();
+        Map extraHeaders = new HashMap();
+        extraHeaders.put("referer", "https://wy.373yx.com");
+        mWebView.loadUrl(webUrl,extraHeaders);
+
+    }
+
+    @Override
+    public void processClick(View v) {
+
+    }
+/*
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_pay);
 
-        mWebView = findViewById(R.id.pay_webview);
-        webViewSetting();
+
 //        mWebView.loadUrl("http://shengtai.polms.cn/index.php/Bzcs/Index/index/t/7/p/6");
 //        mWebView.loadUrl("https://www.baidu.com");
 //        mWebView.postUrl("https://www.baidu.com");
@@ -87,12 +131,14 @@ public class WebPayActivity extends Activity {
                 "}";
 //        mWebView.postUrl("https://xiyecode.free.svipss.top/api/paypal/pay", EncodingUtils.getBytes(postData, "UTF-8"));
 
-
 //        postURL("https://xiyecode.free.svipss.top/api/paypal/pay", postData);
 //        postURL("https://xiyecode.free.svipss.top/api/stripe/pay", postData);
-        postURL("https://xiyecode.free.svipss.top/api/pay/10000", postData);
+
+        //这是stripe的H5支付，暂时不用
+//        postURL("https://xiyecode.free.svipss.top/api/pay/10000", postData);
 
     }
+*/
 
     private void paycallback(){
         //发货
@@ -117,6 +163,37 @@ public class WebPayActivity extends Activity {
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                //True（拦截WebView加载Url），False（允许WebView加载Url）
+                //通过浏览器调起微信支付（可使用）
+                try {
+                    if (url.startsWith("https://wx.tenpay.com")) {
+
+                        Map extraHeaders = new HashMap();
+                        extraHeaders.put("referer", "https://wy.373yx.com");
+                        view.loadUrl(url,extraHeaders);
+                        return false;
+
+                    }else if (url.startsWith("weixin://wap/pay?")) {
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(url));
+                        startActivity(intent);
+
+                        return true;
+                    }else if (url.startsWith("https://www.373yx.com/")) {
+                        //成功
+//                        Delegate.paylistener.callback(SDKStatusCode.PAY_SUCCESS, "pay success");
+//                        finish();
+
+                        view.loadUrl(url);
+//                        https://www.373yx.com?orderid=878787
+                        return true;
+                    }
+
+                } catch (Exception e) {
+
+                }
+
                 //H5调起微信app支付方法一（待验证）
 //                if (url.contains("wx.tenpay")) {
 //                    Map<String, String> extraHeaders = new HashMap<String, String>();
@@ -124,6 +201,7 @@ public class WebPayActivity extends Activity {
 //                    view.loadUrl(url, extraHeaders);
 //                    return true;
 //                }
+
                 //H5调起微信app支付方法二（可使用）
                 if (url.startsWith("weixin://wap/pay?")) {
                     Intent intent = new Intent();
@@ -150,9 +228,9 @@ public class WebPayActivity extends Activity {
                     }
                     return true;
                 }
-                if (!(url.startsWith("http") || url.startsWith("https"))) {
-                    return true;
-                }
+//                if (!(url.startsWith("http") || url.startsWith("https"))) {
+//                    return true;
+//                }
                 view.loadUrl(url);
                 return true;
             }

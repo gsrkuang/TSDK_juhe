@@ -122,9 +122,9 @@ public class GameSdkLogic {
 
 
     //弹出登出提示,当SdkCallbackListener已经被初始化
-    public void showLogoutDialog(Context context) {
+    public void showLogoutDialog(Activity act) {
         //这里应该弹出退出窗口的确认框，确认框确认后再退出登录
-        DialogTips dialogTips = new DialogTips(context);
+        DialogTips dialogTips = new DialogTips(act);
         dialogTips.setTitle("退出登录");
         dialogTips.setMessage("确认要退出当前账号吗？");
         dialogTips.setCancelOnClickListener(new DialogTips.onCancelOnClickListener() {
@@ -140,6 +140,8 @@ public class GameSdkLogic {
                 SPDataUtils.getInstance().clearLogin();
                 dialogTips.dismiss();
                 SdkUserCenterDialogFragment.getInstance().dismiss();
+                GameSdkLogic.getInstance().sdkFloatViewHide();
+                sdkLogin(act);
                 Delegate.loginlistener.callback(SDKStatusCode.LOGOUT_SUCCESS, "logout success");
             }
         });

@@ -1,3 +1,4 @@
+/*
 package com.share.gamesdk.other;
 
 import android.content.ActivityNotFoundException;
@@ -294,3 +295,4 @@ public class MyX5WebView extends WebView {
         }
     };
 }
+*/

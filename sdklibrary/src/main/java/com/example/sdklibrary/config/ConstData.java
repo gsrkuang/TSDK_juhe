@@ -20,6 +20,11 @@ public final class ConstData {
     public static final String REGIST_SUCCESS = "注册成功";
     public static final String REGIST_FAILURE = "注册失败";
 
+
+    public static final String PHONECODE_SUCCESS = "获取验证码成功";
+    public static final String PHONECODE_FAILURE = "获取验证码失败";
+
+
     public static final String PAY_SUCCESS = "支付成功";
     public static final String PAY_FAILURE = "支付失败";
     public static final String PAY_CANCEL = "支付取消";

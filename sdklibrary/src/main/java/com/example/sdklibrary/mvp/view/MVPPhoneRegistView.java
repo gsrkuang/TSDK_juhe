@@ -8,8 +8,8 @@ import com.example.sdklibrary.base.BaseView;
  */
 
 public interface MVPPhoneRegistView extends BaseView {
-    void registSuccess(String msg, String data) ;
-    void registFailed(String msg, String data) ;
+    void loginSuccess(String msg, String data) ;
+    void loginFailed(String msg, String data) ;
 
     void verificationCodeFailed(String msg, String data) ;
     void verificationCodeSuccess(String msg, String data) ;

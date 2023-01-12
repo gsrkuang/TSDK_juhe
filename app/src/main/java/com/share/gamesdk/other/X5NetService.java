@@ -1,3 +1,4 @@
+/*
 package com.share.gamesdk.other;
 
 import android.app.IntentService;
@@ -44,3 +45,4 @@ public class X5NetService extends IntentService {
 
 
 
+*/

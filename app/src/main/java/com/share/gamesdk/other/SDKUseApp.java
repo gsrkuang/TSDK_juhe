@@ -16,7 +16,7 @@ public class SDKUseApp extends GameSdkApplication{
     }
 
     void preInitX5(){
-        Intent intent = new Intent(SDKUseApp.this,X5NetService.class);
-        startService(intent);
+//        Intent intent = new Intent(SDKUseApp.this,X5NetService.class);
+//        startService(intent);
     }
 }

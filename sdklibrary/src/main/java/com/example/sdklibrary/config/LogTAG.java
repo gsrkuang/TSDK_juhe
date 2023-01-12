@@ -16,6 +16,7 @@ public final class LogTAG {
     public static final String main = "main";
     public static final String verfiy = "verfiy";
     public static final String register = "register";
+    public static final String phonecode = "phonecode";
     public static final String rank = "rank";
     public static final String aboutme = "aboutme";
     public static final String contactcustomer = "contactcustomer";

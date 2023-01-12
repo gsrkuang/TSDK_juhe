@@ -39,7 +39,6 @@ public final class HttpUrlConstants {
 
     public static final int BZ_CODE = 14200;//Frequently operation
 
-
     //业务成功、失败
     public static final int BZ_SUCCESS = 20000; //成功
     public static final int BZ_FAILURE = 20001; //注册失败
@@ -65,48 +64,45 @@ public final class HttpUrlConstants {
     }
 
     //tsdk登录url  POST
-    //appId,account,password
+    //account,password
     public static String getLoginUrl() {
         return SDK_BASE_URL+"/api/v2/account/login/account";
     }
 
 
-    //tsdk验证码登录url  POST
-    //appId,account,password
-    public static String getPhoneCodeLoginUrl() {
-        return SDK_BASE_URL+"/api/v2/account/login/phone";
+    //tsdk ①验证码登录-获取验证码  POST
+    //account,password
+    public static String getPhoneCodeUrl() {
+        return SDK_BASE_URL+"/api/v2/account/code/send";
     }
 
+    //tsdk ②验证码登录url  POST
+    //account,password
+    public static String getPhoneCodeLoginUrl() { return SDK_BASE_URL+"/api/v2/account/login/phone"; }
+
     //tsdk一键登录url  POST
-    //appId,account,password
+    //account,password
     public static String getOneKeyLoginUrl() {
         return SDK_BASE_URL+"/api/v2/account/login/phone";
     }
 
 
     //tsdk注册url  POST
-    //appId,account,password
-    public static String getRegisterUrl() {
-        return SDK_BASE_URL+"/api/v2/account/register/account";
-    }
+    //account,password
+    public static String getRegisterUrl() { return SDK_BASE_URL+"/api/v2/account/register/account"; }
 
     //tsdk登出url  POST
-    //appId,account,password
+    //account,password
     public static String getLogoutUrl() {
         return SDK_BASE_URL+"/api/v2/account/logout";
     }
 
     //tsdk获取用户信息url  POST
-    //appId,ticket
-    public static String getUserInfoUrl() {
-        return SDK_BASE_URL+"/api/v2/account/info";
-    }
-
+    //请求头appId,ticket
+    public static String getUserInfoUrl() { return SDK_BASE_URL+"/api/v2/account/info"; }
     //tsdk支付url alipay  POST
-    public static String getPayUrl_alipay() {
-        return SDK_BASE_URL+"/api/v1/pay/payment/alipay";
-    }
-
+    public static String getPayUrl_alipay() { return SDK_BASE_URL+"/api/v1/pay/payment/alipay"; }
+    public static String getPayUrl_wxpay() { return SDK_BASE_URL+"/api/v1/pay/payment/wx/wxh5"; }
 
 
 }

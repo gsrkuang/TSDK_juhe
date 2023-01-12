@@ -8,7 +8,7 @@ import com.example.sdklibrary.base.BaseView;
  */
 
 public interface MVPPayCodeView extends BaseView {
-    void onPayCodeSuccess(String msg,String data) ;
+    void onPayCodeSuccess(String msg,String data,String payType) ;
     void onPayCodeFailed(String msg,String data) ;
     void onPayCodeCancel(String msg,String data) ;
 }

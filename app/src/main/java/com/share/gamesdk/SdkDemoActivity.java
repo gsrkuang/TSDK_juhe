@@ -63,7 +63,7 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
 
     //登录:
     private void loginMethod() {
-        GameSdkLogic.getInstance().sdkLogin(this,"", new SdkCallbackListener<String>() {
+        GameSdkLogic.getInstance().sdkLogin(this,"111111", new SdkCallbackListener<String>() {
             @Override
             public void callback(int code, String response) {
                 switch (code) {
@@ -71,7 +71,6 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
                         Toast.makeText(SdkDemoActivity.this, ConstData.LOGIN_SUCCESS + response,Toast.LENGTH_SHORT).show();
                         //这里就可以获取登录成功以后的信息:
                         LoggerUtils.i( "login callBack data : "+response);
-                        Toast.makeText(SdkDemoActivity.this,"登陆成功"+response,Toast.LENGTH_SHORT).show();
                         break;
                     case SDKStatusCode.FAILURE:
 //                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGIN_FAILURE,Toast.LENGTH_SHORT).show();
@@ -84,6 +83,7 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
                         break;
                     case SDKStatusCode.LOGOUT_SUCCESS:
                         //前提是已经登录成功
+
                         Toast.makeText(SdkDemoActivity.this, ConstData.LOGOUT_SUCCESS,Toast.LENGTH_SHORT).show();
                         break;
                 }

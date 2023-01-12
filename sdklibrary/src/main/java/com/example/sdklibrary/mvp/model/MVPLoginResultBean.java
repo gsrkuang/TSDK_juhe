@@ -11,14 +11,15 @@ public class MVPLoginResultBean {
     //成功
     /*
         {
-        "ts": 1672888642,
-        "code": 20000,
-        "msg": "success",
-        "data": {
-            "appId": "111111",
-            "username": "colin1",
-            "ticket": "1842e4e23d1bcd79c659f0b99b6402c7",
-            "uid": "675944100554240"
+            "ts": 1673233978,
+            "code": 20000,
+            "msg": "success",
+            "data": {
+                "appId": "111111",
+                "username": "13246642620",
+                "password": "4c3a4ccfc9e268517207d9947add1413",
+                "ticket": "7f97dea0ff774f522c1feac5c22d37a992ec63ab1ed77c34999f2f5d45004590",
+                "uid": "884847014875136"
             }
         }
     */
@@ -33,6 +34,7 @@ public class MVPLoginResultBean {
 
     private String appId;
     private String username;
+    private String password;
     private String ticket;
     private String uid;
 
@@ -41,6 +43,7 @@ public class MVPLoginResultBean {
         return "MVPLoginResultBean{" +
                 "appId='" + appId + '\'' +
                 ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 ", ticket='" + ticket + '\'' +
                 ", uid='" + uid + '\'' +
                 '}';
@@ -60,6 +63,14 @@ public class MVPLoginResultBean {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getTicket() {

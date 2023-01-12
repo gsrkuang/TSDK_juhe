@@ -47,8 +47,8 @@ public class PhoneRegisterFragment extends SdkBaseFragment implements MVPPhoneRe
     private final int PASSWORD_MAX_LENGTH = 20;
     private final int PASSWORD_MIN_LENGTH = 4;
 
-    private final String LOGIN_FORMERROR = "帐号/密码长度格式错误";
-    private final String LENGTH_EMPTY = "请检查帐号/密码输入";
+    private final String LOGIN_FORMERROR = "手机号码/验证码长度格式错误";
+    private final String LENGTH_EMPTY = "请检查手机号/验证码输入";
     private final String CONTENT_ERROR = "两次密码输入不一致";
     private final String AGREE_PRIVACY = "请先阅读并同意用户协议和隐私协议";
 
@@ -100,9 +100,16 @@ public class PhoneRegisterFragment extends SdkBaseFragment implements MVPPhoneRe
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String str = s.toString();
+
+                if (str.length() == 11){
+                    verificationCode.setEnabled(true);
+                }else {
+                    verificationCode.setEnabled(false);
+                }
+
                 if (str.length() > 0) {
                     clearAccount.setVisibility(View.VISIBLE);
-                } else {
+                }else{
                     clearAccount.setVisibility(View.INVISIBLE);
                 }
             }
@@ -121,6 +128,12 @@ public class PhoneRegisterFragment extends SdkBaseFragment implements MVPPhoneRe
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String str = s.toString();
+                if (str.length() == 6){
+                    register.setEnabled(true);
+                }else {
+                    register.setEnabled(false);
+                }
+
                 if (str.length() > 0) {
                     clearCode.setVisibility(View.VISIBLE);
                 } else {
@@ -156,8 +169,10 @@ public class PhoneRegisterFragment extends SdkBaseFragment implements MVPPhoneRe
     @Override
     public void processClick(View v) {
         int id = v.getId();
-        if (id == R.id.regist_phonenumber){
-            registeMethod();
+        if (id == R.id.regist_phonecode){
+            loginMethod();
+        }else if (id == R.id.verificationCode){
+            getCodeMethod();
         }else if (id == R.id.goback){
             goBackMainUI();
         }else if (id == R.id.iv_clear_account) {
@@ -178,7 +193,27 @@ public class PhoneRegisterFragment extends SdkBaseFragment implements MVPPhoneRe
         codeNumber.setText("");
     }
 
-    private void registeMethod(){
+    private void getCodeMethod(){
+        if (!checkPrivacy()){
+            return;
+        }
+        mPhoneNumber = phoneNumber.getText().toString().trim();
+        accountTag = (mPhoneNumber.length() > ACCOUNT_MIN_LENGTH) && (mPhoneNumber.length() < ACCOUNT_MAX_LENGTH);
+        if ((TextUtils.isEmpty(mPhoneNumber))) {
+            showToast(LENGTH_EMPTY);
+            return;
+        }
+        else {
+            if (accountTag) {
+                phoneRegistPresenterImp.phoneLoginGetCode(mPhoneNumber, getActivity());
+            } else {
+                showToast(LOGIN_FORMERROR);
+                return;
+            }
+        }
+    }
+
+    private void loginMethod(){
         if (!checkPrivacy()){
             return;
         }
@@ -197,9 +232,9 @@ public class PhoneRegisterFragment extends SdkBaseFragment implements MVPPhoneRe
         }
         else {
             if (accountTag && codeTag ) {
-                MVPPhoneRegisterBean bean = new MVPPhoneRegisterBean(mPhoneNumber, mCode);
 
-                phoneRegistPresenterImp.regist(bean, getActivity());
+                MVPPhoneRegisterBean bean = new MVPPhoneRegisterBean(mPhoneNumber, mCode);
+                phoneRegistPresenterImp.phoneLogin(bean, getActivity());
             } else {
                 showToast(LOGIN_FORMERROR);
                 return;
@@ -218,26 +253,29 @@ public class PhoneRegisterFragment extends SdkBaseFragment implements MVPPhoneRe
     }
 
     @Override
-    public void registSuccess(String msg, String data) {
-//        Delegate.loginlistener.callback(SDKStatusCode.SUCCESS,"phoneCode regist success");
+    public void loginSuccess(String msg, String data) {
         SdkLoginDialogFragment.getInstance().dismiss();//注册成功销毁登陆窗
-        LoggerUtils.i("手机验证码注册成功");
+        LoggerUtils.i("手机验证码登陆成功");
+        Delegate.loginlistener.callback(SDKStatusCode.SUCCESS,"phoneCode regist success");
     }
 
     @Override
-    public void registFailed(String msg, String data) {
-//        Delegate.loginlistener.callback(SDKStatusCode.FAILURE,"phoneCode regist failure");
-        LoggerUtils.i("手机验证码注册失败");
+    public void loginFailed(String msg, String data) {
+        LoggerUtils.i("手机验证码登陆失败");
     }
 
     @Override
     public void verificationCodeFailed(String msg, String data) {
         LoggerUtils.i("获取验证码失败");
+
     }
 
     @Override
     public void verificationCodeSuccess(String msg, String data) {
         LoggerUtils.i("获取验证码成功");
+        //开始倒计时60s
+
+
     }
 
 

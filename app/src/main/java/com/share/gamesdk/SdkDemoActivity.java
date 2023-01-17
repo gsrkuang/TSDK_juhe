@@ -14,6 +14,7 @@ import com.example.sdklibrary.config.ConstData;
 import com.example.sdklibrary.config.SDKStatusCode;
 import com.example.sdklibrary.mvp.model.MVPPayCodeBean;
 import com.example.sdklibrary.mvp.model.MVPPlayerBean;
+import com.example.sdklibrary.mvp.model.user.SDKUserResult;
 import com.example.sdklibrary.tools.LoggerUtils;
 
 import java.text.SimpleDateFormat;
@@ -63,14 +64,14 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
 
     //登录:
     private void loginMethod() {
-        GameSdkLogic.getInstance().sdkLogin(this,"111111", new SdkCallbackListener<String>() {
+        GameSdkLogic.getInstance().sdkLogin(this,"111111", new SdkCallbackListener<SDKUserResult>() {
             @Override
-            public void callback(int code, String response) {
+            public void callback(int code, SDKUserResult user) {
                 switch (code) {
                     case SDKStatusCode.SUCCESS:
-                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGIN_SUCCESS + response,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGIN_SUCCESS + user.getUid(),Toast.LENGTH_SHORT).show();
                         //这里就可以获取登录成功以后的信息:
-                        LoggerUtils.i( "login callBack data : "+response);
+//                        LoggerUtils.i( "login callBack data : "+user.toString());
                         break;
                     case SDKStatusCode.FAILURE:
 //                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGIN_FAILURE,Toast.LENGTH_SHORT).show();

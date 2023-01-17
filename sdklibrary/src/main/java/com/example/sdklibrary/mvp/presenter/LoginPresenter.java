@@ -13,4 +13,5 @@ import com.example.sdklibrary.mvp.view.MVPLoginView;
 
 public interface LoginPresenter extends BasePresenter<MVPLoginView> {
     void login(MVPLoginBean user , Context context) ;
+    void onekey(Context context) ;
 }

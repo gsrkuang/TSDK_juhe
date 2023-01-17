@@ -14,7 +14,7 @@ import com.example.sdklibrary.ui.fragment.DataGenerator;
  * Date:2022-10-20
  * Time:17:08
  * author:colin
- * 用户中心
+ * 登陆模块
  */
 public class SdkLoginDialogFragment extends SdkBaseDialogFragment {
     private Fragment[] mFragments;

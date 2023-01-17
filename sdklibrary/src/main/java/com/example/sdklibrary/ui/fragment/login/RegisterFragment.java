@@ -1,5 +1,6 @@
 package com.example.sdklibrary.ui.fragment.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 
 import com.example.sdklibrary.R;
@@ -20,9 +22,12 @@ import com.example.sdklibrary.mvp.Imp.LoginPresenterImp;
 import com.example.sdklibrary.mvp.Imp.RegistPresenterImp;
 import com.example.sdklibrary.mvp.model.MVPLoginBean;
 import com.example.sdklibrary.mvp.model.MVPRegisterBean;
+import com.example.sdklibrary.mvp.model.user.SDKUserResult;
 import com.example.sdklibrary.mvp.view.MVPLoginView;
 import com.example.sdklibrary.mvp.view.MVPRegistView;
 import com.example.sdklibrary.tools.LoggerUtils;
+import com.example.sdklibrary.ui.AgreementActivity;
+import com.example.sdklibrary.ui.PrivacyActivity;
 import com.example.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
 
 /**
@@ -36,6 +41,7 @@ public class RegisterFragment extends SdkBaseFragment implements MVPRegistView, 
     private Button register;
     private ImageView goback;
 
+    private TextView agreement, privacy;
     private RegistPresenterImp registPresenterImp;
     private LoginPresenterImp loginPresenterImp;
 
@@ -45,6 +51,8 @@ public class RegisterFragment extends SdkBaseFragment implements MVPRegistView, 
 
     private ImageView clearPassword, clearAccount;
 
+    protected boolean editUserNameTag, editPasswordTag;
+
     private final int ACCOUNT_MAX_LENGTH = 20;
     private final int ACCOUNT_MIN_LENGTH = 4;
     private final int PASSWORD_MAX_LENGTH = 20;
@@ -52,7 +60,6 @@ public class RegisterFragment extends SdkBaseFragment implements MVPRegistView, 
 
     private final String LOGIN_FORMERROR = "帐号/密码长度格式错误";
     private final String LENGTH_EMPTY = "请检查帐号/密码输入";
-    private final String CONTENT_ERROR = "两次密码输入不一致";
 
     private final String AGREE_PRIVACY = "请先阅读并同意用户协议和隐私协议";
     private final String ACCOUNT_NOT_ALLNUMBER = "账号不允许纯数字";
@@ -90,6 +97,10 @@ public class RegisterFragment extends SdkBaseFragment implements MVPRegistView, 
 
         clearAccount = view.findViewById(R.id.iv_clear_account);
         clearPassword = view.findViewById(R.id.iv_clear_password);
+
+
+        agreement = view.findViewById(R.id.text_agreement);
+        privacy = view.findViewById(R.id.text_privacy);
     }
 
 
@@ -100,6 +111,9 @@ public class RegisterFragment extends SdkBaseFragment implements MVPRegistView, 
 
         setOnClick(clearAccount);
         setOnClick(clearPassword);
+
+        setOnClick(agreement);
+        setOnClick(privacy);
         setEditTextListener();
     }
 
@@ -113,10 +127,17 @@ public class RegisterFragment extends SdkBaseFragment implements MVPRegistView, 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String str = s.toString();
+
                 if (str.length() > 0) {
                     clearAccount.setVisibility(View.VISIBLE);
+                    editUserNameTag = true;
+                    if (editPasswordTag && editUserNameTag) {
+                        register.setEnabled(true);
+                    }
                 } else {
                     clearAccount.setVisibility(View.INVISIBLE);
+                    editUserNameTag = false;
+                    register.setEnabled(false);
                 }
             }
 
@@ -134,10 +155,18 @@ public class RegisterFragment extends SdkBaseFragment implements MVPRegistView, 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String str = s.toString();
+
                 if (str.length() > 0) {
                     clearPassword.setVisibility(View.VISIBLE);
+                    editPasswordTag = true;
+                    if (editPasswordTag && editUserNameTag) {
+                        register.setEnabled(true);
+                    }
+
                 } else {
                     clearPassword.setVisibility(View.INVISIBLE);
+                    editPasswordTag = false;
+                    register.setEnabled(false);
                 }
             }
 
@@ -170,6 +199,12 @@ public class RegisterFragment extends SdkBaseFragment implements MVPRegistView, 
             clearAccountText();
         } else if (id == R.id.iv_clear_password) {
             clearPasswordText();
+        }else if (id == R.id.text_agreement) {
+            Intent intent = new Intent(getActivity(), AgreementActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.text_privacy) {
+            Intent intent = new Intent(getActivity(), PrivacyActivity.class);
+            startActivity(intent);
         }else {
 
         }
@@ -207,11 +242,7 @@ public class RegisterFragment extends SdkBaseFragment implements MVPRegistView, 
         if ((TextUtils.isEmpty(mUserName)) && (TextUtils.isEmpty(mPassWord))  ) {
             showToast(LENGTH_EMPTY);
             return;
-        } else if ( ! mPassWord.equals(mPassWord) ){
-            showToast(CONTENT_ERROR);
-            return;
-        }
-        else {
+        } else {
             if (accountTag && passwordTag) {
                 MVPRegisterBean bean = new MVPRegisterBean(mUserName, mPassWord);
                 registPresenterImp.regist(bean, getActivity());
@@ -271,10 +302,10 @@ public class RegisterFragment extends SdkBaseFragment implements MVPRegistView, 
     }
 
     @Override
-    public void loginSuccess(String msg, String data) {
+    public void loginSuccess(String msg, SDKUserResult user) {
 
         GameSdkLogic.getInstance().sdkFloatViewShow();
-        Delegate.loginlistener.callback(SDKStatusCode.SUCCESS, "login success");
+        Delegate.loginlistener.callback(SDKStatusCode.SUCCESS, user);
         LoggerUtils.i("登录成功");
         SdkLoginDialogFragment.getInstance().dismiss();//登陆成功销毁登陆窗
     }

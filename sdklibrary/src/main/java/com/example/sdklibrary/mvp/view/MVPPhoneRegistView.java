@@ -1,6 +1,7 @@
 package com.example.sdklibrary.mvp.view;
 
 import com.example.sdklibrary.base.BaseView;
+import com.example.sdklibrary.mvp.model.user.SDKUserResult;
 
 /**
  * Created by bolin
@@ -8,7 +9,7 @@ import com.example.sdklibrary.base.BaseView;
  */
 
 public interface MVPPhoneRegistView extends BaseView {
-    void loginSuccess(String msg, String data) ;
+    void loginSuccess(String msg, SDKUserResult user) ;
     void loginFailed(String msg, String data) ;
 
     void verificationCodeFailed(String msg, String data) ;

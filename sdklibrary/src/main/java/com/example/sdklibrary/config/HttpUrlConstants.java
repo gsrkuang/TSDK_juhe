@@ -7,7 +7,8 @@ package com.example.sdklibrary.config;
 
 public final class HttpUrlConstants {
 
-    public static final String SDK_BASE_URL = "http://192.168.0.105:8983";
+//    public static final String SDK_BASE_URL = "http://192.168.0.105:8983";
+    public static final String SDK_BASE_URL = "https://xiyecode.free.svipss.top";
 
     public static final String COOKIE_DATA = "cookieData";
 
@@ -39,10 +40,11 @@ public final class HttpUrlConstants {
 
     public static final int BZ_CODE = 14200;//Frequently operation
 
+    public static final int BZ_UNBIND = 15001;//Unbound phone: 手机号码未被绑定
+
     //业务成功、失败
     public static final int BZ_SUCCESS = 20000; //成功
     public static final int BZ_FAILURE = 20001; //注册失败
-
 
     //登录url  POST
     //username，password(不用)
@@ -59,6 +61,10 @@ public final class HttpUrlConstants {
     //支付url  POST(不用)
     //username,password,repassword
 
+    //用户协议Url
+    public static String getAgreementUrl(){return SDK_BASE_URL+"/html/protocol/111111/user.html";};
+    public static String getPrivacytUrl(){return SDK_BASE_URL+"/html/protocol/111111/privacy.html";};
+
     public static String getPayUrl() {
         return "https://xiyecode.free.svipss.top/api/paypal/pay";
     }
@@ -69,27 +75,35 @@ public final class HttpUrlConstants {
         return SDK_BASE_URL+"/api/v2/account/login/account";
     }
 
+    //tsdk一键登录url  POST
+    //account,password
+    public static String getOneKeyLoginUrl() {
+        return SDK_BASE_URL+"/api/v2/account/login/rapid";
+    }
 
-    //tsdk ①验证码登录-获取验证码  POST
+    //tsdk ①验证码登录/忘记密码-获取验证码  POST
     //account,password
     public static String getPhoneCodeUrl() {
         return SDK_BASE_URL+"/api/v2/account/code/send";
     }
 
-    //tsdk ②验证码登录url  POST
+    //tsdk ②验证码登录/忘记密码url  POST
     //account,password
     public static String getPhoneCodeLoginUrl() { return SDK_BASE_URL+"/api/v2/account/login/phone"; }
-
-    //tsdk一键登录url  POST
-    //account,password
-    public static String getOneKeyLoginUrl() {
-        return SDK_BASE_URL+"/api/v2/account/login/phone";
-    }
 
 
     //tsdk注册url  POST
     //account,password
     public static String getRegisterUrl() { return SDK_BASE_URL+"/api/v2/account/register/account"; }
+
+    //tsdk忘记密码url  POST
+    //account,password
+    public static String getFrogetUrl() { return SDK_BASE_URL+"/api/v2/account/password/reset"; }
+
+    //tsdk检查手机号是否被绑定url  POST
+    //phone
+    public static String getBindPhoneCheckUrl() { return SDK_BASE_URL+"/api/v2/account/bind/phone/check"; }
+
 
     //tsdk登出url  POST
     //account,password
@@ -103,6 +117,11 @@ public final class HttpUrlConstants {
     //tsdk支付url alipay  POST
     public static String getPayUrl_alipay() { return SDK_BASE_URL+"/api/v1/pay/payment/alipay"; }
     public static String getPayUrl_wxpay() { return SDK_BASE_URL+"/api/v1/pay/payment/wx/wxh5"; }
+
+    //微信支付后查询接口
+    public static String getPayUrl_wxpay_query_url() { return SDK_BASE_URL+"/api/v1/pay/query/wx/"; }
+    //微信H5支付后的返回页redirect_url
+    public static String getPayUrl_wxpay_redirect_url() { return SDK_BASE_URL+"/html/wxH5OrderQuery.html"; }
 
 
 }

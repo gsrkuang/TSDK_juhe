@@ -11,12 +11,16 @@ import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import com.example.sdklibrary.BuildConfig;
 import com.example.sdklibrary.R;
+import com.example.sdklibrary.base.GameSdkApplication;
 import com.example.sdklibrary.base.SdkBaseActivity;
 import com.example.sdklibrary.call.Delegate;
+import com.example.sdklibrary.config.HttpUrlConstants;
 import com.example.sdklibrary.config.SDKStatusCode;
+import com.example.sdklibrary.mvp.model.MVPPayCodeBean;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,7 +43,9 @@ import okhttp3.Response;
 public class WebPayActivity extends SdkBaseActivity {
 
     WebView mWebView;
+    String orderId ;
 
+    private MVPPayCodeBean payBean;
     @Override
     public int getLayoutId() {
        return R.layout.activity_web_pay;
@@ -66,9 +72,12 @@ public class WebPayActivity extends SdkBaseActivity {
     @Override
     public void initData() {
         String webUrl = getIntent().getStringExtra("webUrl");
+        orderId = getIntent().getStringExtra("orderId");
+
         webViewSetting();
         Map extraHeaders = new HashMap();
         extraHeaders.put("referer", "https://wy.373yx.com");
+        mWebView.addJavascriptInterface(new JavascriptInterface(),"Android");
         mWebView.loadUrl(webUrl,extraHeaders);
 
     }
@@ -84,11 +93,9 @@ public class WebPayActivity extends SdkBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_pay);
 
-
 //        mWebView.loadUrl("http://shengtai.polms.cn/index.php/Bzcs/Index/index/t/7/p/6");
 //        mWebView.loadUrl("https://www.baidu.com");
 //        mWebView.postUrl("https://www.baidu.com");
-
 
 //        StringBuilder builder1 = new StringBuilder();
 //        try {//拼接post提交参数
@@ -160,6 +167,7 @@ public class WebPayActivity extends SdkBaseActivity {
         webSettings.setLoadsImagesAutomatically(true);                //设置WebView是否应该载入图像资源
         webSettings.setAllowFileAccess(true);                         //启用或禁用WebView内的文件访问
         webSettings.setDomStorageEnabled(true);                       //设置是否启用了DOM存储API,默认为false
+
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -179,14 +187,16 @@ public class WebPayActivity extends SdkBaseActivity {
                         intent.setData(Uri.parse(url));
                         startActivity(intent);
 
-                        return true;
-                    }else if (url.startsWith("https://www.373yx.com/")) {
-                        //成功
-//                        Delegate.paylistener.callback(SDKStatusCode.PAY_SUCCESS, "pay success");
-//                        finish();
+                        String appId = GameSdkApplication.getInstance().getAppkey();
+                        String ticket = GameSdkApplication.getInstance().getTicket(); ;
+                        String tagurl = HttpUrlConstants.getPayUrl_wxpay_query_url() + appId;
+                        String redirect_url = HttpUrlConstants.getPayUrl_wxpay_redirect_url()+
+                                "?orderId=" + orderId +
+                                "&appId=" +appId +
+                                "&ticket=" +ticket +
+                                "&url=" +URLEncoder.encode(tagurl,"utf-8");
+                        view.loadUrl(redirect_url);
 
-                        view.loadUrl(url);
-//                        https://www.373yx.com?orderid=878787
                         return true;
                     }
 
@@ -294,5 +304,23 @@ public class WebPayActivity extends SdkBaseActivity {
 
             }
         });
+    }
+
+    //2.创建接收js调用的类
+
+    class JavascriptInterface{
+        //sdk>=17要添加这个注解
+        @android.webkit.JavascriptInterface
+        public void showMsg(String text){
+            /*代码块,里面写被调用执行的代码*/
+            Toast.makeText(WebPayActivity.this, text, Toast.LENGTH_SHORT).show();
+            if (text.equals("success")){
+                Delegate.paylistener.callback(SDKStatusCode.PAY_SUCCESS, "pay success");
+            }else if (text.equals("fail")){
+                Delegate.paylistener.callback(SDKStatusCode.PAY_FAILURE, "pay cancel");
+            }
+
+            finish();
+        }
     }
 }

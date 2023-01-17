@@ -12,13 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/goback"
-            android:background="@drawable/gamesdk_goback"
             android:layout_width="38dp"
+            android:layout_height="40dp"
+            android:background="@drawable/gamesdk_goback"
             android:scaleX="0.65"
-            android:scaleY="0.65"
-            android:layout_height="40dp" />
+            android:scaleY="0.65" />
 
         <TextView
             android:layout_centerHorizontal="true"

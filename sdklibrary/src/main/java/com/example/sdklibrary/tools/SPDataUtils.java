@@ -77,6 +77,16 @@ public class SPDataUtils {
         SPDataUtils.getInstance().saveString("user_id",id);
         SPDataUtils.getInstance().saveBoolean("loginStatus",true);
     }
+    //使用SharedPreference来存储登陆后的数据
+    public void saveOneKeyLoginData(String username ,String password ,String nickname ,String id){
+        SPDataUtils.getInstance().saveString("onekey_account",username);
+        SPDataUtils.getInstance().saveString("onekey_password",password);
+        SPDataUtils.getInstance().saveString("onekey_nickname",nickname);
+        SPDataUtils.getInstance().saveString("onekey_id",id);
+        SPDataUtils.getInstance().saveBoolean("loginStatus",true);
+    }
+
+
 
     //点击注销，清除登陆数据
     public void clearLogin(){
@@ -99,6 +109,21 @@ public class SPDataUtils {
     }
     public String getUserPassword(){
         return SPDataUtils.getInstance().getString("user_password","");
+    }
+
+    public String getOneKeyNickName(){
+        return SPDataUtils.getInstance().getString("onekey_nickname","");
+    }
+
+    public String getOneKeyId(){
+        return SPDataUtils.getInstance().getString("onekey_id","");
+    }
+
+    public String getOneKeyAccount(){
+        return SPDataUtils.getInstance().getString("onekey_account","");
+    }
+    public String getOneKeyPassword(){
+        return SPDataUtils.getInstance().getString("onekey_password","");
     }
 
 }

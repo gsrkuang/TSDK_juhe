@@ -22,9 +22,12 @@ import com.example.sdklibrary.call.GameSdkLogic;
 import com.example.sdklibrary.config.SDKStatusCode;
 import com.example.sdklibrary.mvp.Imp.LoginPresenterImp;
 import com.example.sdklibrary.mvp.model.MVPLoginBean;
+import com.example.sdklibrary.mvp.model.user.SDKUserResult;
 import com.example.sdklibrary.mvp.view.MVPLoginView;
 import com.example.sdklibrary.tools.LoggerUtils;
 import com.example.sdklibrary.tools.SPDataUtils;
+import com.example.sdklibrary.ui.AgreementActivity;
+import com.example.sdklibrary.ui.PrivacyActivity;
 import com.example.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
 import com.example.sdklibrary.ui.fragment.SettingFragment;
 
@@ -35,14 +38,16 @@ import com.example.sdklibrary.ui.fragment.SettingFragment;
  */
 public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
 
-    private RegisterFragment registerFragment;
-    private PhoneRegisterFragment phoneRegisterFragment;
+    //    private RegisterFragment registerFragment;
+//    private PhoneRegisterFragment phoneRegisterFragment;
+    private SdkBaseFragment phoneRegisterFragment, registerFragment, forgetPasswordFragment;
 
     private EditText username, passWord;
     private TextView login, speedRegister, forgetpassword;
+    private TextView agreement, privacy;
     private LoginPresenterImp loginPresenterImp;
     private String mUserName, mPassWord;
-    private ImageView phoneRegister;
+    private ImageView phoneRegister, onekeyRegister;
     private CheckBox checkPrivacyBox;
     private ImageView clearPassword, clearAccount;
 
@@ -88,9 +93,12 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
         forgetpassword = view.findViewById(R.id.mvpforgetpassword);
         phoneRegister = view.findViewById(R.id.mvpPhoneRegister);
         checkPrivacyBox = view.findViewById(R.id.check_privacy);
-
+        onekeyRegister = view.findViewById(R.id.mvpPhoneOneKey);
         clearAccount = view.findViewById(R.id.iv_clear_account);
         clearPassword = view.findViewById(R.id.iv_clear_password);
+
+        agreement = view.findViewById(R.id.text_agreement);
+        privacy = view.findViewById(R.id.text_privacy);
 
     }
 
@@ -102,12 +110,13 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
         setOnClick(forgetpassword);
         setOnClick(phoneRegister);
         setOnClick(checkPrivacyBox);
+        setOnClick(onekeyRegister);
         setOnClick(clearAccount);
         setOnClick(clearPassword);
-
+        setOnClick(agreement);
+        setOnClick(privacy);
 
         setEditTextListener();
-
     }
 
     public void setEditTextListener() {
@@ -158,7 +167,6 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
                         login.setEnabled(true);
                     }
 
-
                 } else {
                     clearPassword.setVisibility(View.INVISIBLE);
                     editPasswordTag = false;
@@ -181,6 +189,7 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
 
         registerFragment = RegisterFragment.newInstance("setting");
         phoneRegisterFragment = PhoneRegisterFragment.newInstance("loginFragment");
+        forgetPasswordFragment = ForgetPasswordFragment.newInstance("forgetFragment");
 
         loginPresenterImp = new LoginPresenterImp();
         loginPresenterImp.attachView(this);
@@ -211,15 +220,25 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
                     .addToBackStack(null)
                     .commit();
         } else if (id == R.id.mvpforgetpassword) {
-
+            getFragmentManager().beginTransaction().replace(R.id.login_container, forgetPasswordFragment)
+                    .addToBackStack(null)
+                    .commit();
         } else if (id == R.id.mvpPhoneRegister) {
             getFragmentManager().beginTransaction().replace(R.id.login_container, phoneRegisterFragment)
                     .addToBackStack(null)
                     .commit();
+        } else if (id == R.id.mvpPhoneOneKey) {
+            onekeyMethod();
         } else if (id == R.id.iv_clear_account) {
             clearAccountText();
         } else if (id == R.id.iv_clear_password) {
             clearPasswordText();
+        } else if (id == R.id.text_agreement) {
+            Intent intent = new Intent(getActivity(), AgreementActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.text_privacy) {
+            Intent intent = new Intent(getActivity(), PrivacyActivity.class);
+            startActivity(intent);
         } else {
 
         }
@@ -233,6 +252,22 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
         passWord.setText("");
     }
 
+    private void onekeyMethod() {
+        if (!checkPrivacy()) {
+            return;
+        }
+
+        String onekeyAccount = SPDataUtils.getInstance().getOneKeyAccount();
+        String onekeyPassword = SPDataUtils.getInstance().getOneKeyPassword();
+        if (!onekeyAccount.equals("") && !onekeyPassword.equals("")) {
+            MVPLoginBean bean = new MVPLoginBean(onekeyAccount, onekeyPassword);
+            loginPresenterImp.login(bean, act);
+            return;
+        }
+        loginPresenterImp.onekey(getActivity());
+
+    }
+
     private void loginMethod() {
         if (!checkPrivacy()) {
             return;
@@ -241,10 +276,10 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
         mUserName = username.getText().toString().trim();
         mPassWord = passWord.getText().toString().trim();
 
-        if (mPassWord.equals(HINTPASSWROD_TEXT)){
+        if (mPassWord.equals(HINTPASSWROD_TEXT)) {
             //用户已经登录保存了账号密码
             mPassWord = SPDataUtils.getInstance().getUserPassword();
-        }else {
+        } else {
             mPassWord = passWord.getText().toString().trim();
         }
 
@@ -271,9 +306,9 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
     }
 
     @Override
-    public void loginSuccess(String msg, String data) {
+    public void loginSuccess(String msg, SDKUserResult user) {
         GameSdkLogic.getInstance().sdkFloatViewShow();
-        Delegate.loginlistener.callback(SDKStatusCode.SUCCESS, "login success");
+        Delegate.loginlistener.callback(SDKStatusCode.SUCCESS, user);
         LoggerUtils.i("登录成功");
         SdkLoginDialogFragment.getInstance().dismiss();//登陆成功销毁登陆窗
     }
@@ -306,7 +341,6 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
             return true;
         }
     }
-
 
 
 }

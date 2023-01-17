@@ -1,6 +1,8 @@
 package com.example.sdklibrary.ui.fragment.login;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -9,17 +11,22 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 
 import com.example.sdklibrary.R;
 import com.example.sdklibrary.base.SdkBaseFragment;
 import com.example.sdklibrary.call.Delegate;
+import com.example.sdklibrary.call.GameSdkLogic;
 import com.example.sdklibrary.config.SDKStatusCode;
 import com.example.sdklibrary.mvp.Imp.PhoneRegistPresenterImp;
 import com.example.sdklibrary.mvp.model.MVPPhoneRegisterBean;
+import com.example.sdklibrary.mvp.model.user.SDKUserResult;
 import com.example.sdklibrary.mvp.presenter.PhoneRegistPresenter;
 import com.example.sdklibrary.mvp.view.MVPPhoneRegistView;
 import com.example.sdklibrary.tools.LoggerUtils;
+import com.example.sdklibrary.ui.AgreementActivity;
+import com.example.sdklibrary.ui.PrivacyActivity;
 import com.example.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
 
 /**
@@ -33,6 +40,7 @@ public class PhoneRegisterFragment extends SdkBaseFragment implements MVPPhoneRe
     private Button register,verificationCode;
     private ImageView goback;
 
+    private TextView agreement, privacy;
     private PhoneRegistPresenter phoneRegistPresenterImp;
 
     private String mPhoneNumber,mCode;
@@ -42,6 +50,10 @@ public class PhoneRegisterFragment extends SdkBaseFragment implements MVPPhoneRe
 
     private ImageView clearAccount, clearCode;
 
+    //new倒计时对象,总共的时间,每隔多少秒更新一次时间
+    final MyCountDownTimer myCountDownTimer = new MyCountDownTimer(60000,1000);
+
+
     private final int ACCOUNT_MAX_LENGTH = 20;
     private final int ACCOUNT_MIN_LENGTH = 4;
     private final int PASSWORD_MAX_LENGTH = 20;
@@ -49,7 +61,6 @@ public class PhoneRegisterFragment extends SdkBaseFragment implements MVPPhoneRe
 
     private final String LOGIN_FORMERROR = "手机号码/验证码长度格式错误";
     private final String LENGTH_EMPTY = "请检查手机号/验证码输入";
-    private final String CONTENT_ERROR = "两次密码输入不一致";
     private final String AGREE_PRIVACY = "请先阅读并同意用户协议和隐私协议";
 
     private String mFrom;
@@ -88,6 +99,9 @@ public class PhoneRegisterFragment extends SdkBaseFragment implements MVPPhoneRe
 
         clearAccount = view.findViewById(R.id.iv_clear_account);
         clearCode = view.findViewById(R.id.iv_clear_code);
+
+        agreement = view.findViewById(R.id.text_agreement);
+        privacy = view.findViewById(R.id.text_privacy);
     }
 
     public void setEditTextListener() {
@@ -157,6 +171,9 @@ public class PhoneRegisterFragment extends SdkBaseFragment implements MVPPhoneRe
         setOnClick(goback);
         setOnClick(clearAccount);
         setOnClick(clearCode);
+
+        setOnClick(agreement);
+        setOnClick(privacy);
         setEditTextListener();
     }
 
@@ -179,6 +196,12 @@ public class PhoneRegisterFragment extends SdkBaseFragment implements MVPPhoneRe
             clearAccountText();
         } else if (id == R.id.iv_clear_code) {
             clearCodeText();
+        }else if (id == R.id.text_agreement) {
+            Intent intent = new Intent(getActivity(), AgreementActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.text_privacy) {
+            Intent intent = new Intent(getActivity(), PrivacyActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -226,11 +249,7 @@ public class PhoneRegisterFragment extends SdkBaseFragment implements MVPPhoneRe
         if ((TextUtils.isEmpty(mPhoneNumber)) && (TextUtils.isEmpty(mCode))    ) {
             showToast(LENGTH_EMPTY);
             return;
-        } else if ( ! mCode.equals(mCode) ){
-            showToast(CONTENT_ERROR);
-            return;
-        }
-        else {
+        } else {
             if (accountTag && codeTag ) {
 
                 MVPPhoneRegisterBean bean = new MVPPhoneRegisterBean(mPhoneNumber, mCode);
@@ -253,10 +272,11 @@ public class PhoneRegisterFragment extends SdkBaseFragment implements MVPPhoneRe
     }
 
     @Override
-    public void loginSuccess(String msg, String data) {
+    public void loginSuccess(String msg, SDKUserResult user) {
+        GameSdkLogic.getInstance().sdkFloatViewShow();
         SdkLoginDialogFragment.getInstance().dismiss();//注册成功销毁登陆窗
         LoggerUtils.i("手机验证码登陆成功");
-        Delegate.loginlistener.callback(SDKStatusCode.SUCCESS,"phoneCode regist success");
+        Delegate.loginlistener.callback(SDKStatusCode.SUCCESS,user);
     }
 
     @Override
@@ -274,7 +294,7 @@ public class PhoneRegisterFragment extends SdkBaseFragment implements MVPPhoneRe
     public void verificationCodeSuccess(String msg, String data) {
         LoggerUtils.i("获取验证码成功");
         //开始倒计时60s
-
+        myCountDownTimer.start();
 
     }
 
@@ -289,5 +309,33 @@ public class PhoneRegisterFragment extends SdkBaseFragment implements MVPPhoneRe
         super.onDestroy();
         phoneRegistPresenterImp.detachView();
     }
+
+
+        //倒计时函数
+        private class MyCountDownTimer extends CountDownTimer {
+
+            public MyCountDownTimer(long millisInFuture, long countDownInterval) {
+                super(millisInFuture, countDownInterval);
+            }
+
+            //计时过程
+            @Override
+            public void onTick(long l) {
+                //防止计时过程中重复点击
+                verificationCode.setEnabled(false);
+                verificationCode.setText(l/1000+"秒");
+
+            }
+
+            //计时完毕的方法
+            @Override
+            public void onFinish() {
+                //重新给Button设置文字
+                verificationCode.setText("重新获取");
+                //设置可点击
+                verificationCode.setEnabled(true);
+            }
+        }
+
 
 }

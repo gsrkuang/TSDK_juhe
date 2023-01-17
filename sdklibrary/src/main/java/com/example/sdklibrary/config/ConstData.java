@@ -29,9 +29,20 @@ public final class ConstData {
     public static final String PAY_FAILURE = "支付失败";
     public static final String PAY_CANCEL = "支付取消";
 
+    public static final String RESET_SUCCESS = "密码重置成功";
+    public static final String RESET_FAILURE = "密码重置失败";
+    public static final String RESET_CANCEL = "密码重置取消";
+
     public static final String PAYCODE_SUCCESS = "获取PayCode成功";
     public static final String PAYCODE_FAILURE = "获取PayCode失败";
     public static final String PAYCODE_CANCEL = "获取PayCode取消";
+
+    public static final String PHONE_EXIST = "手机号码存在";
+    public static final String PHONE_NOTEXIST = "手机号码不存在";
+
+    public static final int ONEKEY_ACCOUNT_DIGITS = 10;//一键注册的随机账号位数 ,其中两位小写字母再前，后面补全数字
+    public static final int ONEKEY_PASSWORD_DIGITS = 10;//一键注册的随机账号位数
+
 
 
 

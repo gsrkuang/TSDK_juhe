@@ -177,7 +177,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_marginTop="4dp"
         android:layout_width="match_parent"
         android:gravity="center"
@@ -189,15 +189,37 @@
 <!--            android:gravity="center"-->
 <!--            android:text="Google登陆" />-->
 
-        <ImageView
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="1">
 
-            android:layout_margin="5dp"
-            android:id="@+id/mvpPhoneRegister"
-            android:src="@drawable/login_phone"
-            android:layout_width="30dp"
-            android:layout_height="30dp">
+            <ImageView
+                android:layout_margin="5dp"
+                android:id="@+id/mvpPhoneRegister"
+                android:src="@drawable/login_phone"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+        </LinearLayout>
 
-        </ImageView>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_margin="5dp"
+                android:id="@+id/mvpPhoneOneKey"
+                android:src="@drawable/login_onekeyplay"
+                android:layout_width="30dp"
+                android:layout_weight="1"
+                android:layout_height="30dp"/>
+
+        </LinearLayout>
 
 
     </LinearLayout>
@@ -230,6 +252,7 @@
             android:text="我已阅读并同意"></TextView>
 
         <TextView
+            android:id="@+id/text_agreement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="10dp"
@@ -241,6 +264,7 @@
             android:textSize="10dp"
             android:text="和"></TextView>
         <TextView
+            android:id="@+id/text_privacy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="10dp"

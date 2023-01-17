@@ -86,10 +86,12 @@ public class SdkPayActivity extends SdkBaseActivity implements MVPPayCodeView {
                         Delegate.paylistener.callback(SDKStatusCode.PAY_CANCEL, "pay cancel");
                     }else {
                         LoggerUtils.i("支付宝支付失败");
-                        Delegate.paylistener.callback(SDKStatusCode.FAILURE, "pay cancel");
+                        Delegate.paylistener.callback(SDKStatusCode.PAY_FAILURE, "pay cancel");
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
 //                        showAlert(SdkPayActivity.this, getString(R.string.pay_failed) + payResult);
                     }
+
+                    finish();
                     break;
                 }
 
@@ -251,7 +253,7 @@ public class SdkPayActivity extends SdkBaseActivity implements MVPPayCodeView {
 
     @Override
     public void showAppInfo(String msg, String data) {
-
+        showToast(data);
     }
 
     @Override
@@ -262,8 +264,10 @@ public class SdkPayActivity extends SdkBaseActivity implements MVPPayCodeView {
         }else if (payType.equals("wxpay")){
             Intent intent = new Intent(this,WebPayActivity.class);
             intent.putExtra("webUrl",data);
+            intent.putExtra("orderId",payBean.getoId());
             startActivity(intent);
         }
+        finish();
     }
 
     @Override

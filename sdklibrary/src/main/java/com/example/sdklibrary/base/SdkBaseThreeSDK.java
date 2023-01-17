@@ -10,6 +10,7 @@ import com.example.sdklibrary.mvp.Imp.LoginPresenterImp;
 import com.example.sdklibrary.mvp.Imp.RegistPresenterImp;
 import com.example.sdklibrary.mvp.model.MVPLoginBean;
 import com.example.sdklibrary.mvp.model.MVPRegisterBean;
+import com.example.sdklibrary.mvp.model.user.SDKUserResult;
 import com.example.sdklibrary.mvp.view.MVPLoginView;
 import com.example.sdklibrary.mvp.view.MVPRegistView;
 import com.example.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
@@ -58,10 +59,10 @@ public class SdkBaseThreeSDK implements MVPLoginView, MVPRegistView {
     }
 
     @Override
-    public void loginSuccess(String msg, String data) {
+    public void loginSuccess(String msg, SDKUserResult user) {
         GameSdkLogic.getInstance().sdkFloatViewShow();
         SdkLoginDialogFragment.getInstance().dismiss();
-        Delegate.loginlistener.callback(SDKStatusCode.SUCCESS, accountId);
+        Delegate.loginlistener.callback(SDKStatusCode.SUCCESS, user);
     }
 
     @Override

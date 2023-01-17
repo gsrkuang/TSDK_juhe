@@ -18,6 +18,7 @@ import com.example.sdklibrary.mvp.view.MVPRegistView;
 import com.example.sdklibrary.tools.GsonUtils;
 import com.example.sdklibrary.tools.HttpRequestUtil;
 import com.example.sdklibrary.tools.LoggerUtils;
+import com.example.sdklibrary.tools.ShowInfoUtils;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
@@ -73,7 +74,7 @@ public class RegistPresenterImp implements RegistPresenter {
                     LoggerUtils.i(LogTAG.register,"regist Success");
                 }else {
                     //根据不同dataCode做吐司提示
-                    LogDataCode(dataCode);
+                    ShowInfoUtils.LogDataCode(mvpRegistView,dataCode);
                     mvpRegistView.registFailed(ConstData.REGIST_FAILURE,msg);
                     LoggerUtils.i(LogTAG.register,"regist Failure");
                 }
@@ -96,39 +97,5 @@ public class RegistPresenterImp implements RegistPresenter {
         this.mvpRegistView = null;
     }
 
-    //根据DataCode打印日志
-    public void LogDataCode(int dataCode) {
 
-        switch (dataCode) {
-            case HttpUrlConstants.BZ_INVALID_PARAM:
-                mvpRegistView.showAppInfo("", "无效参数");
-                break;
-            case HttpUrlConstants.BZ_INVALID_APP_ID:
-                mvpRegistView.showAppInfo("", "无效应用ID");
-                break;
-            case HttpUrlConstants.BZ_INVALID_ACCOUNT:
-                mvpRegistView.showAppInfo("", "账号不合法");
-                break;
-            case HttpUrlConstants.BZ_INVALID_TOKEN:
-                mvpRegistView.showAppInfo("", "Token已失效");
-                break;
-            case HttpUrlConstants.BZ_ERROR:
-                mvpRegistView.showAppInfo("", "未知错误");
-                break;
-            case HttpUrlConstants.BZ_ERROR_ACCOUNT_PASSWORD:
-                mvpRegistView.showAppInfo("", "账号或密码错误");
-                break;
-            case HttpUrlConstants.BZ_ERROR_SIGN:
-                mvpRegistView.showAppInfo("", "签名错误");
-                break;
-            case HttpUrlConstants.BZ_ERROR_CODE:
-                mvpRegistView.showAppInfo("", "验证码错误");
-                break;
-            case HttpUrlConstants.BZ_FAILURE:
-                mvpRegistView.showAppInfo("", "账号已存在");
-                break;
-            default:
-                break;
-        }
-    }
 }

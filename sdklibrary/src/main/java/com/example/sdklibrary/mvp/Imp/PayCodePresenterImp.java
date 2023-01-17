@@ -15,6 +15,7 @@ import com.example.sdklibrary.mvp.view.MVPPayCodeView;
 import com.example.sdklibrary.tools.GsonUtils;
 import com.example.sdklibrary.tools.HttpRequestUtil;
 import com.example.sdklibrary.tools.LoggerUtils;
+import com.example.sdklibrary.tools.ShowInfoUtils;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
@@ -56,15 +57,17 @@ public class PayCodePresenterImp implements PayCodePresenter {
                 ApiResponse<String> payResultBean = GsonUtils.gson.fromJson(result, new TypeToken<ApiResponse<String>>(){}.getType());
 
                 int ts = payResultBean.getTs();
-                int code = payResultBean.getCode();
+                int dataCode = payResultBean.getCode();
                 String msg = payResultBean.getMsg();
                 String data = payResultBean.getData();
 
-                if (20000 == code){
+                if (HttpUrlConstants.BZ_SUCCESS == dataCode){
                     mvpPayCodeView.onPayCodeSuccess(ConstData.PAYCODE_SUCCESS, data,payType);
                     LoggerUtils.i(LogTAG.login, "responseBody: paycode Success");
                 }else {
 
+                    //根据不同dataCode做吐司提示
+                    ShowInfoUtils.LogDataCode(mvpPayCodeView,dataCode);
                     mvpPayCodeView.onPayCodeFailed(ConstData.PAYCODE_FAILURE, msg);
                     LoggerUtils.i(LogTAG.login, "responseBody: paycode Success");
                 }

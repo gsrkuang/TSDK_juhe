@@ -11,6 +11,7 @@ import com.example.sdklibrary.config.ConstData;
 import com.example.sdklibrary.config.SDKStatusCode;
 import com.example.sdklibrary.mvp.model.MVPPayCodeBean;
 import com.example.sdklibrary.mvp.model.MVPPlayerBean;
+import com.example.sdklibrary.mvp.model.user.SDKUserResult;
 import com.example.sdklibrary.tools.LoggerUtils;
 import com.example.sdklibrary.tools.SPDataUtils;
 import com.example.sdklibrary.ui.SdkPayActivity;
@@ -62,7 +63,7 @@ public class GameSdkLogic {
 
     //登录:
     //理论上初始化成功才可以登录 这里的接口使用的是 玩Android 开放接口
-    public void sdkLogin(Activity context, String appkey, final SdkCallbackListener<String> loginCallback) {
+    public void sdkLogin(Activity context, String appkey, final SdkCallbackListener<SDKUserResult> loginCallback) {
         LoggerUtils.i("SdkLogic Login");
         if (checkInit) {
 
@@ -71,7 +72,7 @@ public class GameSdkLogic {
 
             Delegate.loginlistener = loginCallback;
         } else {
-            loginCallback.callback(SDKStatusCode.FAILURE, ConstData.INIT_FAILURE);
+//            loginCallback.callback(SDKStatusCode.LOGOUT_FAILURE, ConstData.LOGIN_FAILURE);
 
             return;
         }
@@ -142,7 +143,8 @@ public class GameSdkLogic {
                 SdkUserCenterDialogFragment.getInstance().dismiss();
                 GameSdkLogic.getInstance().sdkFloatViewHide();
                 sdkLogin(act);
-                Delegate.loginlistener.callback(SDKStatusCode.LOGOUT_SUCCESS, "logout success");
+
+                Delegate.loginlistener.callback(SDKStatusCode.LOGOUT_SUCCESS, new SDKUserResult());
             }
         });
         dialogTips.show();

@@ -12,6 +12,7 @@ import com.example.sdklibrary.mvp.model.MVPLoginResultBean;
 import com.example.sdklibrary.mvp.model.MVPPhoneRegisterBean;
 import com.example.sdklibrary.mvp.model.MVPRegistResultBean;
 import com.example.sdklibrary.mvp.model.MVPRegisterBean;
+import com.example.sdklibrary.mvp.model.user.SDKUserResult;
 import com.example.sdklibrary.mvp.presenter.PhoneRegistPresenter;
 import com.example.sdklibrary.mvp.presenter.RegistPresenter;
 import com.example.sdklibrary.mvp.view.MVPPhoneRegistView;
@@ -20,6 +21,7 @@ import com.example.sdklibrary.tools.GsonUtils;
 import com.example.sdklibrary.tools.HttpRequestUtil;
 import com.example.sdklibrary.tools.LoggerUtils;
 import com.example.sdklibrary.tools.SPDataUtils;
+import com.example.sdklibrary.tools.ShowInfoUtils;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
@@ -82,6 +84,8 @@ public class PhoneRegistPresenterImp implements PhoneRegistPresenter {
                     mvpPhoneRegistView.verificationCodeSuccess(ConstData.PHONECODE_SUCCESS,msg);
                     LoggerUtils.i(LogTAG.phonecode,"phonecode Success");
                 }else {
+                    //根据不同dataCode做吐司提示
+                    ShowInfoUtils.LogDataCode(mvpPhoneRegistView,dataCode);
                     mvpPhoneRegistView.verificationCodeFailed(ConstData.PHONECODE_FAILURE,msg);
                     LoggerUtils.i(LogTAG.phonecode,"phonecode Failure");
                 }
@@ -114,6 +118,8 @@ public class PhoneRegistPresenterImp implements PhoneRegistPresenter {
                 int dataCode =  mvpLoginResultBean.getCode();
                 String msg = mvpLoginResultBean.getMsg();
 
+
+                SDKUserResult user = new SDKUserResult();
                 //保存用户名和密码，还有用户昵称
                 String nickname = null;
                 String md5password = null;
@@ -124,18 +130,22 @@ public class PhoneRegistPresenterImp implements PhoneRegistPresenter {
                     md5password = mvpLoginResultBean.getData().getPassword();
                     uid = mvpLoginResultBean.getData().getUid();
                     ticket = mvpLoginResultBean.getData().getTicket();
+
+                    user.setUid(uid);
+                    user.setUsername(nickname);
+                    user.setToken(ticket);
                 }
 
                 if (dataCode == HttpUrlConstants.BZ_SUCCESS){
-                    mvpPhoneRegistView.loginSuccess(ConstData.LOGIN_SUCCESS,result);
+                    mvpPhoneRegistView.loginSuccess(ConstData.LOGIN_SUCCESS,user);
                     LoggerUtils.i(LogTAG.phonecode,"responseBody: phonelogin Success");
                     GameSdkApplication.getInstance().setTicket(ticket);
                     SaveUserData(phone,md5password,nickname,uid);
                 } else {
                     //根据不同dataCode做吐司提示
-                    LogDataCode(dataCode);
+                    ShowInfoUtils.LogDataCode(mvpPhoneRegistView,dataCode);
                     mvpPhoneRegistView.loginFailed(ConstData.LOGIN_FAILURE,msg);
-                    LoggerUtils.i(LogTAG.phonecode,"responseBody: login Failure");
+                    LoggerUtils.i(LogTAG.phonecode,"responseBody: phonelogin Failure");
                 }
 
 
@@ -163,43 +173,6 @@ public class PhoneRegistPresenterImp implements PhoneRegistPresenter {
     public void SaveUserData(String username ,String password ,String nickname ,String uid){
         LoggerUtils.i(LogTAG.phonecode,"SaveUserData to SharedPreference");
         SPDataUtils.getInstance().saveLoginData(username,password,nickname,uid);
-    }
-
-
-    //根据DataCode打印日志
-    public void LogDataCode(int dataCode) {
-
-        switch (dataCode) {
-            case HttpUrlConstants.BZ_INVALID_PARAM:
-                mvpPhoneRegistView.showAppInfo("", "无效参数");
-                break;
-            case HttpUrlConstants.BZ_INVALID_APP_ID:
-                mvpPhoneRegistView.showAppInfo("", "无效应用ID");
-                break;
-            case HttpUrlConstants.BZ_INVALID_ACCOUNT:
-                mvpPhoneRegistView.showAppInfo("", "账号不合法");
-                break;
-            case HttpUrlConstants.BZ_INVALID_TOKEN:
-                mvpPhoneRegistView.showAppInfo("", "Token已失效");
-                break;
-            case HttpUrlConstants.BZ_ERROR:
-                mvpPhoneRegistView.showAppInfo("", "未知错误");
-                break;
-            case HttpUrlConstants.BZ_ERROR_ACCOUNT_PASSWORD:
-                mvpPhoneRegistView.showAppInfo("", "账号或密码错误");
-                break;
-            case HttpUrlConstants.BZ_ERROR_SIGN:
-                mvpPhoneRegistView.showAppInfo("", "签名错误");
-                break;
-            case HttpUrlConstants.BZ_ERROR_CODE:
-                mvpPhoneRegistView.showAppInfo("", "验证码错误");
-                break;
-            case HttpUrlConstants.BZ_FAILURE:
-                mvpPhoneRegistView.showAppInfo("", "账号已存在");
-                break;
-            default:
-                break;
-        }
     }
 
 }

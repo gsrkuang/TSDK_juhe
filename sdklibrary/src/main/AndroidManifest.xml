@@ -21,7 +21,6 @@
         <activity
             android:name="com.example.sdklibrary.ui.SdkPayActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-
             />
 
         <activity
@@ -29,6 +28,14 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             />
 
+        <activity
+            android:name="com.example.sdklibrary.ui.PrivacyActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            />
+        <activity
+            android:name="com.example.sdklibrary.ui.AgreementActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            />
 
 
     </application>

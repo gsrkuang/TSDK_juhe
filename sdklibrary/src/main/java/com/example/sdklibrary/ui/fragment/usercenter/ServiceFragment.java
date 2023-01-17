@@ -1,9 +1,7 @@
-package com.example.sdklibrary.ui.fragment;
+package com.example.sdklibrary.ui.fragment.usercenter;
 
 import android.os.Bundle;
 import android.view.View;
-
-
 
 import com.example.sdklibrary.R;
 import com.example.sdklibrary.base.SdkBaseFragment;
@@ -13,11 +11,11 @@ import com.example.sdklibrary.base.SdkBaseFragment;
  * Created by bolin
  */
 
-public class HomeFragment extends SdkBaseFragment {
+public class ServiceFragment extends SdkBaseFragment {
     private String mFrom;
 
-    public static HomeFragment newInstance(String from){
-        HomeFragment fragment = new HomeFragment();
+    public static ServiceFragment newInstance(String from){
+        ServiceFragment fragment = new ServiceFragment();
         Bundle bundle = new Bundle();
         bundle.putString("from",from);
         fragment.setArguments(bundle);
@@ -34,7 +32,7 @@ public class HomeFragment extends SdkBaseFragment {
 
     @Override
     public int getLayoutId() {
-        return R.layout.home_fragment_layout;
+        return R.layout.usercenter_servicefragment_layout;
     }
 
     @Override

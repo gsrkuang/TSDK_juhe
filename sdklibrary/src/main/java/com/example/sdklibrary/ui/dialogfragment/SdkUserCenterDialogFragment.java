@@ -2,6 +2,7 @@ package com.example.sdklibrary.ui.dialogfragment;
 
 import android.app.DialogFragment;
 import android.app.Fragment;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -21,7 +22,7 @@ import com.example.sdklibrary.ui.fragment.DataGenerator;
 public class SdkUserCenterDialogFragment extends SdkBaseDialogFragment {
     private RadioGroup mRadioGroup;
     private Fragment[] mFragments;
-    private RadioButton mRadioButtonHome;
+    private RadioButton mRadioButtonProfile,mRadioButtonService;
     private View home_space;
 
     private static volatile SdkUserCenterDialogFragment singleton;
@@ -54,7 +55,8 @@ public class SdkUserCenterDialogFragment extends SdkBaseDialogFragment {
     public void initViews() {
         home_space  =  $(R.id.home_space);
         mRadioGroup  =  $(R.id.radio_group_button);
-        mRadioButtonHome  = $(R.id.radio_button_home);
+        mRadioButtonProfile  = $(R.id.radio_button_profile);
+        mRadioButtonService  = $(R.id.radio_button_service);
         mFragments = DataGenerator.getFragments("RadioGroup Tab");
 
     }
@@ -71,13 +73,12 @@ public class SdkUserCenterDialogFragment extends SdkBaseDialogFragment {
             Fragment mFragment = null;
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.radio_button_home) {
+                if (checkedId == R.id.radio_button_profile) {
                     mFragment = mFragments[0];
-                } else if (checkedId == R.id.radio_button_discovery) {
+                } else if (checkedId == R.id.radio_button_service) {
                     mFragment = mFragments[1];
-                } else if (checkedId == R.id.radio_button_profile) {
-                    mFragment = mFragments[2];
                 }
+
                 if(mFragments!=null){
 //                    act.getFragmentManager().beginTransaction().replace(R.id.home_container,mFragment).commit();
 
@@ -94,7 +95,7 @@ public class SdkUserCenterDialogFragment extends SdkBaseDialogFragment {
         });
 
         // 保证第一次会回调OnCheckedChangeListener
-        mRadioButtonHome.setChecked(true);
+        mRadioButtonProfile.setChecked(true);
 
         //点击外部空间，自动隐藏Activity
         home_space.setOnClickListener(new View.OnClickListener() {

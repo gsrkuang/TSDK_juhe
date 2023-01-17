@@ -4,12 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,7 +27,6 @@ import com.example.sdklibrary.tools.SPDataUtils;
 import com.example.sdklibrary.ui.AgreementActivity;
 import com.example.sdklibrary.ui.PrivacyActivity;
 import com.example.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
-import com.example.sdklibrary.ui.fragment.SettingFragment;
 
 /**
  * Date:2022-11-07

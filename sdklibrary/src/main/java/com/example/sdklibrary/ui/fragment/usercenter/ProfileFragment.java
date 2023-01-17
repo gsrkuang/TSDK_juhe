@@ -1,4 +1,4 @@
-package com.example.sdklibrary.ui.fragment;
+package com.example.sdklibrary.ui.fragment.usercenter;
 
 import android.os.Bundle;
 import android.view.View;
@@ -12,24 +12,23 @@ import android.widget.Toast;
 import com.example.sdklibrary.R;
 import com.example.sdklibrary.base.SdkBaseFragment;
 import com.example.sdklibrary.call.GameSdkLogic;
-import com.example.sdklibrary.callback.SdkCallbackListener;
-import com.example.sdklibrary.config.ConstData;
-import com.example.sdklibrary.config.SDKStatusCode;
-import com.example.sdklibrary.tools.LoggerUtils;
 import com.example.sdklibrary.tools.SPDataUtils;
+import com.example.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
 
 
 /**
  * Created by bolin
+ * 个人档案界面
  */
 
 public class ProfileFragment extends SdkBaseFragment {
 
 
     private Button logout;
-    private LinearLayout profile_btn1,profile_btn2,profile_btn3,profile_btn4;
-    private SettingFragment settingFragment;
+    private LinearLayout profile_btn1,profile_btn2,profile_btn3;
     private TextView profile_nickname,profile_userid;
+    private SettingFragment settingFragment;
+
     private ImageView profile_icon;
     private String mFrom;
 
@@ -51,7 +50,7 @@ public class ProfileFragment extends SdkBaseFragment {
 
     @Override
     public int getLayoutId() {
-        return R.layout.profile_fragment_layout;
+        return R.layout.usercenter_profilefragment_layout;
     }
 
     @Override
@@ -62,10 +61,9 @@ public class ProfileFragment extends SdkBaseFragment {
 //        content.setText("ProfileFragment");
         logout = (Button) view.findViewById(R.id.profile_logout);
         profile_icon = (ImageView) view.findViewById(R.id.profile_icon);
-        profile_btn1 =(LinearLayout) view.findViewById(R.id.profile_btn1);
-        profile_btn2 =(LinearLayout) view.findViewById(R.id.profile_btn2);
-        profile_btn3 =(LinearLayout) view.findViewById(R.id.profile_btn3);
-        profile_btn4 =(LinearLayout) view.findViewById(R.id.profile_btn4);
+        profile_btn1 =(LinearLayout) view.findViewById(R.id.usercenter_phone);
+        profile_btn2 =(LinearLayout) view.findViewById(R.id.usercenter_certification);
+        profile_btn3 =(LinearLayout) view.findViewById(R.id.usercenter_changepassword);
         profile_nickname = (TextView) view.findViewById(R.id.profile_nickname);
         profile_userid = (TextView) view.findViewById(R.id.profile_userid);
 
@@ -77,12 +75,12 @@ public class ProfileFragment extends SdkBaseFragment {
         setOnClick(profile_btn1);
         setOnClick(profile_btn2);
         setOnClick(profile_btn3);
-        setOnClick(profile_btn4);
     }
 
     @Override
     public void initData() {
         settingFragment = SettingFragment.newInstance("setting");
+
         String nickname = SPDataUtils.getInstance().getNickName();
         String userid = SPDataUtils.getInstance().getUserId();
         profile_nickname.setText(nickname);
@@ -98,26 +96,17 @@ public class ProfileFragment extends SdkBaseFragment {
         if (id == R.id.profile_logout) {
             logoutMethod();
 //            Toast.makeText(getContext(),"注销",Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.profile_btn1) {
+        } else if (id == R.id.usercenter_phone) {
 
-            Toast.makeText(getActivity(),"打开App",Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.profile_btn2) {
+            Toast.makeText(getActivity(),"绑定手机号码",Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.usercenter_certification) {
 
-            Toast.makeText(getActivity(),"钱包",Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.profile_btn3) {
-
-            Toast.makeText(getActivity(),"打开钱包",Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.profile_btn4) {
-
+            Toast.makeText(getActivity(),"实名认证",Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.usercenter_changepassword) {
             getFragmentManager().beginTransaction().replace(R.id.home_container,settingFragment)
                     .addToBackStack(null)
                     .commit();
-
-//            getChildFragmentManager().beginTransaction().replace(R.id.home_container,settingFragment)
-////                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN) //打开和返回的动画
-//                    .addToBackStack(null)
-//                    .commit();
-
+            Toast.makeText(getActivity(),"修改密码",Toast.LENGTH_SHORT).show();
         } else {
 
         }

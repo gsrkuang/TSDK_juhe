@@ -50,16 +50,32 @@
                 android:textColor="#fff"
                 android:textSize="18sp" />
 
-            <TextView
-
-                android:id="@+id/profile_userid"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="ID:123123"
-                android:textColor="#ffa500"
-                android:textSize="11sp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="账号ID："
+                    android:textColor="#ffa500"
+                    android:textSize="11sp" />
+
+                <TextView
+
+                    android:id="@+id/profile_userid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="123123"
+                    android:textColor="#ffa500"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
 
         </LinearLayout>
 
@@ -72,6 +88,126 @@
 
     </LinearLayout>
 
+    <ScrollView
+        android:scrollbars="vertical"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:id="@+id/usercenter_phone"
+                android:background="#202320"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="手机号码："
+                    android:textColor="#fff"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:gravity="right"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="未绑定"
+                    android:textColor="@color/SDKcolorGray"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp">
+            </View>
+
+            <LinearLayout
+                android:id="@+id/usercenter_certification"
+                android:background="#202320"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="实名认证："
+                    android:textColor="#fff"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:gravity="right"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="未认证"
+                    android:textColor="@color/SDKcolorGray"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp">
+            </View>
+
+            <LinearLayout
+                android:id="@+id/usercenter_changepassword"
+                android:background="#202320"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="修改密码"
+                    android:textColor="#fff"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+
+    <!--
 
     <LinearLayout
 
@@ -136,7 +272,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/logo_tsdk" />
+                    android:src="@drawable/usercenter_certification" />
 
             </FrameLayout>
 
@@ -146,7 +282,7 @@
                 android:gravity="center"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="打开App"
+                android:text="实名认证"
                 android:textColor="#fff"
                 android:textSize="16sp"/>
 
@@ -171,7 +307,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/logo_tsdk" />
+                    android:src="@drawable/usercenter_phonelogo" />
 
             </FrameLayout>
 
@@ -181,7 +317,7 @@
                 android:gravity="center"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="钱包"
+                android:text="绑定手机"
                 android:textColor="#fff"
                 android:textSize="16sp"/>
 
@@ -205,7 +341,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/logo_tsdk" />
+                    android:src="@drawable/usercenter_setting" />
 
             </FrameLayout>
 
@@ -222,8 +358,7 @@
 
         </LinearLayout>
 
-
-
     </LinearLayout>
+-->
 
 </LinearLayout>

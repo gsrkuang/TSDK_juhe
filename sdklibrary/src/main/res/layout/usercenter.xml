@@ -39,7 +39,31 @@
             android:background="@android:color/black"
             >
 
-            <LinearLayout
+            <RadioButton
+                android:drawableTop="@drawable/tab_profile_selector"
+                android:drawablePadding="-20dp"
+                android:button="@null"
+                android:id="@+id/radio_button_profile"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <RadioButton
+
+                android:drawableTop="@drawable/tab_service_selector"
+                android:drawablePadding="-20dp"
+                android:button="@null"
+                android:id="@+id/radio_button_service"
+
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                />
+
+
+         <!--   <LinearLayout
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -47,6 +71,8 @@
                 android:orientation="vertical">
 
                 <RadioButton
+
+                    android:button="@null"
                     android:id="@+id/radio_button_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -62,14 +88,16 @@
                 android:orientation="vertical">
 
                 <RadioButton
+
+                    android:button="@null"
                     android:id="@+id/radio_button_service"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:background="@drawable/usercenter_userservice"
+                    android:background="@drawable/tab_service_selector"
                     />
             </LinearLayout>
-
+-->
 
 
 <!--            <RadioButton-->

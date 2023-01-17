@@ -1,5 +1,5 @@
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:attr="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -32,75 +32,41 @@
             android:background="@android:color/darker_gray"
             />
 
+
+
         <RadioGroup
             android:id="@+id/radio_group_button"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center"
+
             android:background="@android:color/black">
 
-            <LinearLayout
+
+            <RadioButton
+                android:drawableTop="@drawable/tab_profile_selector"
+                android:button="@null"
+                android:id="@+id/radio_button_profile"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:paddingTop="100dp"
+                />
 
-                <RadioButton
-                    android:id="@+id/radio_button_profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/tab_profile_selector"
-                    />
-            </LinearLayout>
 
-            <LinearLayout
+            <RadioButton
+                android:drawableTop="@drawable/tab_service_selector"
+                android:button="@null"
+                android:id="@+id/radio_button_service"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:paddingTop="100dp"
+                />
 
-                <RadioButton
-                    android:id="@+id/radio_button_service"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:background="@drawable/usercenter_userservice"
-                    />
-            </LinearLayout>
-
-<!--            <RadioButton-->
-<!--                android:id="@+id/radio_button_profile"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:drawableTop="@drawable/tab_profile_selector"-->
-<!--                style="@style/RadioGroupButtonStyle"-->
-<!--                />-->
-
-<!--            <RadioButton-->
-<!--                android:id="@+id/radio_button_service"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:drawableTop="@drawable/usercenter_userservice"-->
-<!--                style="@style/RadioGroupButtonStyle"-->
-<!--                />-->
-
-<!--            <RadioButton-->
-<!--                android:id="@+id/radio_button_home"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:drawableTop="@drawable/tab_home_selector"-->
-<!--                style="@style/RadioGroupButtonStyle"-->
-<!--                />-->
-<!--            <RadioButton-->
-<!--                android:id="@+id/radio_button_discovery"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:drawableTop="@drawable/tab_discovery_selector"-->
-<!--                style="@style/RadioGroupButtonStyle"-->
-<!--                />-->
 
         </RadioGroup>
 

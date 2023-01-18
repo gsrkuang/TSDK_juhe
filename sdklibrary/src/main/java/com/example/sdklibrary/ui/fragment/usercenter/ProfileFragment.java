@@ -11,9 +11,13 @@ import android.widget.Toast;
 
 import com.example.sdklibrary.R;
 import com.example.sdklibrary.base.SdkBaseFragment;
+import com.example.sdklibrary.call.Delegate;
 import com.example.sdklibrary.call.GameSdkLogic;
+import com.example.sdklibrary.config.SDKStatusCode;
+import com.example.sdklibrary.mvp.model.user.SDKUserResult;
 import com.example.sdklibrary.tools.SPDataUtils;
 import com.example.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
+import com.example.sdklibrary.ui.dialogfragment.SdkUserCenterDialogFragment;
 import com.example.sdklibrary.ui.fragment.usercenter.dialog.ChangePasswordDialog;
 
 
@@ -104,6 +108,27 @@ public class ProfileFragment extends SdkBaseFragment {
             Toast.makeText(getActivity(),"实名认证",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.usercenter_changepassword) {
             ChangePasswordDialog dialog = new ChangePasswordDialog(getActivity());
+            dialog.setCancelOnClickListener(new ChangePasswordDialog.onCancelOnClickListener() {
+                @Override
+                public void onCancelClick() {
+                    dialog.cancel();
+                }
+            });
+            dialog.setConfirmSuccessListener(new ChangePasswordDialog.onConfirmSuccessListener() {
+                @Override
+                public void success() {
+                    //登出游戏
+                    SPDataUtils.getInstance().clearLogin();
+                    dialog.dismiss();
+                    SdkUserCenterDialogFragment.getInstance().dismiss();
+                    GameSdkLogic.getInstance().sdkFloatViewHide();
+
+                    SdkLoginDialogFragment dialog = SdkLoginDialogFragment.getInstance();
+                    dialog.show(getActivity().getFragmentManager(),"SdkLoginDialogFragment");
+
+                    Delegate.loginlistener.callback(SDKStatusCode.LOGOUT_SUCCESS, new SDKUserResult());
+                }
+            });
             dialog.show();
 //            getFragmentManager().beginTransaction().replace(R.id.home_container,settingFragment)
 //                    .addToBackStack(null)
@@ -113,7 +138,6 @@ public class ProfileFragment extends SdkBaseFragment {
 
         }
     }
-
 
     //登出:
     private void logoutMethod() {

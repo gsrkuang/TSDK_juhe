@@ -73,7 +73,6 @@ public class GameSdkLogic {
             dialog.show(context.getFragmentManager(),"SdkLoginDialogFragment");
             dialog.setCancelable(false);
 
-
             Delegate.loginlistener = loginCallback;
         } else {
 //            loginCallback.callback(SDKStatusCode.LOGOUT_FAILURE, ConstData.LOGIN_FAILURE);

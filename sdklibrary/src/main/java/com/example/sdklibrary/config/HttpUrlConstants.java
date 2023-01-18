@@ -97,6 +97,10 @@ public final class HttpUrlConstants {
     public static String getRegisterUrl() { return SDK_BASE_URL+"/api/v2/account/register/account"; }
 
     //tsdk忘记密码url  POST
+    //oldpassword,newpassword,newconfirmpassword
+    public static String getChangePasswordUrl() { return SDK_BASE_URL+"/api/v2/account/password/update"; }
+
+    //tsdk忘记密码url  POST
     //account,password
     public static String getFrogetUrl() { return SDK_BASE_URL+"/api/v2/account/password/reset"; }
 

@@ -15,6 +15,5 @@ import com.example.sdklibrary.mvp.view.MVPForgetPasswordView;
 public interface ForgetPasswordPresenter extends BasePresenter<MVPForgetPasswordView> {
     void confirmReset(MVPForgetPasswordBean user, Context context) ;
     void forgetPasswordGetCode(String phoneNumber, Context context) ;
-
     void checkBindPhone(String phoneNumber, Context context) ;
 }

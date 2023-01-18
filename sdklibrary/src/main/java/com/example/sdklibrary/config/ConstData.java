@@ -33,6 +33,9 @@ public final class ConstData {
     public static final String RESET_FAILURE = "密码重置失败";
     public static final String RESET_CANCEL = "密码重置取消";
 
+    public static final String PASS_CHANGE_SUCCESS = "修改密码成功";
+    public static final String PASS_CHANGE_FAILURE = "修改密码失败";
+
     public static final String PAYCODE_SUCCESS = "获取PayCode成功";
     public static final String PAYCODE_FAILURE = "获取PayCode失败";
     public static final String PAYCODE_CANCEL = "获取PayCode取消";

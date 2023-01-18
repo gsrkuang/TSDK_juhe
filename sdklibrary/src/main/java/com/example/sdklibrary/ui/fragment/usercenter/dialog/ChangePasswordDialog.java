@@ -2,15 +2,26 @@ package com.example.sdklibrary.ui.fragment.usercenter.dialog;
 
 import android.app.Activity;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.sdklibrary.R;
 import com.example.sdklibrary.base.SdkBaseDialog;
+import com.example.sdklibrary.mvp.Imp.ChangePasswordPresenterImp;
+import com.example.sdklibrary.mvp.Imp.ForgetPasswordPresenterImp;
+import com.example.sdklibrary.mvp.Imp.LoginPresenterImp;
+import com.example.sdklibrary.mvp.model.MVPChangePasswordBean;
+import com.example.sdklibrary.mvp.model.MVPForgetPasswordBean;
+import com.example.sdklibrary.mvp.presenter.ChangePasswordPresenter;
+import com.example.sdklibrary.mvp.presenter.ForgetPasswordPresenter;
+import com.example.sdklibrary.mvp.view.MVPChangePasswordView;
 import com.example.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
+import com.example.sdklibrary.ui.fragment.login.ForgetPasswordFragment;
 import com.example.sdklibrary.ui.view.DialogTips;
 
 /**
@@ -18,20 +29,43 @@ import com.example.sdklibrary.ui.view.DialogTips;
  * Time:18:56
  * author:colin
  */
-public class ChangePasswordDialog extends SdkBaseDialog {
+public class ChangePasswordDialog extends SdkBaseDialog implements MVPChangePasswordView {
 
 
     private ImageView goback;
     private EditText oldpassword,newpassword,newpasswordConfirm;
+    private String mOldpassword,mNewpassword,mNewpasswordConfirm;
     private ImageView clearOldpassword, clearNewpassword,clearNewpasswordConfirm;
 
     protected boolean oldpasswordTag,newpasswordTag,newpasswordConfirmTag;
     private Button confirm;
 
-    private onCancelOnClickListener cancelOnClickListener;
+    private ChangePasswordPresenter changePasswordPresenterImp;
 
+    private onCancelOnClickListener cancelOnClickListener;
+    private onConfirmSuccessListener confirmSuccessListener;
+
+    private final int PASSWORD_MAX_LENGTH = 20;
+    private final int PASSWORD_MIN_LENGTH = 4;
+
+    private final String PASSWORD_FORMERROR = "密码长度格式错误";
+    private final String PASSWORD_NOT_SAME = "新密码与确认密码不一致";
+    private final String LENGTH_EMPTY = "输入密码为空";
+    private final String CHANGE_SUCCESS = "密码修改成功";
+
+
+    private Activity act ;
     public ChangePasswordDialog(Activity act) {
         super(act);
+        this.act = act;
+    }
+
+    public void setCancelOnClickListener(onCancelOnClickListener onCancelOnClickListener){
+        this.cancelOnClickListener = onCancelOnClickListener;
+    }
+
+    public void setConfirmSuccessListener(onConfirmSuccessListener confirmSuccessListener){
+        this.confirmSuccessListener = confirmSuccessListener;
     }
 
     @Override
@@ -140,6 +174,15 @@ public class ChangePasswordDialog extends SdkBaseDialog {
 
             }
         });
+
+        goback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(cancelOnClickListener !=null){
+                    cancelOnClickListener.onCancelClick();
+                }
+            }
+        });
     }
 
     public void checkConfirmEnable(boolean oldpasswordTag ,boolean newpasswordTag , boolean newpasswordConfirmTag){
@@ -152,7 +195,8 @@ public class ChangePasswordDialog extends SdkBaseDialog {
 
     @Override
     public void initData() {
-
+        changePasswordPresenterImp = new ChangePasswordPresenterImp();
+        changePasswordPresenterImp.attachView(this);
     }
 
     @Override
@@ -173,9 +217,61 @@ public class ChangePasswordDialog extends SdkBaseDialog {
 
     private void confirmMethod(){
 
+        mOldpassword = oldpassword.getText().toString().trim();
+        mNewpassword = newpassword.getText().toString().trim();
+        mNewpasswordConfirm = newpasswordConfirm.getText().toString().trim();
+
+        oldpasswordTag = (mOldpassword.length() > PASSWORD_MIN_LENGTH) && (mOldpassword.length() < PASSWORD_MAX_LENGTH);
+        newpasswordTag = (mNewpassword.length() > PASSWORD_MIN_LENGTH) && (mNewpassword.length() < PASSWORD_MAX_LENGTH);
+        newpasswordConfirmTag = (mNewpasswordConfirm.length() > PASSWORD_MIN_LENGTH) && (mNewpasswordConfirm.length() < PASSWORD_MAX_LENGTH);
+
+        if ((TextUtils.isEmpty(mOldpassword)) && (TextUtils.isEmpty(mNewpassword))&& (TextUtils.isEmpty(mNewpasswordConfirm))    ) {
+            showToast(LENGTH_EMPTY);
+            return;
+
+        } else {
+            if(!mNewpassword.equals(mNewpasswordConfirm)){
+                showToast(PASSWORD_NOT_SAME);
+                return;
+            }
+            if (oldpasswordTag && newpasswordTag && newpasswordConfirmTag) {
+                MVPChangePasswordBean bean = new MVPChangePasswordBean(mOldpassword, mNewpassword,mNewpasswordConfirm);
+                changePasswordPresenterImp.change(bean, act);
+            } else {
+                showToast(PASSWORD_FORMERROR);
+                return;
+            }
+        }
+
     }
 
+    @Override
+    public void showAppInfo(String msg, String data) {
+        showToast(msg);
+    }
+
+    @Override
+    public void success(String msg, String data) {
+        if( confirmSuccessListener!=null){
+            confirmSuccessListener.success();
+        }
+        if(cancelOnClickListener !=null){
+            cancelOnClickListener.onCancelClick();
+        }
+        showToast(CHANGE_SUCCESS);
+    }
+
+    @Override
+    public void fail(String msg, String data) {
+        showToast(msg);
+    }
+
+
+
     public interface onCancelOnClickListener {
-        public void onCancelClick();
+         void onCancelClick();
+    }
+    public interface onConfirmSuccessListener {
+         void success();
     }
 }

@@ -34,9 +34,6 @@ public class SdkLoginDialogFragment extends SdkBaseDialogFragment {
     }
 
 
-    private SdkLoginDialogFragment sdkLoginDialogFragment;
-
-
     @Override
     public int getLayoutId() {
         //因为横竖屏的UI需要适配,大家可以先写两套UI 通过适配文件进行配置，写法如下：

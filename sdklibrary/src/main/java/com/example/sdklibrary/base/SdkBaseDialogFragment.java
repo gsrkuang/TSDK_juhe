@@ -58,6 +58,11 @@ public abstract class SdkBaseDialogFragment extends DialogFragment implements Vi
     }
 
     @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        return super.onCreateDialog(savedInstanceState);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //设置布局相关
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE); //不显示弹框title
@@ -102,6 +107,7 @@ public abstract class SdkBaseDialogFragment extends DialogFragment implements Vi
         }
         return view;
     }
+
 
 
 

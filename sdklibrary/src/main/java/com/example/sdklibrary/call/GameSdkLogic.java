@@ -2,7 +2,9 @@ package com.example.sdklibrary.call;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.view.KeyEvent;
 
 import com.example.sdklibrary.base.GameSdkApplication;
 import com.example.sdklibrary.callback.SdkCallbackListener;
@@ -69,6 +71,8 @@ public class GameSdkLogic {
 
             SdkLoginDialogFragment dialog = SdkLoginDialogFragment.getInstance();
             dialog.show(context.getFragmentManager(),"SdkLoginDialogFragment");
+            dialog.setCancelable(false);
+
 
             Delegate.loginlistener = loginCallback;
         } else {

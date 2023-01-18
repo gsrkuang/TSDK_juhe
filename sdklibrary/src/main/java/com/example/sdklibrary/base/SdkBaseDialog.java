@@ -46,6 +46,9 @@ public abstract class SdkBaseDialog extends Dialog implements View.OnClickListen
         mViews = new SparseArray<>();
         setContentView( getLayoutId() );
 
+        //按空白处不能取消动画
+        setCanceledOnTouchOutside(false);
+
         initViews();
         initData();
         initListener();

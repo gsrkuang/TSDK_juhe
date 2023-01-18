@@ -95,10 +95,10 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
     //提交 Player 信息 上传玩家信息
     private void subGameInfoMethod() {
         MVPPlayerBean player = new MVPPlayerBean();
-        player.setGameName("梦幻西游");
-        player.setName("骑小猪看流星");
-        player.setServer("齐云楼");
-        player.setId("1010");
+        player.setGameName("扣扣飞车");
+        player.setName("有意思的少年");
+        player.setServer("女神降临");
+        player.setId("8888");
         //player.setXXX.......
         GameSdkLogic.getInstance().subGameInfoMethod(player);
 

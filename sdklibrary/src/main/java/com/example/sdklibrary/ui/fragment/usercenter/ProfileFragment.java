@@ -14,6 +14,7 @@ import com.example.sdklibrary.base.SdkBaseFragment;
 import com.example.sdklibrary.call.GameSdkLogic;
 import com.example.sdklibrary.tools.SPDataUtils;
 import com.example.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
+import com.example.sdklibrary.ui.fragment.usercenter.dialog.ChangePasswordDialog;
 
 
 /**
@@ -27,7 +28,7 @@ public class ProfileFragment extends SdkBaseFragment {
     private Button logout;
     private LinearLayout profile_btn1,profile_btn2,profile_btn3;
     private TextView profile_nickname,profile_userid;
-    private SettingFragment settingFragment;
+//    private SettingFragment settingFragment;
 
     private ImageView profile_icon;
     private String mFrom;
@@ -79,7 +80,6 @@ public class ProfileFragment extends SdkBaseFragment {
 
     @Override
     public void initData() {
-        settingFragment = SettingFragment.newInstance("setting");
 
         String nickname = SPDataUtils.getInstance().getNickName();
         String userid = SPDataUtils.getInstance().getUserId();
@@ -103,9 +103,11 @@ public class ProfileFragment extends SdkBaseFragment {
 
             Toast.makeText(getActivity(),"实名认证",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.usercenter_changepassword) {
-            getFragmentManager().beginTransaction().replace(R.id.home_container,settingFragment)
-                    .addToBackStack(null)
-                    .commit();
+            ChangePasswordDialog dialog = new ChangePasswordDialog(getActivity());
+            dialog.show();
+//            getFragmentManager().beginTransaction().replace(R.id.home_container,settingFragment)
+//                    .addToBackStack(null)
+//                    .commit();
             Toast.makeText(getActivity(),"修改密码",Toast.LENGTH_SHORT).show();
         } else {
 

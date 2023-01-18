@@ -130,7 +130,6 @@ public class GameSdkLogic {
             @Override
             public void onCancelClick() {
                 dialogTips.dismiss();
-                Delegate.loginlistener.callback(SDKStatusCode.LOGOUT_CANCEL, "logout cancel");
             }
         });
         dialogTips.setLoginOnClickListener(new DialogTips.onLoginOnClickListener() {

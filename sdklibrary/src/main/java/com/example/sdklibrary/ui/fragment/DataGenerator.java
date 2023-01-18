@@ -54,12 +54,13 @@ public class DataGenerator {
      * @param position
      * @return
      */
-    public static View getTabView(Context context,int position){
-        View view = LayoutInflater.from(context).inflate(R.layout.home_tab_content,null);
-        ImageView tabIcon = (ImageView) view.findViewById(R.id.tab_content_image);
-//        tabIcon.setImageResource(DataGenerator.mTabRes[position]);
-        TextView tabText = (TextView) view.findViewById(R.id.tab_content_text);
-        tabText.setText(mTabTitle[position]);
-        return view;
-    }
+//    public static View getTabView(Context context,int position){
+////        View view = LayoutInflater.from(context).inflate(R.layout.home_tab_content,null);
+////        ImageView tabIcon = (ImageView) view.findViewById(R.id.tab_content_image);
+////        tabIcon.setImageResource(DataGenerator.mTabRes[position]);
+////        TextView tabText = (TextView) view.findViewById(R.id.tab_content_text);
+//        tabText.setText(mTabTitle[position]);
+//        return view;
+//    }
+
 }

@@ -66,6 +66,11 @@ public class SdkBaseThreeSDK implements MVPLoginView, MVPRegistView {
     }
 
     @Override
+    public void onekeyloginSuccess(String msg, SDKUserResult user) {
+
+    }
+
+    @Override
     public void loginFailed(String msg, String data) {
         if (null != act && null != accountId) {
             qudaoRegist(accountId, act);

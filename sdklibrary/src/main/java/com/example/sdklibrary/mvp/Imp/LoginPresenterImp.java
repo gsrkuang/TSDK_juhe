@@ -107,13 +107,14 @@ public class LoginPresenterImp implements LoginPresenter {
 
                 if (dataCode == HttpUrlConstants.BZ_SUCCESS) {
 
-                    mvpLoginView.loginSuccess(ConstData.LOGIN_SUCCESS, user);
                     LoggerUtils.i(LogTAG.login, "responseBody: onekeylogin Success");
 
                     GameSdkApplication.getInstance().setTicket(ticket);
 
                     SaveOneKeyUserData(userName, passWord, nickname, uid);
                     SaveUserData(userName, passWord, nickname, uid);
+
+                    mvpLoginView.onekeyloginSuccess(ConstData.LOGIN_SUCCESS, user);
                 } else {
                     //根据不同dataCode做吐司提示
                     ShowInfoUtils.LogDataCode(mvpLoginView, dataCode);

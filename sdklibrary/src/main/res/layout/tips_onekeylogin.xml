@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:background="@drawable/shape_back"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+<!--    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/logo_tsdk" />-->
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:background="@drawable/shape_onekeylogin_tips"
+        android:layout_height="100dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:enabled="false"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="账号："
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:gravity="center"
+                android:layout_weight="4.8" />
+
+            <TextView
+                android:enabled="false"
+                android:id="@+id/text_account"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="123456798"
+                android:textSize="16sp"
+                android:textColor="#F6BF03"
+                android:gravity="center"
+                android:layout_weight="4.8" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:enabled="false"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="密码："
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:gravity="center"
+                android:layout_weight="4.8" />
+
+            <TextView
+                android:enabled="false"
+                android:id="@+id/text_password"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="123456798"
+                android:textSize="16sp"
+                android:textColor="#F6BF03"
+                android:gravity="center"
+                android:layout_weight="4.8" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="建议截屏，请妥善保存好您的账号信息" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginLeft="7dp"
+        android:orientation="horizontal"
+        android:layout_height="43dp">
+
+
+
+
+        <TextView
+            android:id="@+id/confirm"
+            android:text="进 入 游 戏"
+            android:textSize="16sp"
+            android:textColor="#fff"
+            android:background="@drawable/shape_login_speed_register"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="4.8"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

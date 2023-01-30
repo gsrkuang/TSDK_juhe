@@ -66,6 +66,10 @@ public class ChangePasswordPresenterImp implements ChangePasswordPresenter {
                 String msg = bean.getMsg();
 
                 if (dataCode == HttpUrlConstants.BZ_SUCCESS){
+
+                    //保存用户新密码
+                    SaveUserData(SPDataUtils.getInstance().getNickName(), newpassword, SPDataUtils.getInstance().getUserAccount(), SPDataUtils.getInstance().getUserId());
+
                     mvpChangePasswordView.success(ConstData.PASS_CHANGE_SUCCESS,result);
                     LoggerUtils.i(LogTAG.phonecode,"responseBody: change Success");
                 } else {
@@ -99,5 +103,11 @@ public class ChangePasswordPresenterImp implements ChangePasswordPresenter {
     @Override
     public void detachView() {
         this.mvpChangePasswordView = null;
+    }
+
+    //使用SharedPreference来存储登陆状态
+    public void SaveUserData(String username, String password, String nickname, String uid) {
+        LoggerUtils.i(LogTAG.login, "SaveUserData to SharedPreference");
+        SPDataUtils.getInstance().saveLoginData(username, password, nickname, uid);
     }
 }

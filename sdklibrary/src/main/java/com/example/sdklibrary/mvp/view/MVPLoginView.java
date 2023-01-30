@@ -10,5 +10,6 @@ import com.example.sdklibrary.mvp.model.user.SDKUserResult;
 
 public interface MVPLoginView extends BaseView {
     void loginSuccess(String msg, SDKUserResult user) ;
+    void onekeyloginSuccess(String msg, SDKUserResult user) ;
     void loginFailed(String msg,String data) ;
 }

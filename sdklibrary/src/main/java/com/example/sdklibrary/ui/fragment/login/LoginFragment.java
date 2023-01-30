@@ -27,6 +27,7 @@ import com.example.sdklibrary.tools.SPDataUtils;
 import com.example.sdklibrary.ui.AgreementActivity;
 import com.example.sdklibrary.ui.PrivacyActivity;
 import com.example.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
+import com.example.sdklibrary.ui.fragment.login.dialog.OneKeyLoginTipsDialog;
 
 /**
  * Date:2022-11-07
@@ -256,8 +257,12 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
 
         String onekeyAccount = SPDataUtils.getInstance().getOneKeyAccount();
         String onekeyPassword = SPDataUtils.getInstance().getOneKeyPassword();
+
+        String userAccount = SPDataUtils.getInstance().getUserAccount();
+        String userPassword = SPDataUtils.getInstance().getUserPassword();
+        
         if (!onekeyAccount.equals("") && !onekeyPassword.equals("")) {
-            MVPLoginBean bean = new MVPLoginBean(onekeyAccount, onekeyPassword);
+            MVPLoginBean bean = new MVPLoginBean(userAccount, userPassword);
             loginPresenterImp.login(bean, act);
             return;
         }
@@ -308,6 +313,15 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
         Delegate.loginlistener.callback(SDKStatusCode.SUCCESS, user);
         LoggerUtils.i("登录成功");
         SdkLoginDialogFragment.getInstance().dismiss();//登陆成功销毁登陆窗
+    }
+
+    @Override
+    public void onekeyloginSuccess(String msg, SDKUserResult user) {
+        GameSdkLogic.getInstance().sdkFloatViewShow();
+        Delegate.loginlistener.callback(SDKStatusCode.SUCCESS, user);
+        LoggerUtils.i("一键登录成功");
+        SdkLoginDialogFragment.getInstance().dismiss();//登陆成功销毁登陆窗
+        new OneKeyLoginTipsDialog(getActivity()).show();//弹出一键登录成功后提示保存用户截图
     }
 
     @Override

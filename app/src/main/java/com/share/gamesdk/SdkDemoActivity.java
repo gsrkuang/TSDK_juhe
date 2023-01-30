@@ -103,6 +103,7 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
         GameSdkLogic.getInstance().subGameInfoMethod(player);
 
     }
+
     //支付：
     private void payMethod() {
         Date date = new Date();

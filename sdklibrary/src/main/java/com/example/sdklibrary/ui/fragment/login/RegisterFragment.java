@@ -311,6 +311,11 @@ public class RegisterFragment extends SdkBaseFragment implements MVPRegistView, 
     }
 
     @Override
+    public void onekeyloginSuccess(String msg, SDKUserResult user) {
+
+    }
+
+    @Override
     public void loginFailed(String msg, String data) {
         Delegate.loginlistener.callback(SDKStatusCode.FAILURE, "login failure");
         LoggerUtils.i("登录失败");

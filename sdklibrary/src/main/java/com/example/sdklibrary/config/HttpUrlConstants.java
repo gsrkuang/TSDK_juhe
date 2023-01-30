@@ -35,6 +35,9 @@ public final class HttpUrlConstants {
     //12000错误系列
     public static final int BZ_ERROR = 12000; //未知错误
     public static final int BZ_ERROR_ACCOUNT_PASSWORD = 12001;//账号或密码错误
+
+    public static final int BZ_ERROR_ACCOUNT = 12002;//账号错误或已锁定
+    public static final int BZ_ERROR_CHANGE_PASSWORD = 12003;//修改密码错误
     public static final int BZ_ERROR_SIGN = 12100;//签名错误
     public static final int BZ_ERROR_CODE = 12200;//验证码错误
 
@@ -45,6 +48,7 @@ public final class HttpUrlConstants {
     //业务成功、失败
     public static final int BZ_SUCCESS = 20000; //成功
     public static final int BZ_FAILURE = 20001; //注册失败
+
 
     //登录url  POST
     //username，password(不用)

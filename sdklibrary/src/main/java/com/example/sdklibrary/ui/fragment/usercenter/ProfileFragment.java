@@ -133,7 +133,8 @@ public class ProfileFragment extends SdkBaseFragment {
 //            getFragmentManager().beginTransaction().replace(R.id.home_container,settingFragment)
 //                    .addToBackStack(null)
 //                    .commit();
-            Toast.makeText(getActivity(),"修改密码",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity(),"修改密码",Toast.LENGTH_SHORT).show();
+            
         } else {
 
         }

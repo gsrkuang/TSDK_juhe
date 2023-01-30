@@ -47,6 +47,14 @@ public class ShowInfoUtils {
             case HttpUrlConstants.BZ_CODE:
                 view.showAppInfo("", "获取验证码过于频繁，1分钟后再试");
                 break;
+
+            case HttpUrlConstants.BZ_ERROR_ACCOUNT:
+                view.showAppInfo("", "账号错误或已锁定");
+                break;
+            case HttpUrlConstants.BZ_ERROR_CHANGE_PASSWORD:
+                view.showAppInfo("", "原密码错误");
+                break;
+
             default:
                 break;
         }

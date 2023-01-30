@@ -247,7 +247,7 @@ public class ChangePasswordDialog extends SdkBaseDialog implements MVPChangePass
 
     @Override
     public void showAppInfo(String msg, String data) {
-        showToast(msg);
+        showToast(data);
     }
 
     @Override
@@ -263,7 +263,7 @@ public class ChangePasswordDialog extends SdkBaseDialog implements MVPChangePass
 
     @Override
     public void fail(String msg, String data) {
-        showToast(msg);
+//        showToast(msg);
     }
 
 

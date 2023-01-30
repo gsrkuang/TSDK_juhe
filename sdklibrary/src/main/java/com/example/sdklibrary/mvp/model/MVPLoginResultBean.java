@@ -11,15 +11,17 @@ public class MVPLoginResultBean {
     //成功
     /*
         {
-            "ts": 1673233978,
+            "ts": 1675061284,
             "code": 20000,
             "msg": "success",
             "data": {
                 "appId": "111111",
-                "username": "13246642620",
-                "password": "4c3a4ccfc9e268517207d9947add1413",
-                "ticket": "7f97dea0ff774f522c1feac5c22d37a992ec63ab1ed77c34999f2f5d45004590",
-                "uid": "884847014875136"
+                "username": "lin2023",
+                "password": null,
+                "ticket": "099fe79345672e6f2d43838f9e35b091dfe4c6b2e16228d4e51e2b0490004999",
+                "uid": "5469464757858304",
+                "phone": null,
+                "realName": false
             }
         }
     */
@@ -37,6 +39,8 @@ public class MVPLoginResultBean {
     private String password;
     private String ticket;
     private String uid;
+    private String phone;
+    private Boolean realName;
 
     @Override
     public String toString() {
@@ -46,6 +50,8 @@ public class MVPLoginResultBean {
                 ", password='" + password + '\'' +
                 ", ticket='" + ticket + '\'' +
                 ", uid='" + uid + '\'' +
+                ", phone='" + phone + '\'' +
+                ", realName=" + realName +
                 '}';
     }
 
@@ -87,5 +93,21 @@ public class MVPLoginResultBean {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Boolean getRealName() {
+        return realName;
+    }
+
+    public void setRealName(Boolean realName) {
+        this.realName = realName;
     }
 }

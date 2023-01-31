@@ -68,7 +68,26 @@ public class ChangePasswordPresenterImp implements ChangePasswordPresenter {
                 if (dataCode == HttpUrlConstants.BZ_SUCCESS){
 
                     //保存用户新密码
-                    SaveUserData(SPDataUtils.getInstance().getNickName(), newpassword, SPDataUtils.getInstance().getUserAccount(), SPDataUtils.getInstance().getUserId());
+                    SaveUserData(SPDataUtils.getInstance().getNickName(),
+                            newpassword,
+                            SPDataUtils.getInstance().getUserAccount(),
+                            SPDataUtils.getInstance().getUserId(),
+                            SPDataUtils.getInstance().getUserPhone(),
+                            SPDataUtils.getInstance().getUserRealName()
+                    );
+
+                    //判断是否为一键注册用户，如果是的话，就保存修改后的一键注册用户的密码
+                    String uid = SPDataUtils.getInstance().getUserId();
+                    String onekeyUid = SPDataUtils.getInstance().getOneKeyId();
+                    if (uid.equals(onekeyUid)){
+                        saveOneKeyLoginData(SPDataUtils.getInstance().getNickName(),
+                                newpassword,
+                                SPDataUtils.getInstance().getUserAccount(),
+                                SPDataUtils.getInstance().getUserId(),
+                                SPDataUtils.getInstance().getUserPhone(),
+                                SPDataUtils.getInstance().getUserRealName()
+                        );
+                    }
 
                     mvpChangePasswordView.success(ConstData.PASS_CHANGE_SUCCESS,result);
                     LoggerUtils.i(LogTAG.phonecode,"responseBody: change Success");
@@ -106,8 +125,16 @@ public class ChangePasswordPresenterImp implements ChangePasswordPresenter {
     }
 
     //使用SharedPreference来存储登陆状态
-    public void SaveUserData(String username, String password, String nickname, String uid) {
+    public void SaveUserData(String username, String password, String nickname, String uid,String phone , boolean realname) {
         LoggerUtils.i(LogTAG.login, "SaveUserData to SharedPreference");
-        SPDataUtils.getInstance().saveLoginData(username, password, nickname, uid);
+        SPDataUtils.getInstance().saveLoginData(username, password, nickname, uid,phone,realname);
     }
+
+    //使用SharedPreference来存储登陆状态
+    public void saveOneKeyLoginData(String username, String password, String nickname, String uid,String phone , boolean realname) {
+        LoggerUtils.i(LogTAG.login, "SaveUserData to SharedPreference");
+        SPDataUtils.getInstance().saveOneKeyLoginData(username, password, nickname, uid,phone,realname);
+    }
+
+
 }

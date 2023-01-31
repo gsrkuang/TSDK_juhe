@@ -73,7 +73,7 @@ public class LoginPresenterImp implements LoginPresenter {
         }
     }
 
-    //测试登录账号：colin1 123456
+    //测试登录账号：无
     private void onekeyMethod(String url, String userName, String passWord) {
 
         Map<String, String> map = new HashMap<>();
@@ -95,10 +95,14 @@ public class LoginPresenterImp implements LoginPresenter {
                 String nickname = null;
                 String uid = "";
                 String ticket = "";
+                String phone = "";
+                boolean realname = false;
                 if (mvpLoginResultBean.getData() != null) {
                     nickname = mvpLoginResultBean.getData().getUsername();
                     uid = mvpLoginResultBean.getData().getUid();
                     ticket = mvpLoginResultBean.getData().getTicket();
+                    phone = mvpLoginResultBean.getData().getPhone();
+                    realname = mvpLoginResultBean.getData().getRealName();
 
                     user.setUsername(nickname);
                     user.setUid(uid);
@@ -111,8 +115,8 @@ public class LoginPresenterImp implements LoginPresenter {
 
                     GameSdkApplication.getInstance().setTicket(ticket);
 
-                    SaveOneKeyUserData(userName, passWord, nickname, uid);
-                    SaveUserData(userName, passWord, nickname, uid);
+                    SaveOneKeyUserData(userName, passWord, nickname, uid,phone,realname);
+                    SaveUserData(userName, passWord, nickname, uid,phone,realname);
 
                     mvpLoginView.onekeyloginSuccess(ConstData.LOGIN_SUCCESS, user);
                 } else {
@@ -157,10 +161,15 @@ public class LoginPresenterImp implements LoginPresenter {
                 String nickname = null;
                 String uid = "";
                 String ticket = "";
+
+                String phone = "";
+                boolean realname = false;
                 if (mvpLoginResultBean.getData() != null) {
                     nickname = mvpLoginResultBean.getData().getUsername();
                     uid = mvpLoginResultBean.getData().getUid();
                     ticket = mvpLoginResultBean.getData().getTicket();
+                    phone = mvpLoginResultBean.getData().getPhone();
+                    realname = mvpLoginResultBean.getData().getRealName();
 
                     user.setUsername(nickname);
                     user.setUid(uid);
@@ -173,7 +182,8 @@ public class LoginPresenterImp implements LoginPresenter {
                     LoggerUtils.i(LogTAG.login, "responseBody: login Success");
 
                     GameSdkApplication.getInstance().setTicket(ticket);
-                    SaveUserData(userName, passWord, nickname, uid);
+
+                    SaveUserData(userName, passWord, nickname, uid,phone,realname);
                 } else {
                     //根据不同dataCode做吐司提示
                     ShowInfoUtils.LogDataCode(mvpLoginView, dataCode);
@@ -200,14 +210,14 @@ public class LoginPresenterImp implements LoginPresenter {
     }
 
     //使用SharedPreference来存储登陆状态
-    public void SaveUserData(String username, String password, String nickname, String uid) {
+    public void SaveUserData(String username, String password, String nickname, String uid,String phone,boolean realname) {
         LoggerUtils.i(LogTAG.login, "SaveUserData to SharedPreference");
-        SPDataUtils.getInstance().saveLoginData(username, password, nickname, uid);
+        SPDataUtils.getInstance().saveLoginData(username, password, nickname, uid,phone,realname);
     }
     //使用SharedPreference来存储登陆状态
-    public void SaveOneKeyUserData(String username, String password, String nickname, String uid) {
+    public void SaveOneKeyUserData(String username, String password, String nickname, String uid,String phone,boolean realname) {
         LoggerUtils.i(LogTAG.login, "SaveOneKeyUserData to SharedPreference");
-        SPDataUtils.getInstance().saveOneKeyLoginData(username, password, nickname, uid);
+        SPDataUtils.getInstance().saveOneKeyLoginData(username, password, nickname, uid,phone,realname);
     }
 
 

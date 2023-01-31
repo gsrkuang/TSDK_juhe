@@ -48,9 +48,9 @@ public class PhoneRegistPresenterImp implements PhoneRegistPresenter {
 
     @Override
     public void phoneLoginGetCode(String phoneNumber, Context context) {
-        if ((!TextUtils.isEmpty(phoneNumber)) ) {
+        if ((!TextUtils.isEmpty(phoneNumber))) {
 
-            getCodeMethod( HttpUrlConstants.getPhoneCodeUrl(),phoneNumber);
+            getCodeMethod(HttpUrlConstants.getPhoneCodeUrl(), phoneNumber);
         }
     }
 
@@ -59,63 +59,65 @@ public class PhoneRegistPresenterImp implements PhoneRegistPresenter {
         phoneNumber = user.getPhoneNumber().toString().trim();
         code = user.getCode().toString().trim();
 
-        if ((!TextUtils.isEmpty(phoneNumber)) && (!TextUtils.isEmpty(code)) ) {
-            loginMethod( HttpUrlConstants.getPhoneCodeLoginUrl(),phoneNumber,code);
+        if ((!TextUtils.isEmpty(phoneNumber)) && (!TextUtils.isEmpty(code))) {
+            loginMethod(HttpUrlConstants.getPhoneCodeLoginUrl(), phoneNumber, code);
         } else {
-            mvpPhoneRegistView.showAppInfo("","手机号码或验证码输入为空");
+            mvpPhoneRegistView.showAppInfo("", "手机号码或验证码输入为空");
         }
     }
 
-    private void getCodeMethod(String url,String phone){
-        Map<String,String> map = new HashMap<>();
-        map.put("phone",phone);
+    private void getCodeMethod(String url, String phone) {
+        Map<String, String> map = new HashMap<>();
+        map.put("phone", phone);
 
         HttpRequestUtil.okPostFormRequest(url, map, new HttpRequestUtil.DataCallBack() {
             @Override
             public void requestSuccess(String result) throws Exception {
-                LoggerUtils.i(LogTAG.phonecode,"responseBody:"+result);
+                LoggerUtils.i(LogTAG.phonecode, "responseBody:" + result);
 
-                ApiResponse<String> bean = GsonUtils.gson.fromJson(result, new TypeToken<ApiResponse<String>>(){}.getType());
+                ApiResponse<String> bean = GsonUtils.gson.fromJson(result, new TypeToken<ApiResponse<String>>() {
+                }.getType());
 
-                int dataCode =  bean.getCode();
+                int dataCode = bean.getCode();
                 String msg = bean.getMsg();
 
-                if (dataCode == HttpUrlConstants.BZ_SUCCESS){
-                    mvpPhoneRegistView.verificationCodeSuccess(ConstData.PHONECODE_SUCCESS,msg);
-                    LoggerUtils.i(LogTAG.phonecode,"phonecode Success");
-                }else {
+                if (dataCode == HttpUrlConstants.BZ_SUCCESS) {
+                    mvpPhoneRegistView.verificationCodeSuccess(ConstData.PHONECODE_SUCCESS, msg);
+                    LoggerUtils.i(LogTAG.phonecode, "phonecode Success");
+                } else {
                     //根据不同dataCode做吐司提示
-                    ShowInfoUtils.LogDataCode(mvpPhoneRegistView,dataCode);
-                    mvpPhoneRegistView.verificationCodeFailed(ConstData.PHONECODE_FAILURE,msg);
-                    LoggerUtils.i(LogTAG.phonecode,"phonecode Failure");
+                    ShowInfoUtils.LogDataCode(mvpPhoneRegistView, dataCode);
+                    mvpPhoneRegistView.verificationCodeFailed(ConstData.PHONECODE_FAILURE, msg);
+                    LoggerUtils.i(LogTAG.phonecode, "phonecode Failure");
                 }
             }
 
             @Override
             public void requestFailure(String request, IOException e) {
-                mvpPhoneRegistView.verificationCodeFailed(ConstData.PHONECODE_FAILURE,HttpUrlConstants.SERVER_ERROR);
+                mvpPhoneRegistView.verificationCodeFailed(ConstData.PHONECODE_FAILURE, HttpUrlConstants.SERVER_ERROR);
             }
 
             @Override
             public void requestNoConnect(String msg, String data) {
-                mvpPhoneRegistView.verificationCodeFailed(ConstData.PHONECODE_FAILURE,HttpUrlConstants.NET_NO_LINKING);
+                mvpPhoneRegistView.verificationCodeFailed(ConstData.PHONECODE_FAILURE, HttpUrlConstants.NET_NO_LINKING);
             }
         });
     }
 
-    private void loginMethod(String url,String phone,String code){
-        Map<String,String> map = new HashMap<>();
-        map.put("phone",phone);
-        map.put("code",code);
+    private void loginMethod(String url, String phone, String code) {
+        Map<String, String> map = new HashMap<>();
+        map.put("phone", phone);
+        map.put("code", code);
 
         HttpRequestUtil.okPostFormRequest(url, map, new HttpRequestUtil.DataCallBack() {
             @Override
             public void requestSuccess(String result) throws Exception {
-                LoggerUtils.i(LogTAG.phonecode,"responseBody:"+result);
+                LoggerUtils.i(LogTAG.phonecode, "responseBody:" + result);
 
-                ApiResponse<MVPLoginResultBean> mvpLoginResultBean = GsonUtils.gson.fromJson(result, new TypeToken<ApiResponse<MVPLoginResultBean>>(){}.getType());
+                ApiResponse<MVPLoginResultBean> mvpLoginResultBean = GsonUtils.gson.fromJson(result, new TypeToken<ApiResponse<MVPLoginResultBean>>() {
+                }.getType());
 
-                int dataCode =  mvpLoginResultBean.getCode();
+                int dataCode = mvpLoginResultBean.getCode();
                 String msg = mvpLoginResultBean.getMsg();
 
 
@@ -125,27 +127,31 @@ public class PhoneRegistPresenterImp implements PhoneRegistPresenter {
                 String md5password = null;
                 String uid = "";
                 String ticket = "";
+
+                String phone = "";
+                boolean realname = false;
                 if (mvpLoginResultBean.getData() != null) {
                     nickname = mvpLoginResultBean.getData().getUsername();
-                    md5password = mvpLoginResultBean.getData().getPassword();
                     uid = mvpLoginResultBean.getData().getUid();
                     ticket = mvpLoginResultBean.getData().getTicket();
+                    phone = mvpLoginResultBean.getData().getPhone();
+                    realname = mvpLoginResultBean.getData().getRealName();
 
                     user.setUid(uid);
                     user.setUsername(nickname);
                     user.setToken(ticket);
                 }
 
-                if (dataCode == HttpUrlConstants.BZ_SUCCESS){
-                    mvpPhoneRegistView.loginSuccess(ConstData.LOGIN_SUCCESS,user);
-                    LoggerUtils.i(LogTAG.phonecode,"responseBody: phonelogin Success");
+                if (dataCode == HttpUrlConstants.BZ_SUCCESS) {
+                    mvpPhoneRegistView.loginSuccess(ConstData.LOGIN_SUCCESS, user);
+                    LoggerUtils.i(LogTAG.phonecode, "responseBody: phonelogin Success");
                     GameSdkApplication.getInstance().setTicket(ticket);
-                    SaveUserData(phone,md5password,nickname,uid);
+                    SaveUserData(phone, md5password, nickname, uid, phone, realname);
                 } else {
                     //根据不同dataCode做吐司提示
-                    ShowInfoUtils.LogDataCode(mvpPhoneRegistView,dataCode);
-                    mvpPhoneRegistView.loginFailed(ConstData.LOGIN_FAILURE,msg);
-                    LoggerUtils.i(LogTAG.phonecode,"responseBody: phonelogin Failure");
+                    ShowInfoUtils.LogDataCode(mvpPhoneRegistView, dataCode);
+                    mvpPhoneRegistView.loginFailed(ConstData.LOGIN_FAILURE, msg);
+                    LoggerUtils.i(LogTAG.phonecode, "responseBody: phonelogin Failure");
                 }
 
 
@@ -153,12 +159,12 @@ public class PhoneRegistPresenterImp implements PhoneRegistPresenter {
 
             @Override
             public void requestFailure(String request, IOException e) {
-                mvpPhoneRegistView.loginFailed(ConstData.PHONECODE_FAILURE,HttpUrlConstants.SERVER_ERROR);
+                mvpPhoneRegistView.loginFailed(ConstData.PHONECODE_FAILURE, HttpUrlConstants.SERVER_ERROR);
             }
 
             @Override
             public void requestNoConnect(String msg, String data) {
-                mvpPhoneRegistView.loginFailed(ConstData.PHONECODE_FAILURE,HttpUrlConstants.NET_NO_LINKING);
+                mvpPhoneRegistView.loginFailed(ConstData.PHONECODE_FAILURE, HttpUrlConstants.NET_NO_LINKING);
             }
         });
     }
@@ -170,9 +176,9 @@ public class PhoneRegistPresenterImp implements PhoneRegistPresenter {
 
 
     //使用SharedPreference来存储登陆状态
-    public void SaveUserData(String username ,String password ,String nickname ,String uid){
-        LoggerUtils.i(LogTAG.phonecode,"SaveUserData to SharedPreference");
-        SPDataUtils.getInstance().saveLoginData(username,password,nickname,uid);
+    public void SaveUserData(String username, String password, String nickname, String uid, String phone, boolean realname) {
+        LoggerUtils.i(LogTAG.phonecode, "SaveUserData to SharedPreference");
+        SPDataUtils.getInstance().saveLoginData(username, password, nickname, uid, phone, realname);
     }
 
 }

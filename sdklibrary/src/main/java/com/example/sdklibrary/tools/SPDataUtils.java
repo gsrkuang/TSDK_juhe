@@ -61,7 +61,6 @@ public class SPDataUtils {
     }
 
     public void saveLong(String key, long value) {
-
         editor.putLong(key, value).commit();
     }
 
@@ -70,19 +69,24 @@ public class SPDataUtils {
     }
 
     //使用SharedPreference来存储登陆后的数据
-    public void saveLoginData(String username ,String password ,String nickname ,String id){
+    public void saveLoginData(String username ,String password ,String nickname ,String id,String phone,boolean realname ){
         SPDataUtils.getInstance().saveString("user_account",username);
         SPDataUtils.getInstance().saveString("user_password",password);
         SPDataUtils.getInstance().saveString("user_nickname",nickname);
         SPDataUtils.getInstance().saveString("user_id",id);
+        SPDataUtils.getInstance().saveString("user_phone",phone);
+        SPDataUtils.getInstance().saveBoolean("user_realname",realname);
         SPDataUtils.getInstance().saveBoolean("loginStatus",true);
     }
     //使用SharedPreference来存储登陆后的数据
-    public void saveOneKeyLoginData(String username ,String password ,String nickname ,String id){
+    public void saveOneKeyLoginData(String username ,String password ,String nickname ,String id,String phone,boolean realname){
         SPDataUtils.getInstance().saveString("onekey_account",username);
         SPDataUtils.getInstance().saveString("onekey_password",password);
         SPDataUtils.getInstance().saveString("onekey_nickname",nickname);
         SPDataUtils.getInstance().saveString("onekey_id",id);
+
+        SPDataUtils.getInstance().saveString("onekey_phone",phone);
+        SPDataUtils.getInstance().saveBoolean("onekey_realname",realname);
         SPDataUtils.getInstance().saveBoolean("loginStatus",true);
     }
 
@@ -109,6 +113,13 @@ public class SPDataUtils {
     }
     public String getUserPassword(){
         return SPDataUtils.getInstance().getString("user_password","");
+    }
+
+    public String getUserPhone(){
+        return SPDataUtils.getInstance().getString("user_phone","");
+    }
+    public boolean getUserRealName(){
+        return SPDataUtils.getInstance().getBoolean("user_realname",false);
     }
 
     public String getOneKeyNickName(){

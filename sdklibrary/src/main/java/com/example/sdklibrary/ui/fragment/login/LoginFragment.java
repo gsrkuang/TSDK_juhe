@@ -258,11 +258,11 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
         String onekeyAccount = SPDataUtils.getInstance().getOneKeyAccount();
         String onekeyPassword = SPDataUtils.getInstance().getOneKeyPassword();
 
-        String userAccount = SPDataUtils.getInstance().getUserAccount();
-        String userPassword = SPDataUtils.getInstance().getUserPassword();
-        
+//        String userAccount = SPDataUtils.getInstance().getUserAccount();
+//        String userPassword = SPDataUtils.getInstance().getUserPassword();
+
         if (!onekeyAccount.equals("") && !onekeyPassword.equals("")) {
-            MVPLoginBean bean = new MVPLoginBean(userAccount, userPassword);
+            MVPLoginBean bean = new MVPLoginBean(onekeyAccount, onekeyPassword);
             loginPresenterImp.login(bean, act);
             return;
         }

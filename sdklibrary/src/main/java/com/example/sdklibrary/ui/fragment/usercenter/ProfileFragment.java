@@ -31,7 +31,7 @@ public class ProfileFragment extends SdkBaseFragment {
 
     private Button logout;
     private LinearLayout profile_btn1,profile_btn2,profile_btn3;
-    private TextView profile_nickname,profile_userid;
+    private TextView profile_nickname,profile_userid,profile_phone,profile_realName;
 //    private SettingFragment settingFragment;
 
     private ImageView profile_icon;
@@ -72,6 +72,12 @@ public class ProfileFragment extends SdkBaseFragment {
         profile_nickname = (TextView) view.findViewById(R.id.profile_nickname);
         profile_userid = (TextView) view.findViewById(R.id.profile_userid);
 
+        profile_phone = (TextView) view.findViewById(R.id.tx_phoneNumber);
+        profile_realName = (TextView) view.findViewById(R.id.tx_realName);
+
+
+
+
     }
 
     @Override
@@ -87,10 +93,26 @@ public class ProfileFragment extends SdkBaseFragment {
 
         String nickname = SPDataUtils.getInstance().getNickName();
         String userid = SPDataUtils.getInstance().getUserId();
+        String userPhone = SPDataUtils.getInstance().getUserPhone();
+        boolean realName = SPDataUtils.getInstance().getUserRealName();
+
         profile_nickname.setText(nickname);
         profile_userid.setText(userid);
 
-//        profile_icon.setImageURI("");
+
+        if ("".equals(userPhone)){
+            profile_phone.setText("未绑定");
+        }else {
+            //隐藏中间四位数
+            profile_phone.setText(hintPhoneNumber(userPhone));
+        }
+
+        if (false == realName){
+            profile_realName.setText("未实名");
+        }else {
+            profile_realName.setText("已实名");
+        }
+
 
     }
 
@@ -134,7 +156,7 @@ public class ProfileFragment extends SdkBaseFragment {
 //                    .addToBackStack(null)
 //                    .commit();
 //            Toast.makeText(getActivity(),"修改密码",Toast.LENGTH_SHORT).show();
-            
+
         } else {
 
         }
@@ -145,4 +167,17 @@ public class ProfileFragment extends SdkBaseFragment {
         GameSdkLogic.getInstance().showLogoutDialog(getActivity());
     }
 
+    private String hintPhoneNumber(String number){
+        if (number.length() == 11){
+            String a = number.substring(0,3);
+            String b = number.substring(3,7);
+            String c = number.substring(7,11);
+
+            String hintStr = a + "****" +c;
+            return hintStr;
+        }else {
+            return number;
+        }
+
+    }
 }

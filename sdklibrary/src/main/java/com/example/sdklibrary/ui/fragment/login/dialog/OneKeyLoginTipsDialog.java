@@ -48,11 +48,11 @@ public class OneKeyLoginTipsDialog extends SdkBaseDialog {
 
     @Override
     public void initData() {
-
         String onekeyAccount = SPDataUtils.getInstance().getOneKeyAccount();
         String onekeyPassword = SPDataUtils.getInstance().getOneKeyPassword();
         account.setText(onekeyAccount);
         password.setText(onekeyPassword);
+        setCancelable(false);
     }
 
     @Override

@@ -122,6 +122,7 @@
                     android:textSize="16sp"/>
 
                 <TextView
+                    android:id="@+id/tx_phoneNumber"
                     android:gravity="right"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -160,6 +161,7 @@
                     android:textSize="16sp"/>
 
                 <TextView
+                    android:id="@+id/tx_realName"
                     android:gravity="right"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

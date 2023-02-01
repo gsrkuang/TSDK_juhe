@@ -14,7 +14,13 @@ import com.example.sdklibrary.base.SdkBaseFragment;
 import com.example.sdklibrary.call.Delegate;
 import com.example.sdklibrary.call.GameSdkLogic;
 import com.example.sdklibrary.config.SDKStatusCode;
+import com.example.sdklibrary.mvp.Imp.BindPhonePresenterImp;
+import com.example.sdklibrary.mvp.Imp.UserInfoPresenterImp;
+import com.example.sdklibrary.mvp.model.MVPUserInfoResultBean;
 import com.example.sdklibrary.mvp.model.user.SDKUserResult;
+import com.example.sdklibrary.mvp.presenter.UserInfoPresenter;
+import com.example.sdklibrary.mvp.view.MVPUserInfoView;
+import com.example.sdklibrary.tools.LoggerUtils;
 import com.example.sdklibrary.tools.SPDataUtils;
 import com.example.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
 import com.example.sdklibrary.ui.dialogfragment.SdkUserCenterDialogFragment;
@@ -27,7 +33,7 @@ import com.example.sdklibrary.ui.fragment.usercenter.dialog.ChangePasswordDialog
  * 个人档案界面
  */
 
-public class ProfileFragment extends SdkBaseFragment {
+public class ProfileFragment extends SdkBaseFragment implements MVPUserInfoView {
 
 
     private Button logout;
@@ -37,6 +43,8 @@ public class ProfileFragment extends SdkBaseFragment {
 
     private ImageView profile_icon;
     private String mFrom;
+
+    private UserInfoPresenter userInfoPresenterImp;
 
     public static ProfileFragment newInstance(String from){
         ProfileFragment fragment = new ProfileFragment();
@@ -76,9 +84,6 @@ public class ProfileFragment extends SdkBaseFragment {
         profile_phone = (TextView) view.findViewById(R.id.tx_phoneNumber);
         profile_realName = (TextView) view.findViewById(R.id.tx_realName);
 
-
-
-
     }
 
     @Override
@@ -92,27 +97,17 @@ public class ProfileFragment extends SdkBaseFragment {
     @Override
     public void initData() {
 
-        String nickname = SPDataUtils.getInstance().getNickName();
-        String userid = SPDataUtils.getInstance().getUserId();
-        String userPhone = SPDataUtils.getInstance().getUserPhone();
-        boolean realName = SPDataUtils.getInstance().getUserRealName();
 
-        profile_nickname.setText(nickname);
-        profile_userid.setText(userid);
+        userInfoPresenterImp = new UserInfoPresenterImp();
+        userInfoPresenterImp.attachView(this);
+        userInfoPresenterImp.getUserInfo(getActivity());
+
+//        String nickname = SPDataUtils.getInstance().getNickName();
+//        String userid = SPDataUtils.getInstance().getUserId();
+//        String userPhone = SPDataUtils.getInstance().getUserPhone();
+//        boolean realName = SPDataUtils.getInstance().getUserRealName();
 
 
-        if ("".equals(userPhone)){
-            profile_phone.setText("未绑定");
-        }else {
-            //隐藏中间四位数
-            profile_phone.setText(hintPhoneNumber(userPhone));
-        }
-
-        if (false == realName){
-            profile_realName.setText("未实名");
-        }else {
-            profile_realName.setText("已实名");
-        }
 
 
     }
@@ -181,5 +176,42 @@ public class ProfileFragment extends SdkBaseFragment {
             return number;
         }
 
+    }
+
+    @Override
+    public void showAppInfo(String msg, String data) {
+        showToast(data);
+    }
+
+    @Override
+    public void getUserInfo_Success(String msg, MVPUserInfoResultBean user) {
+        //更新用户数据
+        String uid = user.getUid();
+        String username = user.getUsername();
+        String phone = user.getPhone();
+        boolean realName = user.getRealName();
+
+        profile_nickname.setText(username);
+        profile_userid.setText(uid);
+
+
+        if ("".equals(phone)){
+            profile_phone.setText("未绑定");
+        }else {
+            //隐藏中间四位数
+            profile_phone.setText(hintPhoneNumber(phone));
+        }
+
+        if (false == realName){
+            profile_realName.setText("未实名");
+        }else {
+            profile_realName.setText("已实名");
+        }
+
+    }
+
+    @Override
+    public void getUserInfo_Failed(String msg, String data) {
+        LoggerUtils.i("更新用户数据失败");
     }
 }

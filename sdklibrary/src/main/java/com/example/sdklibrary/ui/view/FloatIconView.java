@@ -28,7 +28,6 @@ public class FloatIconView extends RelativeLayout {
     private int millisInFuture = 3;//半隐藏悬浮球倒计时 秒
     private CountDownTimer countDownTimer;//倒计时 半隐藏悬浮球logo定时器
 
-
     private final static int LEFT = 0;
     private final static int RIGHT = 1;
 

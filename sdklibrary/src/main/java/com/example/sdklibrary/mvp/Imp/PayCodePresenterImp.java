@@ -2,14 +2,11 @@ package com.example.sdklibrary.mvp.Imp;
 
 import android.content.Context;
 
-import com.example.sdklibrary.base.GameSdkApplication;
 import com.example.sdklibrary.config.ConstData;
 import com.example.sdklibrary.config.HttpUrlConstants;
 import com.example.sdklibrary.config.LogTAG;
 import com.example.sdklibrary.mvp.model.ApiResponse;
-import com.example.sdklibrary.mvp.model.MVPLoginResultBean;
 import com.example.sdklibrary.mvp.model.MVPPayCodeBean;
-import com.example.sdklibrary.mvp.model.MVPPayCodeResultBean;
 import com.example.sdklibrary.mvp.presenter.PayCodePresenter;
 import com.example.sdklibrary.mvp.view.MVPPayCodeView;
 import com.example.sdklibrary.tools.GsonUtils;

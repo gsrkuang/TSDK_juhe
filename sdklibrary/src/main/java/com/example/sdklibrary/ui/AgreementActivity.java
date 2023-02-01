@@ -39,7 +39,7 @@ public class AgreementActivity extends SdkBaseActivity {
 
     @Override
     public void initData() {
-        webView.loadUrl(HttpUrlConstants.getPrivacytUrl());
+        webView.loadUrl(HttpUrlConstants.getAgreementUrl());
     }
 
     @Override

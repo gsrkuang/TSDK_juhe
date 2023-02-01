@@ -1,5 +1,6 @@
 package com.example.sdklibrary.ui.fragment.usercenter;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -63,6 +64,11 @@ public class ProfileFragment extends SdkBaseFragment implements MVPUserInfoView 
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
     public int getLayoutId() {
         return R.layout.usercenter_profilefragment_layout;
     }
@@ -97,18 +103,9 @@ public class ProfileFragment extends SdkBaseFragment implements MVPUserInfoView 
     @Override
     public void initData() {
 
-
         userInfoPresenterImp = new UserInfoPresenterImp();
         userInfoPresenterImp.attachView(this);
         userInfoPresenterImp.getUserInfo(getActivity());
-
-//        String nickname = SPDataUtils.getInstance().getNickName();
-//        String userid = SPDataUtils.getInstance().getUserId();
-//        String userPhone = SPDataUtils.getInstance().getUserPhone();
-//        boolean realName = SPDataUtils.getInstance().getUserRealName();
-
-
-
 
     }
 
@@ -120,7 +117,18 @@ public class ProfileFragment extends SdkBaseFragment implements MVPUserInfoView 
 //            Toast.makeText(getContext(),"注销",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.usercenter_phone) {
 //            Toast.makeText(getActivity(),"绑定手机号码",Toast.LENGTH_SHORT).show();
+            if (!"".equals(SPDataUtils.getInstance().getUserPhone())){
+                //判断已经绑定过手机号码
+                return;
+            }
             BindPhoneDialog bindPhoneDialog = new BindPhoneDialog(getActivity());
+            bindPhoneDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialogInterface) {
+
+                    userInfoPresenterImp.getUserInfo(getActivity());
+                }
+            });
             bindPhoneDialog.show();
         } else if (id == R.id.usercenter_certification) {
 

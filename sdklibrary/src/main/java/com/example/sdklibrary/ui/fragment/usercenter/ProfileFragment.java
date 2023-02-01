@@ -18,6 +18,7 @@ import com.example.sdklibrary.mvp.model.user.SDKUserResult;
 import com.example.sdklibrary.tools.SPDataUtils;
 import com.example.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
 import com.example.sdklibrary.ui.dialogfragment.SdkUserCenterDialogFragment;
+import com.example.sdklibrary.ui.fragment.usercenter.dialog.BindPhoneDialog;
 import com.example.sdklibrary.ui.fragment.usercenter.dialog.ChangePasswordDialog;
 
 
@@ -123,8 +124,9 @@ public class ProfileFragment extends SdkBaseFragment {
             logoutMethod();
 //            Toast.makeText(getContext(),"注销",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.usercenter_phone) {
-
-            Toast.makeText(getActivity(),"绑定手机号码",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity(),"绑定手机号码",Toast.LENGTH_SHORT).show();
+            BindPhoneDialog bindPhoneDialog = new BindPhoneDialog(getActivity());
+            bindPhoneDialog.show();
         } else if (id == R.id.usercenter_certification) {
 
             Toast.makeText(getActivity(),"实名认证",Toast.LENGTH_SHORT).show();

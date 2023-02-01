@@ -44,6 +44,7 @@ public final class HttpUrlConstants {
     public static final int BZ_CODE = 14200;//Frequently operation
 
     public static final int BZ_UNBIND = 15001;//Unbound phone: 手机号码未被绑定
+//    public static final int BZ_UNBIND = 15100;//Unbound phone: 手机号码未被绑定
 
     //业务成功、失败
     public static final int BZ_SUCCESS = 20000; //成功
@@ -111,6 +112,11 @@ public final class HttpUrlConstants {
     //tsdk检查手机号是否被绑定url  POST
     //phone
     public static String getBindPhoneCheckUrl() { return SDK_BASE_URL+"/api/v2/account/bind/phone/check"; }
+
+    //tsdk 绑定手机号url  POST
+    //phone 验证码
+    public static String getBindPhoneUrl() { return SDK_BASE_URL+"/api/v2/account/bind/phone"; }
+
 
 
     //tsdk登出url  POST

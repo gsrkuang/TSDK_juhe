@@ -47,6 +47,8 @@ public final class ConstData {
     public static final int ONEKEY_PASSWORD_DIGITS = 10;//一键注册的随机账号位数
 
 
+    public static final String BIND_SUCCESS = "手机绑定成功";
+    public static final String BIND_FAILURE = "手机绑定失败";
 
 
 }

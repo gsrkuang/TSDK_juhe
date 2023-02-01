@@ -229,7 +229,6 @@ public class ForgetPasswordFragment extends SdkBaseFragment implements MVPForget
     private void goBackMainUI() {
         getFragmentManager().popBackStack();
     }
-
     public void clearAccountText(){
         phoneNumber.setText("");
     }

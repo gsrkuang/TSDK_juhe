@@ -5,15 +5,18 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.KeyEvent;
+import android.widget.Toast;
 
 import com.example.sdklibrary.base.GameSdkApplication;
 import com.example.sdklibrary.callback.SdkCallbackListener;
 import com.example.sdklibrary.config.ConfigInfo;
 import com.example.sdklibrary.config.ConstData;
 import com.example.sdklibrary.config.SDKStatusCode;
+import com.example.sdklibrary.mvp.Imp.LogoutPresenterImp;
 import com.example.sdklibrary.mvp.model.MVPPayCodeBean;
 import com.example.sdklibrary.mvp.model.MVPPlayerBean;
 import com.example.sdklibrary.mvp.model.user.SDKUserResult;
+import com.example.sdklibrary.mvp.presenter.LogoutPresenter;
 import com.example.sdklibrary.tools.LoggerUtils;
 import com.example.sdklibrary.tools.SPDataUtils;
 import com.example.sdklibrary.ui.SdkPayActivity;
@@ -32,6 +35,9 @@ public class GameSdkLogic {
 
     private FloatIconView floatIconView;
 
+    private final String INIT_ERROR = "初始化失败，请先成功初始化";
+
+    private LogoutPresenter logoutPresenterImp = new LogoutPresenterImp();
     private GameSdkLogic() {
     }
 
@@ -53,6 +59,8 @@ public class GameSdkLogic {
     //只有当初始化的时候才可以进行后续操作
     public void sdkInit(Activity context, String appkey, final SdkCallbackListener<String> callback) {
         ConfigInfo.setScreenIsPORTRAIT(context);
+        //这里添加一个SdkInitPresenterImp
+
         checkInit = true;
         if (checkInit) {
             //弹出悬浮窗
@@ -60,6 +68,10 @@ public class GameSdkLogic {
             //全局保存初始化成功的appkey
             GameSdkApplication.getInstance().setAppkey(appkey);
             callback.callback(SDKStatusCode.SUCCESS, "初始化成功");
+        }else {
+            //提示请先初始化
+            showToast(context,INIT_ERROR);
+            return;
         }
     }
 
@@ -76,7 +88,8 @@ public class GameSdkLogic {
             Delegate.loginlistener = loginCallback;
         } else {
 //            loginCallback.callback(SDKStatusCode.LOGOUT_FAILURE, ConstData.LOGIN_FAILURE);
-
+            //提示请先初始化
+            showToast(context,INIT_ERROR);
             return;
         }
 
@@ -88,11 +101,10 @@ public class GameSdkLogic {
 
             SdkLoginDialogFragment dialog = SdkLoginDialogFragment.getInstance();
             dialog.show(context.getFragmentManager(),"SdkLoginDialogFragment");
-
+            dialog.setCancelable(false);
         } else {
-            if (Delegate.loginlistener != null) {
-                Delegate.loginlistener.callback(SDKStatusCode.FAILURE, ConstData.INIT_FAILURE);
-            }
+            //提示请先初始化
+            showToast(context,INIT_ERROR);
             return;
         }
 
@@ -101,7 +113,7 @@ public class GameSdkLogic {
 
     //支付:
     //需要将SDK支付信息传递给具体的方式中
-    public void sdkPay(Context context, MVPPayCodeBean bean, final SdkCallbackListener<String> callback) {
+    public void sdkPay(Activity context, MVPPayCodeBean bean, final SdkCallbackListener<String> callback) {
         LoggerUtils.i("SdkLogic Pay");
         if (checkInit) {
             Intent intent = new Intent(context, SdkPayActivity.class);
@@ -109,24 +121,43 @@ public class GameSdkLogic {
             context.startActivity(intent);
             Delegate.paylistener = callback;
         } else {
-            callback.callback(SDKStatusCode.PAY_FAILURE, ConstData.PAY_FAILURE);
+            //提示请先初始化
+            showToast(context,INIT_ERROR);
             return;
         }
     }
 
 
     //提交游戏信息：
-    public void subGameInfoMethod(MVPPlayerBean bean) {
-        //doing something:
-        LoggerUtils.i("submit Player Information");
+    public void subGameInfoMethod(Activity activity ,MVPPlayerBean bean) {
+        if (checkInit) {
+
+            //doing something:
+            LoggerUtils.i("submit Player Information");
+        } else {
+            //提示请先初始化
+            showToast(activity,INIT_ERROR);
+            return;
+        }
+
         //step:
         //Build HttpRequest   ----> server get Request ------->server return ResponseBody
         //This function is mainly used to record and count player information
     }
 
+    //直接调用登出接口
+    public void sdkLogout(Activity activity){
+        if (checkInit) {
+            logoutPresenterImp.sdkLogout(activity);
+        } else {
+            //提示请先初始化
+            showToast(activity,INIT_ERROR);
+            return;
+        }
+    }
 
     //弹出登出提示,当SdkCallbackListener已经被初始化
-    public void showLogoutDialog(Activity act) {
+/*    public void showLogoutDialog(Activity act) {
         //这里应该弹出退出窗口的确认框，确认框确认后再退出登录
         DialogTips dialogTips = new DialogTips(act);
         dialogTips.setTitle("退出登录");
@@ -151,7 +182,7 @@ public class GameSdkLogic {
         });
         dialogTips.show();
 
-    }
+    }*/
 
     public void sdkInitFloatView(Activity context) {
         floatIconView = new FloatIconView(context);
@@ -190,5 +221,8 @@ public class GameSdkLogic {
 
     }
 
+    public void showToast(Activity activity,String msg){
+        Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
+    }
 
 }

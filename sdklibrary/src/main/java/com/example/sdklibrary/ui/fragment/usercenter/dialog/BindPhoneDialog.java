@@ -211,6 +211,7 @@ public class BindPhoneDialog extends SdkBaseDialog implements MVPBindPhoneView {
     public void bind_success(String msg, String data) {
         //手机绑定成功
         dismiss();
+
         Toast.makeText(act, "手机绑定成功", Toast.LENGTH_SHORT).show();
     }
 

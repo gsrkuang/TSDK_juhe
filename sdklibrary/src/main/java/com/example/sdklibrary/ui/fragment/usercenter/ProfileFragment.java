@@ -27,6 +27,7 @@ import com.example.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
 import com.example.sdklibrary.ui.dialogfragment.SdkUserCenterDialogFragment;
 import com.example.sdklibrary.ui.fragment.usercenter.dialog.BindPhoneDialog;
 import com.example.sdklibrary.ui.fragment.usercenter.dialog.ChangePasswordDialog;
+import com.example.sdklibrary.ui.fragment.usercenter.dialog.LogoutDialog;
 
 
 /**
@@ -169,7 +170,7 @@ public class ProfileFragment extends SdkBaseFragment implements MVPUserInfoView 
 
     //登出:
     private void logoutMethod() {
-        GameSdkLogic.getInstance().showLogoutDialog(getActivity());
+        new LogoutDialog(getActivity()).show();
     }
 
     private String hintPhoneNumber(String number){

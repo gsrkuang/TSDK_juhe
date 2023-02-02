@@ -7,11 +7,13 @@ import com.example.sdklibrary.config.HttpUrlConstants;
 import com.example.sdklibrary.config.LogTAG;
 import com.example.sdklibrary.mvp.model.ApiResponse;
 import com.example.sdklibrary.mvp.model.MVPUserInfoResultBean;
+import com.example.sdklibrary.mvp.model.user.SDKUserResult;
 import com.example.sdklibrary.mvp.presenter.UserInfoPresenter;
 import com.example.sdklibrary.mvp.view.MVPUserInfoView;
 import com.example.sdklibrary.tools.GsonUtils;
 import com.example.sdklibrary.tools.HttpRequestUtil;
 import com.example.sdklibrary.tools.LoggerUtils;
+import com.example.sdklibrary.tools.SPDataUtils;
 import com.example.sdklibrary.tools.ShowInfoUtils;
 import com.google.gson.reflect.TypeToken;
 
@@ -55,8 +57,27 @@ public class UserInfoPresenterImp implements UserInfoPresenter {
                 int dataCode =  bean.getCode();
                 String msg = bean.getMsg();
 
+                //保存用户名和密码，还有用户昵称
+                String nickname = null;
+                String uid = "";
+                String ticket = "";
+                String phone = "";
+                boolean realname = false;
+                if (bean.getData() != null) {
+                    nickname = bean.getData().getUsername();
+                    uid = bean.getData().getUid();
+                    ticket = bean.getData().getTicket();
+                    phone = bean.getData().getPhone();
+                    realname = bean.getData().getRealName();
+                }
+
                 if (dataCode == HttpUrlConstants.BZ_SUCCESS){
                     mvpUserInfoView.getUserInfo_Success(ConstData.USERINFO_SUCCESS, bean.getData());
+
+                    SaveUserData(nickname,
+                            SPDataUtils.getInstance().getUserPassword(),
+                            nickname,uid,phone,realname);
+
                     LoggerUtils.i(LogTAG.userinfo,"userinfo success");
                 }else {
                     //根据不同dataCode做吐司提示
@@ -77,5 +98,11 @@ public class UserInfoPresenterImp implements UserInfoPresenter {
                 mvpUserInfoView.getUserInfo_Failed(ConstData.USERINFO_FAILURE,HttpUrlConstants.NET_NO_LINKING);
             }
         });
+    }
+
+    //使用SharedPreference来存储登陆状态
+    public void SaveUserData(String username, String password, String nickname, String uid,String phone,boolean realname) {
+        LoggerUtils.i(LogTAG.login, "SaveUserData to SharedPreference");
+        SPDataUtils.getInstance().saveLoginData(username, password, nickname, uid,phone,realname);
     }
 }

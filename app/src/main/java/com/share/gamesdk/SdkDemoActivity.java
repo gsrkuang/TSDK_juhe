@@ -100,7 +100,7 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
         player.setServer("女神降临");
         player.setId("8888");
         //player.setXXX.......
-        GameSdkLogic.getInstance().subGameInfoMethod(player);
+        GameSdkLogic.getInstance().subGameInfoMethod(this,player);
 
     }
 
@@ -169,8 +169,7 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
                 subGameInfoMethod();
                 break;
             case R.id.gameLogoutBtn:
-//                logoutMethod();
-//                jumpActivity(X5InfoActivity.class,bolgUrl);
+                GameSdkLogic.getInstance().sdkLogout(this);
                 break;
             case R.id.aboutDes:
 //                jumpActivity(X5InfoActivity.class,desUrl);

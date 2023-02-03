@@ -41,6 +41,11 @@ public final class HttpUrlConstants {
     public static final int BZ_ERROR_SIGN = 12100;//签名错误
     public static final int BZ_ERROR_CODE = 12200;//验证码错误
 
+    public static final int BZ_LIMITED_APP = 14001;// "limit app", "应用限制"
+    public static final int BZ_LIMITED_APP_REG = 14002;// "limit app register", "应用注册限制"
+    public static final int BZ_LIMITED_APP_PAY = 14003; // "limit app payment", "应用支付限制"
+    public static final int BZ_EXPIRED_APP = 16001; // "expired app", "应用过期"
+
     public static final int BZ_CODE = 14200;//Frequently operation
 
     public static final int BZ_UNBIND = 15001;//Unbound phone: 手机号码未被绑定
@@ -72,6 +77,12 @@ public final class HttpUrlConstants {
 
     public static String getPayUrl() {
         return "https://xiyecode.free.svipss.top/api/paypal/pay";
+    }
+
+
+    //tsdk 初始化url  POST
+    public static String getInitUrl() {
+        return SDK_BASE_URL+"/api/v1/app/init";
     }
 
     //tsdk登录url  POST

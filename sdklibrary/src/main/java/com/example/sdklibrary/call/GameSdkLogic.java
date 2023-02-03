@@ -10,19 +10,19 @@ import android.widget.Toast;
 import com.example.sdklibrary.base.GameSdkApplication;
 import com.example.sdklibrary.callback.SdkCallbackListener;
 import com.example.sdklibrary.config.ConfigInfo;
-import com.example.sdklibrary.config.ConstData;
 import com.example.sdklibrary.config.SDKStatusCode;
 import com.example.sdklibrary.mvp.Imp.LogoutPresenterImp;
+import com.example.sdklibrary.mvp.Imp.SdkInitPresenterImp;
 import com.example.sdklibrary.mvp.model.MVPPayCodeBean;
 import com.example.sdklibrary.mvp.model.MVPPlayerBean;
 import com.example.sdklibrary.mvp.model.user.SDKUserResult;
 import com.example.sdklibrary.mvp.presenter.LogoutPresenter;
+import com.example.sdklibrary.mvp.presenter.SdkInitPresenter;
 import com.example.sdklibrary.tools.LoggerUtils;
 import com.example.sdklibrary.tools.SPDataUtils;
 import com.example.sdklibrary.ui.SdkPayActivity;
 import com.example.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
 import com.example.sdklibrary.ui.dialogfragment.SdkUserCenterDialogFragment;
-import com.example.sdklibrary.ui.view.DialogTips;
 import com.example.sdklibrary.ui.view.FloatIconView;
 
 /**
@@ -38,6 +38,8 @@ public class GameSdkLogic {
     private final String INIT_ERROR = "初始化失败，请先成功初始化";
 
     private LogoutPresenter logoutPresenterImp = new LogoutPresenterImp();
+    private SdkInitPresenter sdkInitPresenterImp = new SdkInitPresenterImp();
+
     private GameSdkLogic() {
     }
 
@@ -61,23 +63,47 @@ public class GameSdkLogic {
         ConfigInfo.setScreenIsPORTRAIT(context);
         //这里添加一个SdkInitPresenterImp
 
-        checkInit = true;
-        if (checkInit) {
-            //弹出悬浮窗
-            sdkInitFloatView(context);
-            //全局保存初始化成功的appkey
-            GameSdkApplication.getInstance().setAppkey(appkey);
-            callback.callback(SDKStatusCode.SUCCESS, "初始化成功");
-        }else {
-            //提示请先初始化
-            showToast(context,INIT_ERROR);
-            return;
-        }
+        sdkInitPresenterImp.init(appkey, context, new SdkInitPresenter.InitListener() {
+            @Override
+            public void success(String msg) {
+                checkInit = true;
+
+                GameSdkApplication.getInstance().setAppkey(appkey);
+                //弹出悬浮窗
+                sdkInitFloatView(context);
+                //全局保存初始化成功的appkey
+                callback.callback(SDKStatusCode.SUCCESS, "初始化成功");
+            }
+
+            @Override
+            public void fail(String msg) {
+                checkInit = false;
+                //提示初始化失败信息
+                showToast(context,msg);
+
+                callback.callback(SDKStatusCode.FAILURE, "初始化失败"+msg);
+            }
+        });
+
+
+//        if (checkInit) {
+//            checkInit = true;
+//            //弹出悬浮窗
+//            sdkInitFloatView(context);
+//            //全局保存初始化成功的appkey
+//            GameSdkApplication.getInstance().setAppkey(appkey);
+//            callback.callback(SDKStatusCode.SUCCESS, "初始化成功");
+//        }else {
+//
+//            //提示请先初始化
+//            showToast(context,INIT_ERROR);
+//            return;
+//        }
     }
 
     //登录:
     //理论上初始化成功才可以登录 这里的接口使用的是 玩Android 开放接口
-    public void sdkLogin(Activity context, String appkey, final SdkCallbackListener<SDKUserResult> loginCallback) {
+    public void sdkLogin(Activity context, final SdkCallbackListener<SDKUserResult> loginCallback) {
         LoggerUtils.i("SdkLogic Login");
         if (checkInit) {
 

@@ -111,14 +111,14 @@ public class LogoutPresenterImp implements LogoutPresenter {
 
                     Delegate.loginlistener.callback(SDKStatusCode.LOGOUT_SUCCESS, new SDKUserResult());
 
-                    LoggerUtils.i(LogTAG.userinfo,"logout success");
+                    LoggerUtils.i(LogTAG.userinfo,"sdklogout success");
                 }else {
                     //登出失败，请先登录
 
                     //根据不同dataCode做吐司提示
                     ShowInfoUtils.LogDataCode(mvpLogoutView,dataCode);
                     mvpLogoutView.logoutFailed(ConstData.LOGOUT_FAILURE,bean.getData());
-                    LoggerUtils.i(LogTAG.userinfo,"logout fail");
+                    LoggerUtils.i(LogTAG.userinfo,"sdklogout fail");
                 }
             }
 

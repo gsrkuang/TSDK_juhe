@@ -50,7 +50,7 @@ public class PayCodePresenterImp implements PayCodePresenter {
         HttpRequestUtil.okPostFormRequest(url, map, new HttpRequestUtil.DataCallBack() {
             @Override
             public void requestSuccess(String result) throws Exception {
-                LoggerUtils.i(LogTAG.login, "responseBody:" + result);
+                LoggerUtils.i(LogTAG.pay, "responseBody:" + result);
                 ApiResponse<String> payResultBean = GsonUtils.gson.fromJson(result, new TypeToken<ApiResponse<String>>(){}.getType());
 
                 int ts = payResultBean.getTs();
@@ -60,13 +60,13 @@ public class PayCodePresenterImp implements PayCodePresenter {
 
                 if (HttpUrlConstants.BZ_SUCCESS == dataCode){
                     mvpPayCodeView.onPayCodeSuccess(ConstData.PAYCODE_SUCCESS, data,payType);
-                    LoggerUtils.i(LogTAG.login, "responseBody: paycode Success");
+                    LoggerUtils.i(LogTAG.pay, "responseBody: paycode Success");
                 }else {
+                    mvpPayCodeView.onPayCodeFailed(ConstData.PAYCODE_FAILURE, msg);
+                    LoggerUtils.i(LogTAG.pay, "responseBody: paycode Success");
 
                     //根据不同dataCode做吐司提示
                     ShowInfoUtils.LogDataCode(mvpPayCodeView,dataCode);
-                    mvpPayCodeView.onPayCodeFailed(ConstData.PAYCODE_FAILURE, msg);
-                    LoggerUtils.i(LogTAG.login, "responseBody: paycode Success");
                 }
 
             }

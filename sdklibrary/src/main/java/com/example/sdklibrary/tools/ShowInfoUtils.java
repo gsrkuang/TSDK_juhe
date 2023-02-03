@@ -55,8 +55,27 @@ public class ShowInfoUtils {
                 view.showAppInfo("", "原密码错误");
                 break;
 
+            case HttpUrlConstants.BZ_LIMITED_APP:
+                view.showAppInfo("", "应用限制");
+                break;
+
+            case HttpUrlConstants.BZ_LIMITED_APP_PAY:
+                view.showAppInfo("", "应用支付限制");
+                break;
+
+            case HttpUrlConstants.BZ_LIMITED_APP_REG:
+                view.showAppInfo("", "应用注册限制");
+                break;
+
+            case HttpUrlConstants.BZ_EXPIRED_APP:
+                view.showAppInfo("", "应用过期");
+                break;
+
             default:
                 break;
         }
     }
+
+
+
 }

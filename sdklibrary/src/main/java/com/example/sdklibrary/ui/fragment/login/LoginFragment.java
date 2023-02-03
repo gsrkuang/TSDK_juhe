@@ -344,7 +344,6 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
 
     //判断是否同意隐私
     public boolean checkPrivacy() {
-
         if (!checkPrivacyBox.isChecked()) {
             showToast(AGREE_PRIVACY);
             return false;

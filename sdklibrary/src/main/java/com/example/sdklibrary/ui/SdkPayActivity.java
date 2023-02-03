@@ -211,7 +211,7 @@ public class SdkPayActivity extends SdkBaseActivity implements MVPPayCodeView {
 
 
     private void wechatpayMethod() {
-        Toast.makeText(this, "点击微信支付", Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "点击微信支付", Toast.LENGTH_LONG).show();
         if (null != payBean) {
             payCodePresenterImp.wxpay(payBean, this);
         }
@@ -224,7 +224,7 @@ public class SdkPayActivity extends SdkBaseActivity implements MVPPayCodeView {
             payCodePresenterImp.alipay(payBean, this);
         }
 
-        Toast.makeText(this, "点击支付宝支付", Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "点击支付宝支付", Toast.LENGTH_LONG).show();
 
 //        startActivity(new Intent(this,WebPayActivity.class));
         //测试接入Stripe

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -24,7 +25,7 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
 
     private Button loginButton, payButton, logoutButton, subInfoButton, aboutDesButton;
     private Button testLogin;
-
+    private TextView initText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +45,15 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
         //这里的Object 可以扩展定义一切对象 ,你懂的
         Object object = new Object();
 
-        GameSdkLogic.getInstance().sdkInit(this, "111111", new SdkCallbackListener<String>() {
+        GameSdkLogic.getInstance().sdkInit(this, "90175042", new SdkCallbackListener<String>() {
             @Override
             public void callback(int code, String response) {
                 switch (code) {
                     case SDKStatusCode.SUCCESS:
-                        Toast.makeText(SdkDemoActivity.this, ConstData.INIT_SUCCESS,Toast.LENGTH_SHORT).show();
+                        initText.setText("初始化成功");
                         break;
                     case SDKStatusCode.FAILURE:
-                        Toast.makeText(SdkDemoActivity.this, ConstData.INIT_FAILURE,Toast.LENGTH_SHORT).show();
+                        initText.setText(response);
                         break;
                     case SDKStatusCode.OTHER:
                         Toast.makeText(SdkDemoActivity.this, ConstData.INIT_FAILURE,Toast.LENGTH_SHORT).show();
@@ -64,7 +65,7 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
 
     //登录:
     private void loginMethod() {
-        GameSdkLogic.getInstance().sdkLogin(this,"111111", new SdkCallbackListener<SDKUserResult>() {
+        GameSdkLogic.getInstance().sdkLogin(this, new SdkCallbackListener<SDKUserResult>() {
             @Override
             public void callback(int code, SDKUserResult user) {
                 switch (code) {
@@ -140,12 +141,14 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
     }
 
     private void findView() {
+        initText = findViewById(R.id.init_text);
         loginButton = findViewById(R.id.gameLoginBtn);
         payButton = findViewById(R.id.gamePayBtn);
         logoutButton = findViewById(R.id.gameLogoutBtn);
         subInfoButton = findViewById(R.id.subInfo);
         aboutDesButton = findViewById(R.id.aboutDes);
         testLogin = findViewById(R.id.testLogin);
+
 
         loginButton.setOnClickListener(this);
         payButton.setOnClickListener(this);

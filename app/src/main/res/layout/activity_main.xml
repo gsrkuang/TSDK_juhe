@@ -6,11 +6,16 @@
     android:background="#ffffff"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/init_text"
+        android:gravity="center"
+        android:text="初始化..."></TextView>
     <Button
         android:id="@+id/gameLoginBtn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:text="登录" />
 
     <Button

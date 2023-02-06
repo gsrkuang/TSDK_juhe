@@ -211,7 +211,8 @@ public class GameSdkLogic {
     }*/
 
     public void sdkInitFloatView(Activity context) {
-        floatIconView = new FloatIconView(context);
+        floatIconView = FloatIconView.getInstance(context);
+
         floatIconView.setOnFloatIconViewClickListener(new FloatIconView.OnFloatIconViewClickListener() {
             @Override
             public void onItemClick() {
@@ -219,8 +220,9 @@ public class GameSdkLogic {
                 if (loginStatus) {
 
                     SdkUserCenterDialogFragment dialog = SdkUserCenterDialogFragment.getInstance();
-                    dialog.show(context.getFragmentManager(),"SdkLoginDialogFragment");
-
+                    if (!dialog.isAdded()){
+                        dialog.show(context.getFragmentManager(),"SdkLoginDialogFragment");
+                    }
 
                 } else {
 

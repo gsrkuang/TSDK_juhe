@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.sdklibrary.R;
+import com.example.sdklibrary.call.GameSdkLogic;
 
 /**
  * Date:2022-10-18
@@ -42,6 +43,20 @@ public class FloatIconView extends RelativeLayout {
     private int dpi;
     private Activity activity;
     private View view;
+
+
+    private volatile static FloatIconView floatIconView;
+
+    public static FloatIconView getInstance(Activity activity) {
+        if (floatIconView == null) {
+            synchronized (FloatIconView.class) {
+                if (floatIconView == null) {
+                    floatIconView = new FloatIconView(activity);
+                }
+            }
+        }
+        return floatIconView;
+    }
 
     public FloatIconView(Activity activity) {
         super(activity);
@@ -76,6 +91,7 @@ public class FloatIconView extends RelativeLayout {
         wmParams.y = heightPixels;
         wmParams.width = 150; //设置图片大小
         wmParams.height = 150;
+
         wm.addView(view, wmParams);
 
 

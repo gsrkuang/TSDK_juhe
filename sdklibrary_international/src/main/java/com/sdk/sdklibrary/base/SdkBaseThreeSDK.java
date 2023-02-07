@@ -4,9 +4,11 @@ import android.app.Activity;
 
 import com.sdk.sdklibrary.call.Delegate;
 import com.sdk.sdklibrary.call.GameSdkLogic;
+import com.sdk.sdklibrary.config.SDKStatusCode;
 import com.sdk.sdklibrary.mvp.Imp.LoginPresenterImp;
 import com.sdk.sdklibrary.mvp.Imp.RegistPresenterImp;
 import com.sdk.sdklibrary.mvp.model.MVPLoginBean;
+import com.sdk.sdklibrary.mvp.model.MVPRegisterBean;
 import com.sdk.sdklibrary.mvp.view.MVPLoginView;
 import com.sdk.sdklibrary.mvp.view.MVPRegistView;
 import com.sdk.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;

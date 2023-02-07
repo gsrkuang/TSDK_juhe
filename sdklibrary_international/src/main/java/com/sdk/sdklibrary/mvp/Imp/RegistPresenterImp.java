@@ -4,6 +4,10 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.sdk.sdklibrary.config.ConstData;
+import com.sdk.sdklibrary.config.HttpUrlConstants;
+import com.sdk.sdklibrary.config.LogTAG;
+import com.sdk.sdklibrary.mvp.model.MVPRegistResultBean;
+import com.sdk.sdklibrary.mvp.model.MVPRegisterBean;
 import com.sdk.sdklibrary.mvp.presenter.RegistPresenter;
 import com.sdk.sdklibrary.mvp.view.MVPRegistView;
 import com.sdk.sdklibrary.tools.GsonUtils;

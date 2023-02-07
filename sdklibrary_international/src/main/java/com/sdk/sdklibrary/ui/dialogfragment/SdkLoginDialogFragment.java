@@ -4,6 +4,8 @@ import android.app.Fragment;
 import android.view.View;
 
 import com.example.sdklibrary.R;
+import com.sdk.sdklibrary.base.SdkBaseDialogFragment;
+import com.sdk.sdklibrary.config.ConfigInfo;
 import com.sdk.sdklibrary.ui.fragment.DataGenerator;
 
 /**

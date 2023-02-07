@@ -3,6 +3,7 @@ package com.sdk.sdklibrary.base;
 import android.app.Application;
 
 import com.sdk.sdklibrary.aboutfacebook.FacebookSDK;
+import com.sdk.sdklibrary.tools.SPDataUtils;
 
 /**
  * Created by tzw on 2018/6/4.

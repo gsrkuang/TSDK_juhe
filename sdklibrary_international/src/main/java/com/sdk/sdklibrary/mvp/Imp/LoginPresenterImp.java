@@ -4,6 +4,8 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.sdk.sdklibrary.config.ConstData;
+import com.sdk.sdklibrary.config.HttpUrlConstants;
+import com.sdk.sdklibrary.config.LogTAG;
 import com.sdk.sdklibrary.mvp.model.MVPLoginBean;
 import com.sdk.sdklibrary.mvp.model.MVPLoginResultBean;
 import com.sdk.sdklibrary.mvp.presenter.LoginPresenter;
@@ -11,6 +13,7 @@ import com.sdk.sdklibrary.mvp.view.MVPLoginView;
 import com.sdk.sdklibrary.tools.GsonUtils;
 import com.sdk.sdklibrary.tools.HttpRequestUtil;
 import com.sdk.sdklibrary.tools.LoggerUtils;
+import com.sdk.sdklibrary.tools.SPDataUtils;
 
 import java.io.IOException;
 import java.util.HashMap;

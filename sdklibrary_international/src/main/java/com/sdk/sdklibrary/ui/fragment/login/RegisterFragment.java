@@ -12,7 +12,9 @@ import androidx.annotation.Nullable;
 import com.example.sdklibrary.R;
 import com.sdk.sdklibrary.base.SdkBaseFragment;
 import com.sdk.sdklibrary.call.Delegate;
+import com.sdk.sdklibrary.config.SDKStatusCode;
 import com.sdk.sdklibrary.mvp.Imp.RegistPresenterImp;
+import com.sdk.sdklibrary.mvp.model.MVPRegisterBean;
 import com.sdk.sdklibrary.mvp.view.MVPRegistView;
 import com.sdk.sdklibrary.tools.LoggerUtils;
 

@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.sdk.sdklibrary.base.GameSdkApplication;
 import com.google.gson.Gson;
+import com.sdk.sdklibrary.config.HttpUrlConstants;
 
 import java.io.IOException;
 import java.util.HashMap;

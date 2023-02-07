@@ -6,6 +6,8 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.sdk.sdklibrary.base.GameSdkApplication;
+import com.sdk.sdklibrary.config.HttpUrlConstants;
+import com.sdk.sdklibrary.config.LogTAG;
 
 import java.io.IOException;
 

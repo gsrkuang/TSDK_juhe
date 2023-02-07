@@ -3,20 +3,20 @@ package com.share.gamesdk;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.example.sdklibrary.call.GameSdkLogic;
-import com.example.sdklibrary.callback.SdkCallbackListener;
-import com.example.sdklibrary.config.ConstData;
-import com.example.sdklibrary.config.SDKStatusCode;
-import com.example.sdklibrary.mvp.model.MVPPayCodeBean;
-import com.example.sdklibrary.mvp.model.MVPPlayerBean;
-import com.example.sdklibrary.mvp.model.user.SDKUserResult;
-import com.example.sdklibrary.tools.LoggerUtils;
+import com.sdk.sdklibrary.call.GameSdkLogic;
+import com.sdk.sdklibrary.callback.SdkCallbackListener;
+import com.sdk.sdklibrary.config.ConstData;
+import com.sdk.sdklibrary.config.SDKStatusCode;
+import com.sdk.sdklibrary.mvp.model.MVPPayCodeBean;
+import com.sdk.sdklibrary.mvp.model.MVPPlayerBean;
+import com.sdk.sdklibrary.mvp.model.user.SDKUserResult;
+import com.sdk.sdklibrary.tools.LoggerUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -70,7 +70,11 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
             public void callback(int code, SDKUserResult user) {
                 switch (code) {
                     case SDKStatusCode.SUCCESS:
-                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGIN_SUCCESS + user.getUid(),Toast.LENGTH_SHORT).show();
+
+//                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGIN_SUCCESS + user.getUid(),Toast.LENGTH_SHORT).show();
+//                        Toast toast = new Toast(SdkDemoActivity.this);
+//                        toast.setGravity(Gravity.TOP,0,0);
+
                         //这里就可以获取登录成功以后的信息:
 //                        LoggerUtils.i( "login callBack data : "+user.toString());
                         break;
@@ -149,7 +153,6 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
         aboutDesButton = findViewById(R.id.aboutDes);
         testLogin = findViewById(R.id.testLogin);
 
-
         loginButton.setOnClickListener(this);
         payButton.setOnClickListener(this);
         logoutButton.setOnClickListener(this);
@@ -207,7 +210,6 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        GameSdkLogic.getInstance().onActivityResult(requestCode, resultCode, data, this);
 
     }
 }

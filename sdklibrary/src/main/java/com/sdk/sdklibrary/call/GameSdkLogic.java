@@ -20,6 +20,7 @@ import com.sdk.sdklibrary.tools.SPDataUtils;
 import com.sdk.sdklibrary.ui.SdkPayActivity;
 import com.sdk.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
 import com.sdk.sdklibrary.ui.dialogfragment.SdkUserCenterDialogFragment;
+import com.sdk.sdklibrary.ui.view.AutoLoginDialog;
 import com.sdk.sdklibrary.ui.view.FloatIconView;
 
 /**
@@ -103,6 +104,8 @@ public class GameSdkLogic {
     public void sdkLogin(Activity context, final SdkCallbackListener<SDKUserResult> loginCallback) {
         LoggerUtils.i("SdkLogic Login");
         if (checkInit) {
+
+//            new AutoLoginDialog(context).show();
 
             SdkLoginDialogFragment dialog = SdkLoginDialogFragment.getInstance();
             dialog.show(context.getFragmentManager(),"SdkLoginDialogFragment");

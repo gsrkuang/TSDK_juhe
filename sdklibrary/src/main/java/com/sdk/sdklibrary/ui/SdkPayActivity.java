@@ -144,6 +144,7 @@ public class SdkPayActivity extends SdkBaseActivity implements MVPPayCodeView {
     public void initData() {
         getIntentData();
         //支付宝沙盒支付配置（正式环境需要去掉）
+
         EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
         payCodePresenterImp = new PayCodePresenterImp();
         payCodePresenterImp.attachView(this);

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sdklibrary">
+    package="com.sdk.sdklibrary">
 
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -19,21 +19,21 @@
     <application>
 
         <activity
-            android:name="com.example.sdklibrary.ui.SdkPayActivity"
+            android:name="com.sdk.sdklibrary.ui.SdkPayActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             />
 
         <activity
-            android:name="com.example.sdklibrary.ui.WebPayActivity"
+            android:name="com.sdk.sdklibrary.ui.WebPayActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             />
 
         <activity
-            android:name="com.example.sdklibrary.ui.PrivacyActivity"
+            android:name="com.sdk.sdklibrary.ui.PrivacyActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             />
         <activity
-            android:name="com.example.sdklibrary.ui.AgreementActivity"
+            android:name="com.sdk.sdklibrary.ui.AgreementActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             />
 

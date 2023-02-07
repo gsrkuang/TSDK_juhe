@@ -1,8 +1,6 @@
 package com.share.gamesdk.other;
 
-import android.content.Intent;
-
-import com.example.sdklibrary.base.GameSdkApplication;
+import com.sdk.sdklibrary.base.GameSdkApplication;
 
 /**
  * Created by tzw on 2018/6/8.

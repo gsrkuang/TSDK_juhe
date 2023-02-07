@@ -5,8 +5,8 @@ package com.share.gamesdk.other;
 import android.content.Intent;
 import android.view.View;
 
-import com.example.sdklibrary.base.SdkBaseActivity;
-import com.example.sdklibrary.tools.LoggerUtils;
+import SdkBaseActivity;
+import LoggerUtils;
 import com.share.gamesdk.R;
 
 import java.util.HashMap;

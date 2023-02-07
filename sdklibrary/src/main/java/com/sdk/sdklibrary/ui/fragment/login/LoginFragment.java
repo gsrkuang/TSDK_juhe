@@ -28,6 +28,7 @@ import com.sdk.sdklibrary.ui.AgreementActivity;
 import com.sdk.sdklibrary.ui.PrivacyActivity;
 import com.sdk.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
 import com.sdk.sdklibrary.ui.fragment.login.dialog.OneKeyLoginTipsDialog;
+import com.sdk.sdklibrary.ui.view.LoginSuccessToastView;
 
 /**
  * Date:2022-11-07
@@ -313,6 +314,11 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
         Delegate.loginlistener.callback(SDKStatusCode.SUCCESS, user);
         LoggerUtils.i("登录成功");
         SdkLoginDialogFragment.getInstance().dismiss();//登陆成功销毁登陆窗
+
+        LoginSuccessToastView.showToast(getActivity(),user.getUsername());
+//        Toast toast = Toast.makeText(getActivity(), user.getUsername(),Toast.LENGTH_SHORT);
+//        toast.setGravity(Gravity.TOP, 0, 0);
+//        toast.show();
     }
 
     @Override
@@ -322,6 +328,7 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
         LoggerUtils.i("一键登录成功");
         SdkLoginDialogFragment.getInstance().dismiss();//登陆成功销毁登陆窗
         new OneKeyLoginTipsDialog(getActivity()).show();//弹出一键登录成功后提示保存用户截图
+        LoginSuccessToastView.showToast(getActivity(),user.getUsername());
     }
 
     @Override

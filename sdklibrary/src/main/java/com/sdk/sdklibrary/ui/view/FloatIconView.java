@@ -21,7 +21,6 @@ import com.sdk.sdklibrary.R;
  */
 public class FloatIconView extends RelativeLayout {
 
-
     private OnFloatIconViewClickListener onFloatIconViewClickListener;//悬浮窗监听点击事件
 
     private int millisInFuture = 3;//半隐藏悬浮球倒计时 秒

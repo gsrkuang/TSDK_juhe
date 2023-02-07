@@ -105,11 +105,17 @@ public class GameSdkLogic {
         LoggerUtils.i("SdkLogic Login");
         if (checkInit) {
 
-//            new AutoLoginDialog(context).show();
+            if (!"".equals(SPDataUtils.getInstance().getUserAccount())){
 
-            SdkLoginDialogFragment dialog = SdkLoginDialogFragment.getInstance();
-            dialog.show(context.getFragmentManager(),"SdkLoginDialogFragment");
-            dialog.setCancelable(false);
+                AutoLoginDialog autoLoginDialog = new AutoLoginDialog(context);
+                autoLoginDialog.show();
+            }else {
+                SdkLoginDialogFragment dialog = SdkLoginDialogFragment.getInstance();
+                dialog.show(context.getFragmentManager(),"SdkLoginDialogFragment");
+                dialog.setCancelable(false);
+            }
+
+
 
             Delegate.loginlistener = loginCallback;
         } else {

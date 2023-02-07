@@ -12,10 +12,15 @@ import android.widget.TextView;
 
 import com.sdk.sdklibrary.R;
 import com.sdk.sdklibrary.base.SdkBaseDialog;
+import com.sdk.sdklibrary.call.Delegate;
 import com.sdk.sdklibrary.call.GameSdkLogic;
+import com.sdk.sdklibrary.config.SDKStatusCode;
 import com.sdk.sdklibrary.mvp.Imp.LoginPresenterImp;
 import com.sdk.sdklibrary.mvp.model.MVPLoginBean;
+import com.sdk.sdklibrary.mvp.model.user.SDKUserResult;
 import com.sdk.sdklibrary.mvp.presenter.LoginPresenter;
+import com.sdk.sdklibrary.mvp.view.MVPLoginView;
+import com.sdk.sdklibrary.tools.LoggerUtils;
 import com.sdk.sdklibrary.tools.SPDataUtils;
 import com.sdk.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
 
@@ -24,7 +29,7 @@ import com.sdk.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
  * Time:17:57
  * author:colin
  */
-public class AutoLoginDialog extends SdkBaseDialog {
+public class AutoLoginDialog extends SdkBaseDialog implements MVPLoginView {
 
     private TextView time, account, switchAccount; //倒计时时间
     private CountDownTimer countDownTimer;
@@ -33,7 +38,7 @@ public class AutoLoginDialog extends SdkBaseDialog {
 
     public AutoLoginDialog(Activity act) {
         super(act);
-        act = this.act;
+        this.act = act;
     }
 
 
@@ -57,7 +62,10 @@ public class AutoLoginDialog extends SdkBaseDialog {
 
     @Override
     public void initData() {
+        setCancelable(false);
         loginPresenterImp = new LoginPresenterImp();
+        loginPresenterImp.attachView(this);
+
         account.setText("账号：" + SPDataUtils.getInstance().getUserAccount());
 
         final int timeNum = 4;//倒计时4秒
@@ -72,7 +80,6 @@ public class AutoLoginDialog extends SdkBaseDialog {
             @Override
             public void onFinish() {
 
-                close();
                 //登录
                 MVPLoginBean bean = new MVPLoginBean(SPDataUtils.getInstance().getUserAccount(), SPDataUtils.getInstance().getUserPassword());
                 loginPresenterImp.login(bean, act);
@@ -97,8 +104,35 @@ public class AutoLoginDialog extends SdkBaseDialog {
     }
 
     public void close() {
+
         dismiss();
+        loginPresenterImp.detachView();
     }
 
 
+    @Override
+    public void showAppInfo(String msg, String data) {
+        showToast(data);
+    }
+
+    @Override
+    public void loginSuccess(String msg, SDKUserResult user) {
+
+        GameSdkLogic.getInstance().sdkFloatViewShow();
+        Delegate.loginlistener.callback(SDKStatusCode.SUCCESS, user);
+        LoggerUtils.i("登录成功");
+        LoginSuccessToastView.showToast(act,user.getUsername());
+
+        close();
+    }
+
+    @Override
+    public void onekeyloginSuccess(String msg, SDKUserResult user) {
+
+    }
+
+    @Override
+    public void loginFailed(String msg, String data) {
+
+    }
 }

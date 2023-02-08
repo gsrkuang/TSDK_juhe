@@ -85,12 +85,12 @@ public class FloatIconView extends RelativeLayout {
         wmParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;//
         wmParams.gravity = Gravity.LEFT | Gravity.TOP;//
         wmParams.x = widthPixels; //设置位置像素
-        wmParams.y = heightPixels;
+        wmParams.y = heightPixels/2;
         wmParams.width = 150; //设置图片大小
         wmParams.height = 150;
 
         wm.addView(view, wmParams);
-
+        autoView();
 
     }
 

@@ -52,6 +52,7 @@ public final class ConstData {
 
     public static final String USERINFO_SUCCESS = "获取用户数据成功";
     public static final String USERINFO_FAILURE = "获取用户数据失败";
+    public static final String USERINFO_TOKEN_FAILURE = "获取用户数据Token失效";
 
 
 }

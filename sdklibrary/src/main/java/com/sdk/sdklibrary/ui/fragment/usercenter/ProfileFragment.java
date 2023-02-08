@@ -14,6 +14,7 @@ import com.sdk.sdklibrary.R;
 import com.sdk.sdklibrary.base.SdkBaseFragment;
 import com.sdk.sdklibrary.call.Delegate;
 import com.sdk.sdklibrary.call.GameSdk;
+import com.sdk.sdklibrary.config.ConstData;
 import com.sdk.sdklibrary.config.SDKStatusCode;
 import com.sdk.sdklibrary.mvp.Imp.UserInfoPresenterImp;
 import com.sdk.sdklibrary.mvp.model.MVPUserInfoResultBean;
@@ -202,7 +203,6 @@ public class ProfileFragment extends SdkBaseFragment implements MVPUserInfoView 
         profile_nickname.setText(username);
         profile_userid.setText(uid);
 
-
         if ("".equals(phone)){
             profile_phone.setText("未绑定");
         }else {
@@ -220,6 +220,17 @@ public class ProfileFragment extends SdkBaseFragment implements MVPUserInfoView 
 
     @Override
     public void getUserInfo_Failed(String msg, String data) {
+
         LoggerUtils.i("更新用户数据失败");
+        //调用注销（Token过期）
+        if (msg.equals(ConstData.USERINFO_TOKEN_FAILURE)){
+
+            LoggerUtils.i("更新用户数据Token失效");
+            SPDataUtils.getInstance().clearLogin();
+            SdkUserCenterDialogFragment.getInstance().dismiss();
+            GameSdk.getInstance().sdkFloatViewHide();
+            GameSdk.getInstance().sdkLogin(getActivity());
+            Delegate.loginlistener.callback(SDKStatusCode.LOGOUT_SUCCESS, new SDKUserResult());
+        }
     }
 }

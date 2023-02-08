@@ -78,10 +78,15 @@ public class UserInfoPresenterImp implements UserInfoPresenter {
                             nickname,uid,phone,realname);
 
                     LoggerUtils.i(LogTAG.userinfo,"userinfo success");
+                }else if(dataCode == HttpUrlConstants.BZ_INVALID_TOKEN){
+                    //token已失效
+                    //根据不同dataCode做吐司提示
+                    ShowInfoUtils.LogDataCode(mvpUserInfoView,dataCode);
+                    mvpUserInfoView.getUserInfo_Failed(ConstData.USERINFO_TOKEN_FAILURE, msg);
+                    LoggerUtils.i(LogTAG.userinfo,"userinfo token ");
                 }else {
                     //根据不同dataCode做吐司提示
                     ShowInfoUtils.LogDataCode(mvpUserInfoView,dataCode);
-
                     mvpUserInfoView.getUserInfo_Failed(ConstData.USERINFO_FAILURE, msg);
                     LoggerUtils.i(LogTAG.userinfo,"userinfo fail");
                 }

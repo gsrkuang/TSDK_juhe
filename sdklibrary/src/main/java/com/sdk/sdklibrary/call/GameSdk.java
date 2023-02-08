@@ -24,7 +24,8 @@ import com.sdk.sdklibrary.ui.view.AutoLoginDialog;
 import com.sdk.sdklibrary.ui.view.FloatIconView;
 
 /**
- * Created cbl
+ *@author colin
+ * Date:2023-02-08
  * 供接入使用SDK开发人员调用的核心类
  */
 

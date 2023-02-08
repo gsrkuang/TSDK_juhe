@@ -3,7 +3,8 @@ package com.sdk.sdklibrary.mvp.view;
 import com.sdk.sdklibrary.base.BaseView;
 
 /**
- * Created by bolin
+ *@author colin
+ * Date:2023-02-08
  * 注册
  */
 

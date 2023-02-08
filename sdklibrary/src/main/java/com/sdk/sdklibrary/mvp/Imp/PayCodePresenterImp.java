@@ -21,7 +21,8 @@ import java.util.Map;
 
 
 /**
- * Created by bolin
+ *@author colin
+ * Date:2023-02-08
  * 支付逻辑类 请求---响应判断---
  * 通过MVPLoginView将结果回调出去给View
  */

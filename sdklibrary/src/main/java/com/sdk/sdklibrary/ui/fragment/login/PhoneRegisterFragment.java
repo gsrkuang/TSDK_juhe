@@ -30,7 +30,8 @@ import com.sdk.sdklibrary.ui.PrivacyActivity;
 import com.sdk.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
 
 /**
- * Created by bolin
+ *@author colin
+ * Date:2023-02-08
  * 通过手机号码+验证码注册界面
  */
 

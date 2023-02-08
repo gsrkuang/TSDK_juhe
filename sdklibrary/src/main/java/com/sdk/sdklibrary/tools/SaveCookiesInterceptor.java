@@ -16,7 +16,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * Created by bolin
+ *@author colin
+ * Date:2023-02-08
  * Cookies Interceptor拦截器 关于此拦截器的说明：
  */
 

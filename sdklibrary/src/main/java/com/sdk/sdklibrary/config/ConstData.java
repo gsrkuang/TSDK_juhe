@@ -1,7 +1,8 @@
 package com.sdk.sdklibrary.config;
 
 /**
- * Created by cbl
+ *@author colin
+ * Date:2023-02-08
  * 常量文件
  */
 

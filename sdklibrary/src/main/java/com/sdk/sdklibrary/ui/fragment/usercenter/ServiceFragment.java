@@ -8,7 +8,8 @@ import com.sdk.sdklibrary.base.SdkBaseFragment;
 
 
 /**
- * Created by bolin
+ *@author colin
+ * Date:2023-02-08
  */
 
 public class ServiceFragment extends SdkBaseFragment {

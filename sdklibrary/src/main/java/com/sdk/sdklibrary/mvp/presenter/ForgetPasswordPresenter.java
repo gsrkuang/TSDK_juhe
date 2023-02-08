@@ -8,7 +8,8 @@ import com.sdk.sdklibrary.mvp.model.MVPForgetPasswordBean;
 import com.sdk.sdklibrary.mvp.view.MVPForgetPasswordView;
 
 /**
- * Created by bolin
+ *@author colin
+ * Date:2023-02-08
  * 忘记密码Presenter
  */
 

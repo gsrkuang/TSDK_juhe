@@ -22,7 +22,8 @@ import java.util.Map;
 
 
 /**
- * Created by bolin
+ *@author colin
+ * Date:2023-02-08
  * 注册逻辑类 请求---响应判断---接口回调
  */
 

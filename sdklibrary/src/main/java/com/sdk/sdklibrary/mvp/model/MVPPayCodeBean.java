@@ -3,7 +3,8 @@ package com.sdk.sdklibrary.mvp.model;
 import java.io.Serializable;
 
 /**
- * Created by bolin
+ *@author colin
+ * Date:2023-02-08
  * 支付bean
  */
 

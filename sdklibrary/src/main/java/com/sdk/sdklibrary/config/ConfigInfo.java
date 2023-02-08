@@ -3,7 +3,8 @@ package com.sdk.sdklibrary.config;
 import android.app.Activity;
 
 /**
- * Created by cbl
+ *@author colin
+ * Date:2023-02-08
  * 全局配置文件:
  * 切换横竖屏
  * 是否支持在窗口以外关闭界面

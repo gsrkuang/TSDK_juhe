@@ -3,7 +3,8 @@ package com.sdk.sdklibrary.tools;
 import android.util.Log;
 
 /**
- * Created by bolin
+ *@author colin
+ * Date:2023-02-08
  * 日志工具类
  * 支持debug/release(打开/关闭 调试日志)
  * 支持自定义日志TAG

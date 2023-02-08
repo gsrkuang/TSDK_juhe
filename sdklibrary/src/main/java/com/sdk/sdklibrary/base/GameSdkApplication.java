@@ -5,7 +5,8 @@ import android.app.Application;
 import com.sdk.sdklibrary.tools.SPDataUtils;
 
 /**
- * Created by cbl
+ *@author colin
+ * Date:2023-02-08
  * 自定义Application
  */
 

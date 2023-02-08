@@ -7,7 +7,8 @@ import com.sdk.sdklibrary.mvp.model.MVPPayCodeBean;
 import com.sdk.sdklibrary.mvp.view.MVPPayCodeView;
 
 /**
- * Created by bolin
+ *@author colin
+ * Date:2023-02-08
  * 登录Presenter
  */
 

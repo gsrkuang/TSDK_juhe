@@ -20,7 +20,8 @@ import com.sdk.sdklibrary.config.ConfigInfo;
 import com.sdk.sdklibrary.tools.ActivityUtils;
 
 /**
- * Created by cbl
+ *@author colin
+ * Date:2023-02-08
  * Activity基类
  */
 

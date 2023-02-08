@@ -4,7 +4,8 @@ import com.sdk.sdklibrary.base.BaseView;
 import com.sdk.sdklibrary.mvp.model.user.SDKUserResult;
 
 /**
- * Created by bolin
+ *@author colin
+ * Date:2023-02-08
  * 登录
  */
 

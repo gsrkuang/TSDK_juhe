@@ -31,7 +31,8 @@ import com.sdk.sdklibrary.ui.fragment.usercenter.dialog.LogoutDialog;
 
 
 /**
- * Created by bolin
+ *@author colin
+ * Date:2023-02-08
  * 个人档案界面
  */
 

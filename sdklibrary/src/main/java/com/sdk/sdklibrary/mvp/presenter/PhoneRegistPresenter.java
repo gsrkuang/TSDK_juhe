@@ -8,7 +8,8 @@ import com.sdk.sdklibrary.mvp.model.MVPPhoneRegisterBean;
 import com.sdk.sdklibrary.mvp.view.MVPPhoneRegistView;
 
 /**
- * Created by bolin
+ *@author colin
+ * Date:2023-02-08
  * 注册Presenter
  */
 

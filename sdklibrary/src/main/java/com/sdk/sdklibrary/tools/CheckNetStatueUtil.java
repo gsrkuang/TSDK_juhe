@@ -5,7 +5,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 /**
- * Created by bolin
+ *@author colin
+ * Date:2023-02-08
  */
 
 public class CheckNetStatueUtil {

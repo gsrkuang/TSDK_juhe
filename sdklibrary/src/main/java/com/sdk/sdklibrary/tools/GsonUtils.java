@@ -12,6 +12,8 @@ import java.lang.reflect.Type;
 import java.util.Map;
 
 /**
+ *  *@author colin
+ *   * Date:2023-02-08
  * Gson工具类
  */
 

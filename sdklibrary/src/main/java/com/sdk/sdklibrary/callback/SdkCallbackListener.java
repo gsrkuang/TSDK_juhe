@@ -1,7 +1,8 @@
 package com.sdk.sdklibrary.callback;
 
 /**
- * Created by cbl
+ *@author colin
+ * Date:2023-02-08
  * 全局回调
  */
 

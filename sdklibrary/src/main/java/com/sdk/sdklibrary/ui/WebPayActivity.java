@@ -34,7 +34,11 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-
+/**
+ *@author colin
+ * Date:2023-02-08
+ * 支付类
+ */
 public class WebPayActivity extends SdkBaseActivity {
 
     WebView mWebView;

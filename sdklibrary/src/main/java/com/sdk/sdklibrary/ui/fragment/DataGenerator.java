@@ -12,7 +12,8 @@ import com.sdk.sdklibrary.ui.fragment.usercenter.ServiceFragment;
 
 
 /**
- * Created by bolin
+ *@author colin
+ * Date:2023-02-08
  */
 
 public class DataGenerator {

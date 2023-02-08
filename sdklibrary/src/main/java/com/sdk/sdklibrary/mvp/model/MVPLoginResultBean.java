@@ -3,7 +3,8 @@ package com.sdk.sdklibrary.mvp.model;
 import java.util.List;
 
 /**
- * Created by bolin
+ *@author colin
+ * Date:2023-02-08
  */
 
 public class MVPLoginResultBean {

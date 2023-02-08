@@ -1,7 +1,8 @@
 package com.sdk.sdklibrary.mvp.model;
 
 /**
- * Created by bolin 2023.01.13
+ *@author colin
+ * Date:2023-02-08
  * 手机号码绑定
  */
 

@@ -31,7 +31,8 @@ import com.sdk.sdklibrary.ui.PrivacyActivity;
 import com.sdk.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
 
 /**
- * Created by bolin
+ *@author colin
+ * Date:2023-02-08
  * 通过用户自定义账号的注册界面
  */
 

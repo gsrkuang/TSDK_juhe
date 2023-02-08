@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.sdk.sdklibrary.R;
 import com.sdk.sdklibrary.base.SdkBaseFragment;
 import com.sdk.sdklibrary.call.Delegate;
-import com.sdk.sdklibrary.call.GameSdkLogic;
+import com.sdk.sdklibrary.call.GameSdk;
 import com.sdk.sdklibrary.config.SDKStatusCode;
 import com.sdk.sdklibrary.mvp.Imp.PhoneRegistPresenterImp;
 import com.sdk.sdklibrary.mvp.model.MVPPhoneRegisterBean;
@@ -273,7 +273,7 @@ public class PhoneRegisterFragment extends SdkBaseFragment implements MVPPhoneRe
 
     @Override
     public void loginSuccess(String msg, SDKUserResult user) {
-        GameSdkLogic.getInstance().sdkFloatViewShow();
+        GameSdk.getInstance().sdkFloatViewShow();
         SdkLoginDialogFragment.getInstance().dismiss();//注册成功销毁登陆窗
         LoggerUtils.i("手机验证码登陆成功");
         Delegate.loginlistener.callback(SDKStatusCode.SUCCESS,user);

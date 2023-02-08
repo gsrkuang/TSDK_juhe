@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.sdk.sdklibrary.R;
 import com.sdk.sdklibrary.base.SdkBaseDialog;
 import com.sdk.sdklibrary.call.Delegate;
-import com.sdk.sdklibrary.call.GameSdkLogic;
+import com.sdk.sdklibrary.call.GameSdk;
 import com.sdk.sdklibrary.config.SDKStatusCode;
 import com.sdk.sdklibrary.mvp.Imp.LoginPresenterImp;
 import com.sdk.sdklibrary.mvp.model.MVPLoginBean;
@@ -118,8 +118,8 @@ public class AutoLoginDialog extends SdkBaseDialog implements MVPLoginView {
     @Override
     public void loginSuccess(String msg, SDKUserResult user) {
 
-//        GameSdkLogic.getInstance().sdkInitFloatView(act);
-        GameSdkLogic.getInstance().sdkFloatViewShow();
+//        GameSdk.getInstance().sdkInitFloatView(act);
+        GameSdk.getInstance().sdkFloatViewShow();
 //        new FloatIconView(act).show();
 
         Delegate.loginlistener.callback(SDKStatusCode.SUCCESS, user);

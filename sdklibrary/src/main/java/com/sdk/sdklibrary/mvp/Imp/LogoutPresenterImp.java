@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.sdk.sdklibrary.call.Delegate;
-import com.sdk.sdklibrary.call.GameSdkLogic;
+import com.sdk.sdklibrary.call.GameSdk;
 import com.sdk.sdklibrary.config.ConstData;
 import com.sdk.sdklibrary.config.HttpUrlConstants;
 import com.sdk.sdklibrary.config.LogTAG;
@@ -102,8 +102,8 @@ public class LogoutPresenterImp implements LogoutPresenter {
                 if (dataCode == HttpUrlConstants.BZ_SUCCESS){
 
                     SPDataUtils.getInstance().clearLogin();
-                    GameSdkLogic.getInstance().sdkFloatViewHide();
-                    GameSdkLogic.getInstance().sdkLogin(act);
+                    GameSdk.getInstance().sdkFloatViewHide();
+                    GameSdk.getInstance().sdkLogin(act);
 
                     Delegate.loginlistener.callback(SDKStatusCode.LOGOUT_SUCCESS, new SDKUserResult());
 

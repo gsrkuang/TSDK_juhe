@@ -266,8 +266,9 @@ public class SdkPayActivity extends SdkBaseActivity implements MVPPayCodeView {
             intent.putExtra("webUrl",data);
             intent.putExtra("orderId",payBean.getoId());
             startActivity(intent);
+
+            finish();
         }
-        finish();
     }
 
     @Override

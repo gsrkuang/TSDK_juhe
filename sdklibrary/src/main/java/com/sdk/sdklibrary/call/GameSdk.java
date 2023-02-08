@@ -28,7 +28,7 @@ import com.sdk.sdklibrary.ui.view.FloatIconView;
  * 供接入使用SDK开发人员调用的核心类
  */
 
-public class GameSdkLogic {
+public class GameSdk {
     private boolean checkInit;
 
     private FloatIconView floatIconView;
@@ -38,16 +38,16 @@ public class GameSdkLogic {
     private LogoutPresenter logoutPresenterImp = new LogoutPresenterImp();
     private SdkInitPresenter sdkInitPresenterImp = new SdkInitPresenterImp();
 
-    private GameSdkLogic() {
+    private GameSdk() {
     }
 
-    private volatile static GameSdkLogic sdkLogic;
+    private volatile static GameSdk sdkLogic;
 
-    public static GameSdkLogic getInstance() {
+    public static GameSdk getInstance() {
         if (sdkLogic == null) {
-            synchronized (GameSdkLogic.class) {
+            synchronized (GameSdk.class) {
                 if (sdkLogic == null) {
-                    sdkLogic = new GameSdkLogic();
+                    sdkLogic = new GameSdk();
                 }
             }
         }
@@ -250,10 +250,6 @@ public class GameSdkLogic {
     public void sdkFloatViewHide() {
         floatIconView.hide();
     }
-//    public void sdkFloatViewDestory() {
-//        floatIconView = null;
-//    }
-
 
     public void showToast(Activity activity,String msg){
         Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();

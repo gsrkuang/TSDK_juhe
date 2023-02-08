@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.sdk.sdklibrary.R;
 import com.sdk.sdklibrary.base.SdkBaseFragment;
 import com.sdk.sdklibrary.call.Delegate;
-import com.sdk.sdklibrary.call.GameSdkLogic;
+import com.sdk.sdklibrary.call.GameSdk;
 import com.sdk.sdklibrary.config.SDKStatusCode;
 import com.sdk.sdklibrary.mvp.Imp.UserInfoPresenterImp;
 import com.sdk.sdklibrary.mvp.model.MVPUserInfoResultBean;
@@ -148,7 +148,7 @@ public class ProfileFragment extends SdkBaseFragment implements MVPUserInfoView 
                     SPDataUtils.getInstance().clearLogin();
                     dialog.dismiss();
                     SdkUserCenterDialogFragment.getInstance().dismiss();
-                    GameSdkLogic.getInstance().sdkFloatViewHide();
+                    GameSdk.getInstance().sdkFloatViewHide();
 
                     SdkLoginDialogFragment dialog = SdkLoginDialogFragment.getInstance();
                     dialog.show(getActivity().getFragmentManager(),"SdkLoginDialogFragment");

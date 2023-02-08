@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sdk.sdklibrary.call.GameSdkLogic;
+import com.sdk.sdklibrary.call.GameSdk;
 import com.sdk.sdklibrary.callback.SdkCallbackListener;
 import com.sdk.sdklibrary.config.ConstData;
 import com.sdk.sdklibrary.config.SDKStatusCode;
@@ -44,8 +44,9 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
     private void init() {
         //这里的Object 可以扩展定义一切对象 ,你懂的
         Object object = new Object();
-
-        GameSdkLogic.getInstance().sdkInit(this, "90175042", new SdkCallbackListener<String>() {
+        //支付限制：90175042
+        //注册限制：90316196
+        GameSdk.getInstance().sdkInit(this, "90316196", new SdkCallbackListener<String>() {
             @Override
             public void callback(int code, String response) {
                 switch (code) {
@@ -65,7 +66,7 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
 
     //登录:
     private void loginMethod() {
-        GameSdkLogic.getInstance().sdkLogin(this, new SdkCallbackListener<SDKUserResult>() {
+        GameSdk.getInstance().sdkLogin(this, new SdkCallbackListener<SDKUserResult>() {
             @Override
             public void callback(int code, SDKUserResult user) {
                 switch (code) {
@@ -89,10 +90,10 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
                         break;
                     case SDKStatusCode.LOGOUT_SUCCESS:
                         //前提是已经登录成功
-                        finish();
-                        startActivity(getIntent());
+//                        finish();
+//                        startActivity(getIntent());
 
-//                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGOUT_SUCCESS,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGOUT_SUCCESS,Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
@@ -107,7 +108,7 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
         player.setServer("女神降临");
         player.setId("8888");
         //player.setXXX.......
-        GameSdkLogic.getInstance().subGameInfoMethod(this,player);
+        GameSdk.getInstance().subGameInfoMethod(this,player);
 
     }
 
@@ -124,7 +125,7 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
         payBean.setPrice("1"); //单位分
         payBean.setCallbackInfo("返回信息");
 
-        GameSdkLogic.getInstance().sdkPay(this, payBean, new SdkCallbackListener<String>() {
+        GameSdk.getInstance().sdkPay(this, payBean, new SdkCallbackListener<String>() {
             @Override
             public void callback(int code, String response) {
                 switch (code) {
@@ -177,7 +178,7 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
                 subGameInfoMethod();
                 break;
             case R.id.gameLogoutBtn:
-                GameSdkLogic.getInstance().sdkLogout(this);
+                GameSdk.getInstance().sdkLogout(this);
                 break;
             case R.id.aboutDes:
 //                jumpActivity(X5InfoActivity.class,desUrl);

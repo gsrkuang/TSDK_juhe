@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.sdk.sdklibrary.R;
 import com.sdk.sdklibrary.base.SdkBaseFragment;
 import com.sdk.sdklibrary.call.Delegate;
-import com.sdk.sdklibrary.call.GameSdkLogic;
+import com.sdk.sdklibrary.call.GameSdk;
 import com.sdk.sdklibrary.config.SDKStatusCode;
 import com.sdk.sdklibrary.mvp.Imp.LoginPresenterImp;
 import com.sdk.sdklibrary.mvp.Imp.RegistPresenterImp;
@@ -304,7 +304,7 @@ public class RegisterFragment extends SdkBaseFragment implements MVPRegistView, 
     @Override
     public void loginSuccess(String msg, SDKUserResult user) {
 
-        GameSdkLogic.getInstance().sdkFloatViewShow();
+        GameSdk.getInstance().sdkFloatViewShow();
         Delegate.loginlistener.callback(SDKStatusCode.SUCCESS, user);
         LoggerUtils.i("登录成功");
         SdkLoginDialogFragment.getInstance().dismiss();//登陆成功销毁登陆窗

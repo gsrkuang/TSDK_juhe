@@ -7,7 +7,7 @@ import android.widget.Button;
 import com.sdk.sdklibrary.R;
 import com.sdk.sdklibrary.base.SdkBaseDialog;
 import com.sdk.sdklibrary.call.Delegate;
-import com.sdk.sdklibrary.call.GameSdkLogic;
+import com.sdk.sdklibrary.call.GameSdk;
 import com.sdk.sdklibrary.config.SDKStatusCode;
 import com.sdk.sdklibrary.mvp.Imp.LogoutPresenterImp;
 import com.sdk.sdklibrary.mvp.model.user.SDKUserResult;
@@ -102,8 +102,8 @@ public class LogoutDialog extends SdkBaseDialog implements MVPLogoutView {
         SPDataUtils.getInstance().clearLogin();
         dismiss();
         SdkUserCenterDialogFragment.getInstance().dismiss();
-        GameSdkLogic.getInstance().sdkFloatViewHide();
-        GameSdkLogic.getInstance().sdkLogin(act);
+        GameSdk.getInstance().sdkFloatViewHide();
+        GameSdk.getInstance().sdkLogin(act);
         Delegate.loginlistener.callback(SDKStatusCode.LOGOUT_SUCCESS, new SDKUserResult());
     }
 

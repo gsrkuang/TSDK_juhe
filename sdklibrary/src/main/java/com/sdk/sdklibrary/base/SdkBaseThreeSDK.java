@@ -3,7 +3,7 @@ package com.sdk.sdklibrary.base;
 import android.app.Activity;
 
 import com.sdk.sdklibrary.call.Delegate;
-import com.sdk.sdklibrary.call.GameSdkLogic;
+import com.sdk.sdklibrary.call.GameSdk;
 import com.sdk.sdklibrary.config.SDKStatusCode;
 import com.sdk.sdklibrary.mvp.Imp.LoginPresenterImp;
 import com.sdk.sdklibrary.mvp.Imp.RegistPresenterImp;
@@ -59,7 +59,7 @@ public class SdkBaseThreeSDK implements MVPLoginView, MVPRegistView {
 
     @Override
     public void loginSuccess(String msg, SDKUserResult user) {
-        GameSdkLogic.getInstance().sdkFloatViewShow();
+        GameSdk.getInstance().sdkFloatViewShow();
         SdkLoginDialogFragment.getInstance().dismiss();
         Delegate.loginlistener.callback(SDKStatusCode.SUCCESS, user);
     }
@@ -80,7 +80,7 @@ public class SdkBaseThreeSDK implements MVPLoginView, MVPRegistView {
 
     @Override
     public void registSuccess(String msg, String data) {
-        GameSdkLogic.getInstance().sdkFloatViewShow();
+        GameSdk.getInstance().sdkFloatViewShow();
         SdkLoginDialogFragment.getInstance().dismiss();
         Delegate.loginlistener.callback(SDKStatusCode.SUCCESS, accountId);
     }

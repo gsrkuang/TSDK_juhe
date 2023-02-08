@@ -271,8 +271,11 @@ public class FloatIconView extends RelativeLayout {
     }
     public void destory() {
         hide();
-        wm.removeViewImmediate(this);
+//        wm.removeViewImmediate(this);
+
     }
+
+
 
     //当悬浮按钮被点击
     public void clickView(){

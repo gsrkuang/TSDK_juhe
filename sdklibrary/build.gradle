@@ -46,8 +46,8 @@ dependencies {
     implementation files('libs/okio-1.14.1.jar')
 
     // 支付宝 SDK AAR 包所需的配置
-    implementation 'com.alipay.sdk:alipaysdk-android:+@aar'
-//    embed 'com.alipay.sdk:alipaysdk-android:+@aar'
+//    implementation 'com.alipay.sdk:alipaysdk-android:+@aar'
+    embed 'com.alipay.sdk:alipaysdk-android:+@aar'
 
 
 

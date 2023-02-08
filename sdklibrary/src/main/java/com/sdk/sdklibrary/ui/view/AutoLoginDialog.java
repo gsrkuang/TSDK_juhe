@@ -118,7 +118,10 @@ public class AutoLoginDialog extends SdkBaseDialog implements MVPLoginView {
     @Override
     public void loginSuccess(String msg, SDKUserResult user) {
 
+//        GameSdkLogic.getInstance().sdkInitFloatView(act);
         GameSdkLogic.getInstance().sdkFloatViewShow();
+//        new FloatIconView(act).show();
+
         Delegate.loginlistener.callback(SDKStatusCode.SUCCESS, user);
         LoggerUtils.i("登录成功");
         LoginSuccessToastView.showToast(act,user.getUsername());

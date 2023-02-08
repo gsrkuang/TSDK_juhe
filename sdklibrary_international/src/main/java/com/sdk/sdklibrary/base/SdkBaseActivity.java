@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.sdklibrary.R;
+import com.sdk.sdklibrary.config.ConfigInfo;
 import com.sdk.sdklibrary.tools.ActivityUtils;
 
 /**

@@ -71,3 +71,7 @@ dependencies {
 sdklibrary_international是国际版
 sdklibrary是国内版本，国内版本目前新增了alipay支付方式
 
+-------------------------------------------------------
+国内版本的开发
+
+

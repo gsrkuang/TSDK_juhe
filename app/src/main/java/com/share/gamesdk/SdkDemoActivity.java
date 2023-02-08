@@ -89,8 +89,10 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
                         break;
                     case SDKStatusCode.LOGOUT_SUCCESS:
                         //前提是已经登录成功
+                        finish();
+                        startActivity(getIntent());
 
-                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGOUT_SUCCESS,Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(SdkDemoActivity.this, ConstData.LOGOUT_SUCCESS,Toast.LENGTH_SHORT).show();
                         break;
                 }
             }

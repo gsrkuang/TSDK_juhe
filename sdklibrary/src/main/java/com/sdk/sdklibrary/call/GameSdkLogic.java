@@ -217,8 +217,8 @@ public class GameSdkLogic {
     }*/
 
     public void sdkInitFloatView(Activity context) {
-        floatIconView = FloatIconView.getInstance(context);
-
+//        floatIconView = FloatIconView.getInstance(context);
+        floatIconView = new FloatIconView(context);
         floatIconView.setOnFloatIconViewClickListener(new FloatIconView.OnFloatIconViewClickListener() {
             @Override
             public void onItemClick() {
@@ -250,6 +250,9 @@ public class GameSdkLogic {
     public void sdkFloatViewHide() {
         floatIconView.hide();
     }
+//    public void sdkFloatViewDestory() {
+//        floatIconView = null;
+//    }
 
 
     public void showToast(Activity activity,String msg){

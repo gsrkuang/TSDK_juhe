@@ -16,6 +16,7 @@ import com.sdk.sdklibrary.mvp.view.MVPLogoutView;
 import com.sdk.sdklibrary.tools.LoggerUtils;
 import com.sdk.sdklibrary.tools.SPDataUtils;
 import com.sdk.sdklibrary.ui.dialogfragment.SdkUserCenterDialogFragment;
+import com.sdk.sdklibrary.ui.view.FloatIconView;
 
 
 /**

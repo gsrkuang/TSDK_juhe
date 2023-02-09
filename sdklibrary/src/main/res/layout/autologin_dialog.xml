@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="#11ffffff">
+android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="260dp"
@@ -22,7 +21,6 @@ android:background="#11ffffff">
                 android:id="@+id/titleTips"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:text="自动登录中"
                 android:textColor="#38ADFF"
                 android:textSize="16sp" />
@@ -78,7 +76,6 @@ android:background="#11ffffff">
                 android:background="#000" />
 
         </LinearLayout>
-
     </LinearLayout>
 
 </RelativeLayout>

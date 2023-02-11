@@ -46,7 +46,7 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
         Object object = new Object();
         //支付限制：90175042
         //注册限制：90316196
-        GameSdk.getInstance().sdkInit(this, "90316196", new SdkCallbackListener<String>() {
+        GameSdk.getInstance().sdkInit(this, "111111", new SdkCallbackListener<String>() {
             @Override
             public void callback(int code, String response) {
                 switch (code) {
@@ -103,7 +103,7 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
     //提交 Player 信息 上传玩家信息
     private void subGameInfoMethod() {
         MVPPlayerBean player = new MVPPlayerBean();
-        player.setGameName("扣扣飞车");
+        player.setGameName("盲者耀荣");
         player.setName("有意思的少年");
         player.setServer("女神降临");
         player.setId("8888");

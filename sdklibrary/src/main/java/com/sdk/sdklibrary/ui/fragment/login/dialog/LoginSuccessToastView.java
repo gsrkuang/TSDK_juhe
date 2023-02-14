@@ -1,4 +1,4 @@
-package com.sdk.sdklibrary.ui.view;
+package com.sdk.sdklibrary.ui.fragment.login.dialog;
 
 import android.content.Context;
 import android.view.Gravity;

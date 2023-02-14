@@ -1,13 +1,8 @@
-package com.sdk.sdklibrary.ui.view;
+package com.sdk.sdklibrary.ui.fragment.login.dialog;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
-import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sdk.sdklibrary.R;
@@ -40,7 +35,6 @@ public class AutoLoginDialog extends SdkBaseDialog implements MVPLoginView {
         super(act);
         this.act = act;
     }
-
 
     @Override
     public int getLayoutId() {
@@ -124,7 +118,7 @@ public class AutoLoginDialog extends SdkBaseDialog implements MVPLoginView {
 
         Delegate.loginlistener.callback(SDKStatusCode.SUCCESS, user);
         LoggerUtils.i("登录成功");
-        LoginSuccessToastView.showToast(act,user.getUsername());
+        LoginSuccessToastView.showToast(act, user.getUsername());
 
         close();
     }

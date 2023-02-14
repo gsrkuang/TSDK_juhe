@@ -18,6 +18,7 @@ import com.sdk.sdklibrary.R;
  * Date:2022-10-18
  * Time:11:33
  * author:colin
+ * 悬浮窗view
  */
 public class FloatIconView extends RelativeLayout {
 

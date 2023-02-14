@@ -20,7 +20,7 @@ import com.sdk.sdklibrary.tools.SPDataUtils;
 import com.sdk.sdklibrary.ui.SdkPayActivity;
 import com.sdk.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
 import com.sdk.sdklibrary.ui.dialogfragment.SdkUserCenterDialogFragment;
-import com.sdk.sdklibrary.ui.view.AutoLoginDialog;
+import com.sdk.sdklibrary.ui.fragment.login.dialog.AutoLoginDialog;
 import com.sdk.sdklibrary.ui.view.FloatIconView;
 
 /**

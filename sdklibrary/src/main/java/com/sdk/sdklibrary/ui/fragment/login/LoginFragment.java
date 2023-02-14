@@ -28,7 +28,7 @@ import com.sdk.sdklibrary.ui.AgreementActivity;
 import com.sdk.sdklibrary.ui.PrivacyActivity;
 import com.sdk.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
 import com.sdk.sdklibrary.ui.fragment.login.dialog.OneKeyLoginTipsDialog;
-import com.sdk.sdklibrary.ui.view.LoginSuccessToastView;
+import com.sdk.sdklibrary.ui.fragment.login.dialog.LoginSuccessToastView;
 
 /**
  * Date:2022-11-07

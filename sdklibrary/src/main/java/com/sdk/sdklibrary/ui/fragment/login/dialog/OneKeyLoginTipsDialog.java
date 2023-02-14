@@ -13,6 +13,7 @@ import com.sdk.sdklibrary.tools.SPDataUtils;
  * Date:2023-01-30
  * Time:15:44
  * author:colin
+ * 一键登录dialog，提示用户保存一键登录后的密码
  */
 public class OneKeyLoginTipsDialog extends SdkBaseDialog {
 

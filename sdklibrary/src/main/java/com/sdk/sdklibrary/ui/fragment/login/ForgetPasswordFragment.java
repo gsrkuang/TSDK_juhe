@@ -1,5 +1,6 @@
 package com.sdk.sdklibrary.ui.fragment.login;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
@@ -9,15 +10,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sdk.sdklibrary.R;
+import com.sdk.sdklibrary.base.SdkBaseDialog;
 import com.sdk.sdklibrary.base.SdkBaseFragment;
+import com.sdk.sdklibrary.call.Delegate;
+import com.sdk.sdklibrary.call.GameSdk;
+import com.sdk.sdklibrary.config.SDKStatusCode;
 import com.sdk.sdklibrary.mvp.Imp.ForgetPasswordPresenterImp;
+import com.sdk.sdklibrary.mvp.Imp.LoginPresenterImp;
 import com.sdk.sdklibrary.mvp.model.MVPForgetPasswordBean;
+import com.sdk.sdklibrary.mvp.model.MVPLoginBean;
+import com.sdk.sdklibrary.mvp.model.user.SDKUserResult;
 import com.sdk.sdklibrary.mvp.presenter.ForgetPasswordPresenter;
+import com.sdk.sdklibrary.mvp.presenter.LoginPresenter;
 import com.sdk.sdklibrary.mvp.view.MVPForgetPasswordView;
+import com.sdk.sdklibrary.mvp.view.MVPLoginView;
 import com.sdk.sdklibrary.tools.LoggerUtils;
+import com.sdk.sdklibrary.tools.SPDataUtils;
+import com.sdk.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
+import com.sdk.sdklibrary.ui.fragment.login.dialog.LoginSuccessToastView;
 
 /**
  *@author colin

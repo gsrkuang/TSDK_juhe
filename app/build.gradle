@@ -41,6 +41,9 @@ dependencies {
 
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation project(':sdklibrary')
+    implementation 'androidx.test.ext:junit:1.1.3'
+    testImplementation 'org.testng:testng:6.9.6'
+    androidTestImplementation 'org.testng:testng:6.9.6'
 
 //    implementation project(':sdklibrary_international')
 

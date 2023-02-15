@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import com.sdk.sdklibrary.R;
 import com.sdk.sdklibrary.base.SdkBaseDialog;
+import com.sdk.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
 
 /**
  * Date:2023-02-10
@@ -47,6 +48,10 @@ public class AntiAddictionDialog extends SdkBaseDialog {
 
     @Override
     public void processClick(View v) {
+        if (v.getId() == R.id.confirmTipsButton) {
+            //提交代码身份证和姓名信息
 
+
+        }
     }
 }

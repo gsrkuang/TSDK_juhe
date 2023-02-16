@@ -11,7 +11,7 @@ package com.sdk.sdklibrary.ui.fragment.login.dialog;
  * 您可在周五、周六、周日和法定节假日每日20时至21时登陆游戏，
  * 其他时间将无法为未成年人用户提供游戏服务。
  */
-class AntiAddictionFailureTipsDialog {
+public class AntiAddictionFailureTipsDialog {
 
 
 }

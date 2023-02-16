@@ -1,13 +1,14 @@
 package com.share.gamesdk;
 
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.testng.annotations.Test;
 
 import static org.junit.Assert.*;
+
+import androidx.test.InstrumentationRegistry;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 /**
  * Instrumented test, which will execute on an Android device.

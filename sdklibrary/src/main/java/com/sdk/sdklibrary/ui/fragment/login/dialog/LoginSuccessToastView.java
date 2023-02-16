@@ -15,6 +15,8 @@ import com.sdk.sdklibrary.config.ConstData;
  * Date:2023-02-06
  * Time:19:30
  * author:colin
+ *
+ * 自定义Toast，在顶部弹出
  */
 public class LoginSuccessToastView {
     private static Toast toast;

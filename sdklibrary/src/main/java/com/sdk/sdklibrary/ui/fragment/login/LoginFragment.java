@@ -314,11 +314,9 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
         Delegate.loginlistener.callback(SDKStatusCode.SUCCESS, user);
         LoggerUtils.i("登录成功");
         SdkLoginDialogFragment.getInstance().dismiss();//登陆成功销毁登陆窗
+        LoginSuccessToastView.showToast(getActivity(),user.getUsername());//弹出顶部欢迎Toast
+        //判断是否实名认证
 
-        LoginSuccessToastView.showToast(getActivity(),user.getUsername());
-//        Toast toast = Toast.makeText(getActivity(), user.getUsername(),Toast.LENGTH_SHORT);
-//        toast.setGravity(Gravity.TOP, 0, 0);
-//        toast.show();
     }
 
     @Override
@@ -328,7 +326,9 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
         LoggerUtils.i("一键登录成功");
         SdkLoginDialogFragment.getInstance().dismiss();//登陆成功销毁登陆窗
         new OneKeyLoginTipsDialog(getActivity()).show();//弹出一键登录成功后提示保存用户截图
-        LoginSuccessToastView.showToast(getActivity(),user.getUsername());
+        LoginSuccessToastView.showToast(getActivity(),user.getUsername());//弹出顶部欢迎Toast
+        //判断是否实名认证
+
     }
 
     @Override

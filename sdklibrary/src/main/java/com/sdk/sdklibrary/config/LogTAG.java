@@ -19,6 +19,7 @@ public final class LogTAG {
     public static final String verfiy = "TSDK verfiy";
     public static final String register = "TSDK register";
     public static final String phonecode = "TSDK phonecode";
+    public static final String antiaddiction = "TSDK antiaddiction";
     public static final String checkphoneExist = "TSDK checkphoneExist";
     public static final String rank = "TSDK rank";
     public static final String aboutme = "TSDK aboutme";

@@ -85,6 +85,8 @@ public class LoginPresenterImp implements LoginPresenter {
                 ApiResponse<MVPLoginResultBean> mvpLoginResultBean = GsonUtils.gson.fromJson(result, new TypeToken<ApiResponse<MVPLoginResultBean>>() {
                 }.getType());
 
+
+                MVPLoginResultBean bean = mvpLoginResultBean.getData();
                 int dataCode = mvpLoginResultBean.getCode();
                 String msg = mvpLoginResultBean.getMsg();
 
@@ -94,17 +96,17 @@ public class LoginPresenterImp implements LoginPresenter {
                 String uid = "";
                 String ticket = "";
                 String phone = "";
-                boolean realname = false;
+                Boolean realname = false;
+                Boolean isAdult = false;
+
                 if (mvpLoginResultBean.getData() != null) {
                     nickname = mvpLoginResultBean.getData().getUsername();
                     uid = mvpLoginResultBean.getData().getUid();
                     ticket = mvpLoginResultBean.getData().getTicket();
                     phone = mvpLoginResultBean.getData().getPhone();
                     realname = mvpLoginResultBean.getData().getRealName();
+                    isAdult = mvpLoginResultBean.getData().getAdult();
 
-                    user.setUsername(nickname);
-                    user.setUid(uid);
-                    user.setToken(ticket);
                 }
 
                 if (dataCode == HttpUrlConstants.BZ_SUCCESS) {
@@ -116,7 +118,7 @@ public class LoginPresenterImp implements LoginPresenter {
                     SaveOneKeyUserData(userName, passWord, nickname, uid,phone,realname);
                     SaveUserData(userName, passWord, nickname, uid,phone,realname);
 
-                    mvpLoginView.onekeyloginSuccess(ConstData.LOGIN_SUCCESS, user);
+                    mvpLoginView.onekeyloginSuccess(ConstData.LOGIN_SUCCESS, bean);
                 } else {
                     //根据不同dataCode做吐司提示
                     ShowInfoUtils.LogDataCode(mvpLoginView, dataCode);
@@ -151,6 +153,8 @@ public class LoginPresenterImp implements LoginPresenter {
                 ApiResponse<MVPLoginResultBean> mvpLoginResultBean = GsonUtils.gson.fromJson(result, new TypeToken<ApiResponse<MVPLoginResultBean>>() {
                 }.getType());
 
+                MVPLoginResultBean bean = mvpLoginResultBean.getData();
+
                 int dataCode = mvpLoginResultBean.getCode();
                 String msg = mvpLoginResultBean.getMsg();
 
@@ -159,15 +163,17 @@ public class LoginPresenterImp implements LoginPresenter {
                 String nickname = null;
                 String uid = "";
                 String ticket = "";
-
                 String phone = "";
                 boolean realname = false;
+                boolean isAdult = false;
+
                 if (mvpLoginResultBean.getData() != null) {
                     nickname = mvpLoginResultBean.getData().getUsername();
                     uid = mvpLoginResultBean.getData().getUid();
                     ticket = mvpLoginResultBean.getData().getTicket();
                     phone = mvpLoginResultBean.getData().getPhone();
                     realname = mvpLoginResultBean.getData().getRealName();
+//                    isAdult = mvpLoginResultBean.getData().getAdult();
 
                     user.setUsername(nickname);
                     user.setUid(uid);
@@ -176,7 +182,7 @@ public class LoginPresenterImp implements LoginPresenter {
 
                 if (dataCode == HttpUrlConstants.BZ_SUCCESS) {
 
-                    mvpLoginView.loginSuccess(ConstData.LOGIN_SUCCESS, user);
+                    mvpLoginView.loginSuccess(ConstData.LOGIN_SUCCESS, bean);
                     LoggerUtils.i(LogTAG.login, "responseBody: login Success");
 
                     GameSdkApplication.getInstance().setTicket(ticket);

@@ -12,6 +12,7 @@ import com.sdk.sdklibrary.call.GameSdk;
 import com.sdk.sdklibrary.config.SDKStatusCode;
 import com.sdk.sdklibrary.mvp.Imp.LoginPresenterImp;
 import com.sdk.sdklibrary.mvp.model.MVPLoginBean;
+import com.sdk.sdklibrary.mvp.model.MVPLoginResultBean;
 import com.sdk.sdklibrary.mvp.model.user.SDKUserResult;
 import com.sdk.sdklibrary.mvp.presenter.LoginPresenter;
 import com.sdk.sdklibrary.mvp.view.MVPLoginView;
@@ -110,21 +111,28 @@ public class AutoLoginDialog extends SdkBaseDialog implements MVPLoginView {
     }
 
     @Override
-    public void loginSuccess(String msg, SDKUserResult user) {
+    public void loginSuccess(String msg, MVPLoginResultBean bean) {
 
 //        GameSdk.getInstance().sdkInitFloatView(act);
         GameSdk.getInstance().sdkFloatViewShow();
 //        new FloatIconView(act).show();
-
+        SDKUserResult user = new SDKUserResult();
+        user.setUsername(bean.getUsername());
+        user.setUid(bean.getUid());
+        user.setToken(bean.getTicket());
         Delegate.loginlistener.callback(SDKStatusCode.SUCCESS, user);
         LoggerUtils.i("登录成功");
         LoginSuccessToastView.showToast(act, user.getUsername());
-
         close();
+        if(!bean.getRealName()){
+            //未实名认证弹出提示
+            new AntiAddictionTipsDialog(act).show();
+        }
+
     }
 
     @Override
-    public void onekeyloginSuccess(String msg, SDKUserResult user) {
+    public void onekeyloginSuccess(String msg, MVPLoginResultBean user) {
 
     }
 
@@ -132,4 +140,6 @@ public class AutoLoginDialog extends SdkBaseDialog implements MVPLoginView {
     public void loginFailed(String msg, String data) {
 
     }
+
+
 }

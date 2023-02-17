@@ -129,6 +129,11 @@ public final class HttpUrlConstants {
     //phone 验证码
     public static String getBindPhoneUrl() { return SDK_BASE_URL+"/api/v2/account/bind/phone"; }
 
+    //tsdk 绑定身份证url  POST
+    //name
+    //idnumber
+    public static String getAntiAddictionView() { return SDK_BASE_URL+"/api/v2/account/bind/phone"; }
+
 
 
     //tsdk登出url  POST

@@ -1,6 +1,8 @@
 package com.sdk.sdklibrary.mvp.view;
 
 import com.sdk.sdklibrary.base.BaseView;
+import com.sdk.sdklibrary.mvp.model.ApiResponse;
+import com.sdk.sdklibrary.mvp.model.MVPLoginResultBean;
 import com.sdk.sdklibrary.mvp.model.user.SDKUserResult;
 
 /**
@@ -10,7 +12,7 @@ import com.sdk.sdklibrary.mvp.model.user.SDKUserResult;
  */
 
 public interface MVPLoginView extends BaseView {
-    void loginSuccess(String msg, SDKUserResult user) ;
-    void onekeyloginSuccess(String msg, SDKUserResult user) ;
+    void loginSuccess(String msg, MVPLoginResultBean bean) ;
+    void onekeyloginSuccess(String msg, MVPLoginResultBean bean) ;
     void loginFailed(String msg,String data) ;
 }

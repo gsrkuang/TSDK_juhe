@@ -10,22 +10,21 @@ import java.util.List;
 public class MVPLoginResultBean {
 
     //成功
-    /*
-        {
-            "ts": 1675061284,
+   /* {
+        "ts": 1676539218,
             "code": 20000,
             "msg": "success",
             "data": {
                 "appId": "111111",
-                "username": "lin2023",
+                "username": "13246642620",
                 "password": null,
-                "ticket": "099fe79345672e6f2d43838f9e35b091dfe4c6b2e16228d4e51e2b0490004999",
-                "uid": "5469464757858304",
+                "ticket": "3a8b62ed98976534ae0a0ac7d99dbe869ddc23f13503e1e5f82a3ee925004916",
+                "uid": "884847014875136",
                 "phone": null,
-                "realName": false
-            }
+                "realName": false,
+                "isAdult":true
         }
-    */
+    }*/
 
     //失败
    /* {
@@ -42,6 +41,7 @@ public class MVPLoginResultBean {
     private String uid;
     private String phone;
     private Boolean realName;
+    private Boolean isAdult;
 
     @Override
     public String toString() {
@@ -53,6 +53,7 @@ public class MVPLoginResultBean {
                 ", uid='" + uid + '\'' +
                 ", phone='" + phone + '\'' +
                 ", realName=" + realName +
+                ", isAdult=" + isAdult +
                 '}';
     }
 
@@ -110,5 +111,13 @@ public class MVPLoginResultBean {
 
     public void setRealName(Boolean realName) {
         this.realName = realName;
+    }
+
+    public Boolean getAdult() {
+        return isAdult;
+    }
+
+    public void setAdult(Boolean adult) {
+        isAdult = adult;
     }
 }

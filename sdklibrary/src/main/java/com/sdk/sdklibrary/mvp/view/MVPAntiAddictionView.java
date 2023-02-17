@@ -9,7 +9,7 @@ import com.sdk.sdklibrary.base.BaseView;
  *
  * 防沉迷view
  */
-public interface MVPAntiAddictionView  extends BaseView {
-    void success(String msg, String data);
-    void fail(String msg, String data);
+public interface MVPAntiAddictionView extends BaseView {
+    void bindId_success(String msg, String data);
+    void bindId_fail(String msg, String data);
 }

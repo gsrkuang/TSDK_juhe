@@ -25,7 +25,6 @@ public class AntiAddictionTipsDialog extends SdkBaseDialog {
     private Activity act;
     public AntiAddictionTipsDialog(Activity act) {
         super(act);
-
         this.act = act;
     }
 
@@ -49,7 +48,7 @@ public class AntiAddictionTipsDialog extends SdkBaseDialog {
 
     @Override
     public void initData() {
-
+        setCancelable(false);
     }
 
     @Override
@@ -63,6 +62,7 @@ public class AntiAddictionTipsDialog extends SdkBaseDialog {
             //调用登出接口
             dismiss();
             GameSdk.getInstance().sdkLogout(act);
+
         }
     }
 }

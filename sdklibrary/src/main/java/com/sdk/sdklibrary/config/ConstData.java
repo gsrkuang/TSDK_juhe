@@ -51,6 +51,9 @@ public final class ConstData {
     public static final String BIND_SUCCESS = "手机绑定成功";
     public static final String BIND_FAILURE = "手机绑定失败";
 
+    public static final String BINDID_SUCCESS = "身份证绑定成功";
+    public static final String BINDID_FAILURE = "身份证绑定失败";
+
     public static final String USERINFO_SUCCESS = "获取用户数据成功";
     public static final String USERINFO_FAILURE = "获取用户数据失败";
     public static final String USERINFO_TOKEN_FAILURE = "获取用户数据Token失效";

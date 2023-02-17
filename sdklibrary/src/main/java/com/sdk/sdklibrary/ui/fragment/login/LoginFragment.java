@@ -20,6 +20,7 @@ import com.sdk.sdklibrary.call.GameSdk;
 import com.sdk.sdklibrary.config.SDKStatusCode;
 import com.sdk.sdklibrary.mvp.Imp.LoginPresenterImp;
 import com.sdk.sdklibrary.mvp.model.MVPLoginBean;
+import com.sdk.sdklibrary.mvp.model.MVPLoginResultBean;
 import com.sdk.sdklibrary.mvp.model.user.SDKUserResult;
 import com.sdk.sdklibrary.mvp.view.MVPLoginView;
 import com.sdk.sdklibrary.tools.LoggerUtils;
@@ -27,6 +28,7 @@ import com.sdk.sdklibrary.tools.SPDataUtils;
 import com.sdk.sdklibrary.ui.AgreementActivity;
 import com.sdk.sdklibrary.ui.PrivacyActivity;
 import com.sdk.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
+import com.sdk.sdklibrary.ui.fragment.login.dialog.AntiAddictionTipsDialog;
 import com.sdk.sdklibrary.ui.fragment.login.dialog.OneKeyLoginTipsDialog;
 import com.sdk.sdklibrary.ui.fragment.login.dialog.LoginSuccessToastView;
 
@@ -309,26 +311,42 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
     }
 
     @Override
-    public void loginSuccess(String msg, SDKUserResult user) {
+    public void loginSuccess(String msg, MVPLoginResultBean bean) {
         GameSdk.getInstance().sdkFloatViewShow();
+        SDKUserResult user = new SDKUserResult();
+        user.setUsername(bean.getUsername());
+        user.setUid(bean.getUid());
+        user.setToken(bean.getTicket());
+
         Delegate.loginlistener.callback(SDKStatusCode.SUCCESS, user);
         LoggerUtils.i("登录成功");
         SdkLoginDialogFragment.getInstance().dismiss();//登陆成功销毁登陆窗
         LoginSuccessToastView.showToast(getActivity(),user.getUsername());//弹出顶部欢迎Toast
         //判断是否实名认证
+        if(!bean.getRealName()){
+            //未实名认证弹出提示
+            new AntiAddictionTipsDialog(act).show();
+        }
 
     }
 
     @Override
-    public void onekeyloginSuccess(String msg, SDKUserResult user) {
+    public void onekeyloginSuccess(String msg, MVPLoginResultBean bean) {
         GameSdk.getInstance().sdkFloatViewShow();
+        SDKUserResult user = new SDKUserResult();
+        user.setUsername(bean.getUsername());
+        user.setUid(bean.getUid());
+        user.setToken(bean.getTicket());
         Delegate.loginlistener.callback(SDKStatusCode.SUCCESS, user);
         LoggerUtils.i("一键登录成功");
         SdkLoginDialogFragment.getInstance().dismiss();//登陆成功销毁登陆窗
         new OneKeyLoginTipsDialog(getActivity()).show();//弹出一键登录成功后提示保存用户截图
         LoginSuccessToastView.showToast(getActivity(),user.getUsername());//弹出顶部欢迎Toast
         //判断是否实名认证
-
+        if(!bean.getRealName()){
+            //未实名认证弹出提示
+            new AntiAddictionTipsDialog(act).show();
+        }
     }
 
     @Override

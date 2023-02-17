@@ -20,7 +20,7 @@ android:layout_height="match_parent">
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:text="根据《国家新闻出版署关于防止未成年人沉迷网络游戏的通知》和《国家新闻出版署关千进一步严格管理切实防止未成年人沉迷网络游戏的通知》，用户需要使用有效的证件进行实名认证才能体验游戏内容。"
-            android:textSize="13sp" />
+            android:textSize="16sp" />
 
 
         <View

@@ -15,11 +15,10 @@ import com.sdk.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
  * Time:15:16
  * author:colin
  * 输入真实姓名 身份证提交实名认证
- *
  */
 public class AntiAddictionDialog extends SdkBaseDialog implements MVPAntiAddictionView {
 
-    private Button cancelTipsButton,confirmTipsButton;
+    private Button cancelTipsButton, confirmTipsButton;
 
     public AntiAddictionDialog(Activity act) {
         super(act);
@@ -45,17 +44,17 @@ public class AntiAddictionDialog extends SdkBaseDialog implements MVPAntiAddicti
 
     @Override
     public void initData() {
-
+        setCancelable(false);
     }
 
     @Override
     public void processClick(View v) {
         int id = v.getId();
-        if (id == R.id.confirmTipsButton){
+        if (id == R.id.confirmTipsButton) {
             //实名认证结果
             dismiss();
             new AntiAddictionDialog(act).show();
-        }else if (id == R.id.cancelTipsButton){
+        } else if (id == R.id.cancelTipsButton) {
             dismiss();
             GameSdk.getInstance().sdkLogout(act);
         }
@@ -67,13 +66,18 @@ public class AntiAddictionDialog extends SdkBaseDialog implements MVPAntiAddicti
         showToast(data);
     }
 
+
     @Override
-    public void success(String msg, String data) {
+    public void bindId_success(String msg, String data) {
+        //绑定完成
+//        TODO:根据绑定身份证号是否成年做不同操作，如果是非成年人则禁止登录，如果是成年人则进入游戏
+
 
     }
 
     @Override
-    public void fail(String msg, String data) {
+    public void bindId_fail(String msg, String data) {
+        //绑定失败
 
     }
 }

@@ -25,10 +25,11 @@ android:layout_height="match_parent">
         android:id="@+id/messageTips"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="13sp"
+        android:textSize="16sp"
         android:layout_gravity="center"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:textColor="#000"
         android:text="根据国家新闻出版署《关于防止未成年人沉迷网络游戏的通知》《关于进一步严格管理切实防止未成年人沉迷网络游戏的通知》要求，请您使用真实信息进行实名认证" />
 
     <EditText
@@ -42,10 +43,17 @@ android:layout_height="match_parent">
         android:maxLines="1"
         android:singleLine="true"
         android:textSize="15sp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#E4E4E4"/>
 
     <EditText
         android:id="@+id/idnumber"
@@ -54,15 +62,20 @@ android:layout_height="match_parent">
         android:inputType="text"
         android:background="@null"
         android:hint="请输入身份证号码"
-        android:maxLength="15"
+        android:maxLength="18"
         android:maxLines="1"
         android:singleLine="true"
         android:textSize="15sp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         />
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#E4E4E4"/>
 
     <View
         android:layout_width="match_parent"

@@ -72,7 +72,7 @@ public class AntiAddictionPresenterImp implements AntiAddictionPresenter {
                 String msg = bean.getMsg();
 
                 if (dataCode == HttpUrlConstants.BZ_SUCCESS){
-                    mvpAntiAddictionView.bindId_success(ConstData.BINDID_SUCCESS,result);
+                    mvpAntiAddictionView.bindId_success(ConstData.BINDID_SUCCESS,result,idnumber);
                     LoggerUtils.i(LogTAG.antiaddiction,"responseBody: bind Success");
                 } else {
                     //根据不同dataCode做吐司提示

@@ -52,6 +52,14 @@ public final class HttpUrlConstants {
     public static final int BZ_UNBIND = 15001;//Unbound phone: 手机号码未被绑定
 //    public static final int BZ_UNBIND = 15100;//Unbound phone: 手机号码未被绑定
 
+
+    public static final int BZ_LIMITED_UNDERAGE_LOGIN = 14300;// "limit login of underage", "未成年限制登录"),
+    public static final int BZ_LIMITED_SINGLE_PAY = 14301;  // "limit single payment", "单次充值额度限制"),
+    public static final int BZ_LIMITED_DAILY_ACCUMULATE_PAY=14302;// "limit daily accumulated payment", "日累计充值额度限制"),
+    public static final int BZ_LIMITED_WEEKLY_ACCUMULATE_PAY=14303;// "limit weekly accumulated payment", "周累计充值额度限制"),
+    public static final int BZ_LIMITED_MONTHLY_ACCUMULATE_PAY=14304;// "limit monthly accumulated payment", "月累计充值额度限制"),
+
+
     //业务成功、失败
     public static final int BZ_SUCCESS = 20000; //成功
     public static final int BZ_FAILURE = 20001; //注册失败

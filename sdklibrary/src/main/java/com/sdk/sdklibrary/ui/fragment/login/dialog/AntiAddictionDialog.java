@@ -8,6 +8,7 @@ import com.sdk.sdklibrary.R;
 import com.sdk.sdklibrary.base.SdkBaseDialog;
 import com.sdk.sdklibrary.call.GameSdk;
 import com.sdk.sdklibrary.mvp.view.MVPAntiAddictionView;
+import com.sdk.sdklibrary.tools.IDCardUtil;
 import com.sdk.sdklibrary.ui.dialogfragment.SdkLoginDialogFragment;
 
 /**
@@ -20,6 +21,8 @@ public class AntiAddictionDialog extends SdkBaseDialog implements MVPAntiAddicti
 
     private Button cancelTipsButton, confirmTipsButton;
 
+    private final String LENGTH_FORMERROR = "身份证长度格式错误";
+    private final String LENGTH_EMPTY = "请检查姓名/身份证号为空";
     public AntiAddictionDialog(Activity act) {
         super(act);
     }
@@ -51,9 +54,22 @@ public class AntiAddictionDialog extends SdkBaseDialog implements MVPAntiAddicti
     public void processClick(View v) {
         int id = v.getId();
         if (id == R.id.confirmTipsButton) {
+            //检查
             //实名认证结果
-            dismiss();
-            new AntiAddictionDialog(act).show();
+//            dismiss();
+            boolean result = false;
+            if (result){
+                dismiss();
+                //提示完成实名认证，已满18
+            }else {
+                //未成年提示
+
+                dismiss();
+                //弹出未成年提示dialog
+                new AntiAddictionFailureTipsDialog(act).show();
+            }
+
+
         } else if (id == R.id.cancelTipsButton) {
             dismiss();
             GameSdk.getInstance().sdkLogout(act);
@@ -68,10 +84,17 @@ public class AntiAddictionDialog extends SdkBaseDialog implements MVPAntiAddicti
 
 
     @Override
-    public void bindId_success(String msg, String data) {
+    public void bindId_success(String msg, String data,String idnumber) {
         //绑定完成
 //        TODO:根据绑定身份证号是否成年做不同操作，如果是非成年人则禁止登录，如果是成年人则进入游戏
-
+        if (!IDCardUtil.isAdult(idnumber)){
+            //未成年人
+            dismiss();
+            //弹出未成年提示dialog
+            new AntiAddictionFailureTipsDialog(act);
+        }else {
+            dismiss();
+        }
 
     }
 

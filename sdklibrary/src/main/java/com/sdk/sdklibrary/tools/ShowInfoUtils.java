@@ -71,6 +71,26 @@ public class ShowInfoUtils {
                 view.showAppInfo("", "应用过期");
                 break;
 
+            case HttpUrlConstants.BZ_LIMITED_UNDERAGE_LOGIN:
+                view.showAppInfo("", "未成年限制登录");
+                break;
+
+            case HttpUrlConstants.BZ_LIMITED_SINGLE_PAY:
+                view.showAppInfo("", "单次充值额度限制");
+                break;
+
+            case HttpUrlConstants.BZ_LIMITED_DAILY_ACCUMULATE_PAY:
+                view.showAppInfo("", "日累计充值额度限制");
+                break;
+
+            case HttpUrlConstants.BZ_LIMITED_WEEKLY_ACCUMULATE_PAY:
+                view.showAppInfo("", "周累计充值额度限制");
+                break;
+
+            case HttpUrlConstants.BZ_LIMITED_MONTHLY_ACCUMULATE_PAY:
+                view.showAppInfo("", "月累计充值额度限制");
+                break;
+
             default:
                 break;
         }

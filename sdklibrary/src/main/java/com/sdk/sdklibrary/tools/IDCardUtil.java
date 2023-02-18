@@ -148,6 +148,7 @@ public class IDCardUtil {
         int len = id.length();
         if (len != EIGHTEEN_ID_CARD) {
             validResult = false;
+            return validResult;
         }
         //校验生日
         if (!validDate(id)) {
@@ -164,7 +165,7 @@ public class IDCardUtil {
      */
     private static boolean validDate(String id) {
         try {
-            String birth = id.length() == 15 ? "19" + id.substring(6, 12) : id.substring(6, 14);
+            String birth = id.substring(6, 14);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
             Date birthDate = sdf.parse(birth);
             if (!birth.equals(sdf.format(birthDate))) {

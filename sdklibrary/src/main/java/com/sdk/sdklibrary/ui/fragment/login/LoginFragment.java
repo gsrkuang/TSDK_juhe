@@ -321,12 +321,9 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
         Delegate.loginlistener.callback(SDKStatusCode.SUCCESS, user);
         LoggerUtils.i("登录成功");
         SdkLoginDialogFragment.getInstance().dismiss();//登陆成功销毁登陆窗
-        LoginSuccessToastView.showToast(getActivity(),user.getUsername());//弹出顶部欢迎Toast
-        //判断是否实名认证
-        if(!bean.getRealName()){
-            //未实名认证弹出提示
-            new AntiAddictionTipsDialog(act).show();
-        }
+        LoginSuccessToastView.showToast(getActivity(), user.getUsername());//弹出顶部欢迎Toast
+        checkAntiAddiction(act, bean);
+
 
     }
 
@@ -341,12 +338,9 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
         LoggerUtils.i("一键登录成功");
         SdkLoginDialogFragment.getInstance().dismiss();//登陆成功销毁登陆窗
         new OneKeyLoginTipsDialog(getActivity()).show();//弹出一键登录成功后提示保存用户截图
-        LoginSuccessToastView.showToast(getActivity(),user.getUsername());//弹出顶部欢迎Toast
-        //判断是否实名认证
-        if(!bean.getRealName()){
-            //未实名认证弹出提示
-            new AntiAddictionTipsDialog(act).show();
-        }
+        LoginSuccessToastView.showToast(getActivity(), user.getUsername());//弹出顶部欢迎Toast
+        checkAntiAddiction(act, bean);
+
     }
 
     @Override
@@ -374,6 +368,23 @@ public class LoginFragment extends SdkBaseFragment implements MVPLoginView {
             return false;
         } else {
             return true;
+        }
+    }
+
+    /**
+     * 检查防沉迷系统，，提示实名认证，未成年到点下线
+     */
+    public void checkAntiAddiction(Activity act, MVPLoginResultBean bean) {
+
+        //判断是否实名认证
+        if(!bean.getRealName()){
+            //未实名认证弹出提示
+            new AntiAddictionTipsDialog(act).show();
+        }else {
+            if (!bean.getAdult()){
+                //登录成功，实名已认证，但是未成年，设定晚点21点强退游戏
+
+            }
         }
     }
 

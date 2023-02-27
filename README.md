@@ -95,7 +95,7 @@ implementation files('libs/okio-1.17.2.jar')
 implementation files('libs/converter-gson-2.9.0.jar')
 
 ```
-[Retrofit基本使用](https://www.jianshu.com/p/260570146c8c)  \n
-[Android-Retrofit完全解析，看完包你不会忘！](https://www.jianshu.com/p/8b61da4f80f0)\n
-[Retrofit如何添加请求头](https://www.jianshu.com/p/e64c14939b39)\n
+[Retrofit基本使用](https://www.jianshu.com/p/260570146c8c)   <br>
+[Android-Retrofit完全解析，看完包你不会忘！](https://www.jianshu.com/p/8b61da4f80f0) <br>
+[Retrofit如何添加请求头](https://www.jianshu.com/p/e64c14939b39) <br>
 

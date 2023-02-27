@@ -74,4 +74,19 @@ sdklibrary是国内版本，国内版本目前新增了alipay支付方式
 -------------------------------------------------------
 国内版本的开发
 
+11、添加了kotlin版本，接入时需要新增kotlin支持
+implementation 'androidx.core:core-ktx:1.5.0'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+12、网络访问架构修改，使用Retrofit + OKHttp，目的是简化对API的配置，版本需要对应一下版本
+implementation files('libs/okhttp-3.14.9.jar')
+implementation files('libs/retrofit-2.9.0.jar')
+implementation files('libs/gson-2.8.0.jar')
+implementation files('libs/okio-1.17.2.jar')
+implementation files('libs/converter-gson-2.9.0.jar')
+[Retrofit基本使用](https://www.jianshu.com/p/260570146c8c)
+[Android-Retrofit完全解析，看完包你不会忘！](https://www.jianshu.com/p/8b61da4f80f0)
+[Retrofit如何添加请求头](https://www.jianshu.com/p/e64c14939b39)
 

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginTop="20dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#11ffffff">
+
+
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circular_corner_dialog"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="36.0dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <ImageView
+                android:id="@+id/toast_login_success_icon"
+                android:layout_width="18dip"
+                android:layout_height="18dip"
+                android:layout_centerVertical="true" />
+
+            <TextView
+                android:id="@+id/toast_game"
+                android:layout_width="wrap_content"
+                android:layout_height="20.0dp"
+                android:layout_marginLeft="8.0dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="#ffffffff"
+                android:textSize="13dip" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/toast_user_limit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6.0dp"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:text="您的游戏时长2小时,支付限额500元"
+            android:textColor="#ffadadad"
+            android:textSize="10sp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</RelativeLayout>

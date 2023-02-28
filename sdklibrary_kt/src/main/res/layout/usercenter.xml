@@ -1,0 +1,124 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/home_space"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+    </View>
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/home_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
+        </FrameLayout>
+
+        <View android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:alpha="0.6"
+            android:background="@android:color/darker_gray"
+            />
+        <RadioGroup
+            android:id="@+id/radio_group_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@android:color/black"
+            >
+
+            <RadioButton
+                android:drawableTop="@drawable/tab_profile_selector"
+                android:drawablePadding="-20dp"
+                android:button="@null"
+                android:id="@+id/radio_button_profile"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <RadioButton
+
+                android:drawableTop="@drawable/tab_service_selector"
+                android:drawablePadding="-20dp"
+                android:button="@null"
+                android:id="@+id/radio_button_service"
+
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                />
+
+
+         <!--   <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <RadioButton
+
+                    android:button="@null"
+                    android:id="@+id/radio_button_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tab_profile_selector"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <RadioButton
+
+                    android:button="@null"
+                    android:id="@+id/radio_button_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:background="@drawable/tab_service_selector"
+                    />
+            </LinearLayout>
+-->
+
+
+<!--            <RadioButton-->
+<!--                android:id="@+id/radio_button_home"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="首页"-->
+<!--                android:drawableTop="@drawable/tab_home_selector"-->
+<!--                style="@style/RadioGroupButtonStyle"-->
+<!--                />-->
+<!--            <RadioButton-->
+<!--                android:id="@+id/radio_button_discovery"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="发现"-->
+<!--                android:drawableTop="@drawable/tab_discovery_selector"-->
+<!--                style="@style/RadioGroupButtonStyle"-->
+<!--                />-->
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+</LinearLayout>

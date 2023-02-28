@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SdkLibrary</string>
+
+
+
+    <string name="pay_success">支付成功:</string>
+    <string name="pay_failed">支付失败:</string>
+    <string name="confirm">确定</string>
+
+<!--    网络请求-->
+
+
+</resources>

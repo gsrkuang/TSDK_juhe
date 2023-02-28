@@ -118,10 +118,10 @@ public class SdkDemoActivity extends Activity implements View.OnClickListener {
         SimpleDateFormat dateFormat= new SimpleDateFormat("yyyyMMddhhmmss");
 
         MVPPayCodeBean payBean = new MVPPayCodeBean();
-        payBean.setuId("game_0001");
-        payBean.setoId(dateFormat.format(date));
-        payBean.setpId("yuanbao01");
-        payBean.setpName("3w金币");
+        payBean.setUId("game_0001");
+        payBean.setOId(dateFormat.format(date));
+        payBean.setPId("yuanbao01");
+        payBean.setPName("3w金币");
         payBean.setPrice("1"); //单位分
         payBean.setCallbackInfo("返回信息");
 

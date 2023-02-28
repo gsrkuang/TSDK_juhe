@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/shape_back"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:id="@+id/re"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/goback"
+            android:layout_width="38dp"
+            android:layout_height="40dp"
+            android:background="@drawable/gamesdk_goback"
+            android:scaleX="0.65"
+            android:scaleY="0.65" />
+
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:background="#fff"
+            android:text="支 付"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e7e7e7"
+        />
+
+    <LinearLayout
+        android:id="@+id/shopMessage"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/shopName"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:background="#fff"
+            android:gravity="center"
+            android:text="商品：元宝"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/shopMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:background="#fff"
+            android:gravity="center"
+            android:text="6.0元"
+            android:textColor="#FD784F"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <View android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:layout_marginTop="1dp"
+        android:background="#e7e7e7"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <RadioGroup
+
+            android:clickable="false"
+            android:id="@+id/radioGrouppay"
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/llalipay"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+
+
+                <RelativeLayout
+                    android:gravity="center"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleX="0.7"
+                        android:scaleY="0.7"
+                        android:src="@drawable/game_sure_alipay" />
+
+
+                </RelativeLayout>
+
+
+                <TextView
+
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="支付宝支付">
+
+                </TextView>
+
+
+                <RadioButton
+
+                    android:background="@drawable/sure_check_pay"
+                    android:button="@null"
+                    android:checked="false"
+                    android:clickable="false"
+                    android:id="@+id/rbalipay"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp">
+
+                </RadioButton>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/llwechatpay"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+
+
+                <RelativeLayout
+                    android:gravity="center"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent">
+
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleX="0.7"
+                        android:scaleY="0.7"
+                        android:src="@drawable/game_sure_wechatpay" />
+
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="微信支付">
+
+                </TextView>
+
+
+                <RadioButton
+                    android:background="@drawable/sure_check_pay"
+                    android:button="@null"
+                    android:checked="false"
+                    android:clickable="false"
+                    android:id="@+id/rbwechatpay"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp">
+                </RadioButton>
+
+            </LinearLayout>
+
+
+
+        </RadioGroup>
+
+        <Button
+
+            android:id="@+id/pay"
+            android:background="@drawable/shape_pay"
+            android:text="确 认 支 付"
+            android:layout_marginRight="3dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="4dp"
+            android:textSize="18sp"
+            android:textColor="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            />
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

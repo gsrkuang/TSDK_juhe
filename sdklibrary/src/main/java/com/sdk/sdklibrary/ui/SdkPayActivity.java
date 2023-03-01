@@ -159,7 +159,7 @@ public class SdkPayActivity extends SdkBaseActivity implements MVPPayCodeView {
 
     public void getIntentData() {
         payBean = (MVPPayCodeBean) getIntent().getSerializableExtra("payBean");
-        mShopName.setText("商品:"+payBean.getpName());
+        mShopName.setText("商品:"+payBean.getPName());
         mShopMoney.setText(changeF2Y(payBean.getPrice())+"元");
     }
 
@@ -265,7 +265,7 @@ public class SdkPayActivity extends SdkBaseActivity implements MVPPayCodeView {
         }else if (payType.equals("wxpay")){
             Intent intent = new Intent(this,WebPayActivity.class);
             intent.putExtra("webUrl",data);
-            intent.putExtra("orderId",payBean.getoId());
+            intent.putExtra("orderId",payBean.getOId());
             startActivity(intent);
 
             finish();

@@ -59,16 +59,16 @@ public class AntiAddictionDialog extends SdkBaseDialog implements MVPAntiAddicti
     public void processClick(View v) {
         int id = v.getId();
         if (id == R.id.confirmTipsButton) {
+            dismiss();//TODO
+
             //检查姓名和身份证号码，错误则提示
             if (!checkNameAndIdNumber()){
                 return;
             }
 
-
-
             //实名认证结果
 //            dismiss();
-            boolean result = false;
+            boolean result = true;
             if (result){
                 dismiss();
                 //提示完成实名认证，已满18

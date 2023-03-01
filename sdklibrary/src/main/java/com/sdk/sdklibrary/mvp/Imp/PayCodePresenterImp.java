@@ -40,10 +40,10 @@ public class PayCodePresenterImp implements PayCodePresenter {
     private void payCodeMethod(String url, MVPPayCodeBean payBean,String payType) {
 
         Map<String, String> map = new HashMap<>();
-        map.put("uId", payBean.getuId());
-        map.put("oId", payBean.getoId());
-        map.put("pId", payBean.getpId());
-        map.put("pName", payBean.getpName());
+        map.put("uId", payBean.getUId());
+        map.put("oId", payBean.getOId());
+        map.put("pId", payBean.getPId());
+        map.put("pName", payBean.getPName());
         map.put("price", payBean.getPrice());
         map.put("callbackInfo", payBean.getCallbackInfo());
 

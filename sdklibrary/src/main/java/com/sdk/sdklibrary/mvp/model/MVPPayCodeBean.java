@@ -9,63 +9,63 @@ import java.io.Serializable;
  */
 
 public class MVPPayCodeBean implements Serializable {
-    private String uId;
-    private String oId;
-    private String pId;
-    private String pName;
-    private String price;
+    private String UId;
+    private String OId;
+    private String PId;
+    private String PName;
+    private String Price;
     private String callbackInfo;
 
     @Override
     public String toString() {
-        return "MVPPayBean{" +
-                "uId='" + uId + '\'' +
-                ", oId='" + oId + '\'' +
-                ", pId='" + pId + '\'' +
-                ", pName='" + pName + '\'' +
-                ", price='" + price + '\'' +
+        return "MVPPayCodeBean{" +
+                "UId='" + UId + '\'' +
+                ", OId='" + OId + '\'' +
+                ", PId='" + PId + '\'' +
+                ", PName='" + PName + '\'' +
+                ", Price='" + Price + '\'' +
                 ", callbackInfo='" + callbackInfo + '\'' +
                 '}';
     }
 
-    public String getuId() {
-        return uId;
+    public String getUId() {
+        return UId;
     }
 
-    public void setuId(String uId) {
-        this.uId = uId;
+    public void setUId(String UId) {
+        this.UId = UId;
     }
 
-    public String getoId() {
-        return oId;
+    public String getOId() {
+        return OId;
     }
 
-    public void setoId(String oId) {
-        this.oId = oId;
+    public void setOId(String OId) {
+        this.OId = OId;
     }
 
-    public String getpId() {
-        return pId;
+    public String getPId() {
+        return PId;
     }
 
-    public void setpId(String pId) {
-        this.pId = pId;
+    public void setPId(String PId) {
+        this.PId = PId;
     }
 
-    public String getpName() {
-        return pName;
+    public String getPName() {
+        return PName;
     }
 
-    public void setpName(String pName) {
-        this.pName = pName;
+    public void setPName(String PName) {
+        this.PName = PName;
     }
 
     public String getPrice() {
-        return price;
+        return Price;
     }
 
     public void setPrice(String price) {
-        this.price = price;
+        Price = price;
     }
 
     public String getCallbackInfo() {

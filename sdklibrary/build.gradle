@@ -45,9 +45,9 @@ dependencies {
 
 //    implementation files('libs/android-support-v4.jar')
 
-    implementation files('libs/okhttp-3.10.0.jar')
-    implementation files('libs/gson-2.2.2.jar')
-    implementation files('libs/okio-1.14.1.jar')
+    implementation files('libs/okhttp-3.14.9.jar')
+    implementation files('libs/gson-2.8.0.jar')
+    implementation files('libs/okio-1.17.2.jar')
 
     // 支付宝 SDK AAR 包所需的配置
 //    implementation 'com.alipay.sdk:alipaysdk-android:+@aar'
